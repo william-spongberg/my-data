@@ -34,6 +34,7 @@ Raise an issue or email me at <william@spongberg.dev> if you want to see a platf
 - Call API with data. Would prefer not to store data on server for obvious privacy reasons.
 - Would like to automatically grab data for users rather than forcing them to go through the ardous process of downloading their data from each platform themselves. Facebook already has some support for this, but will have to look further into it: <https://developers.facebook.com/docs/data-portability/>
 - Work with governments to make it easier for users to get their data from companies. This is a privacy issue, and should be taken seriously. Companies should not be able to hide behind the excuse of "it's too hard to get the data".
+- Change title to something more catchy and less basic.
 - etc etc
 
 ## Dev Notes
