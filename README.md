@@ -45,11 +45,12 @@ Raise an issue or email me at <william@spongberg.dev> if you want to see a platf
 ## Future Features
 
 - May have to make this a paid service to cover costs for outgoing API calls from server to e.g. the YouTube API. Would only become paid if too many requests are made, and would require a login.
-- Call API with data. Would prefer not to store data on server for obvious privacy reasons.
+- User can call API with data. Would prefer not to store data on server for obvious privacy reasons. Most likely this would be a paid feature - free users would have to upload data to frontend. Could also allow querying, but this would require data to be upload to server.
 - Would like to automatically grab data for users rather than forcing them to go through the ardous process of downloading their data from each platform themselves. Meta and TikTok do seem to already support this, but I'll have to look into it further. (<https://developers.facebook.com/docs/data-portability/>, <https://support.tiktok.com/en/account-and-privacy/personalized-ads-and-data/requesting-your-data>)
 - Work with governments to make it easier for users to get their data from companies. This is a privacy issue, and should be taken seriously. Companies should not be able to hide behind the excuse of "it's too hard to get the data".
 - Change title to something more catchy and less basic.
 - Use AI to summarise some data. This is a long way off, but would be very helpful.
+- Upload data to one point, and let server automatically figure out which platform it's from. Still allow choosing individual platform to upload to in case of bugs.
 - etc etc
 
 ## Potential Issues
