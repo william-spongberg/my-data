@@ -2,6 +2,8 @@
 // platforms hopefully shouldn't change their data structures too much...
 // while processing, if any data is broken, ignore it? allow null for unimportant stuff
 
+// TODO: convert to classes
+
 // *NOTE: timestamps are in unix time
 
 // simplify file data, should only need this for now
@@ -11,9 +13,10 @@ export interface FileData {
   type: string;
 }
 
+// root of instagram data structure
 export interface InstagramData {
-  ads_information: AdsInformation;
-  your_activity: Activity[];
+  ads_information?: AdsInformation;
+  activity?: Activity[];
   // TODO: messages, likes, etc
 }
 

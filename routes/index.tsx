@@ -4,7 +4,7 @@ export default function Home() {
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
         <h1 class="text-4xl font-bold">Welcome to your own data.</h1>
         <a
-          href="/platforms/instagram/instagram"
+          href="/platforms/instagram/instagram_upload"
           class="text-blue-500 hover:underline mt-4"
         >
           Go to Instagram

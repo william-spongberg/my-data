@@ -1,4 +1,7 @@
 import { FileData, Activity, ActivityEvent, EventType } from "./interfaces.tsx";
+import Chart from "npm:chart.js";
+
+// TODO: api calls for analytics
 
 export function parseActivity(fileData: FileData): Activity[] {
   // convert to JSON

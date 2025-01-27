@@ -1,49 +1,49 @@
-import { FileData, Activity } from "./interfaces.tsx";
+import { FileData, Activity, InstagramData } from "./interfaces.tsx";
 import { getNumEvents, parseActivity, getEventTypeAnalytics, getActivities } from "./processing.tsx";
 
-// call api functions from here
-export function handleFileData(fileData: FileData) {
+// TODO: allow multiple files to be uploaded at once, combine all into one InstagramData object
+export function convertFileData(fileData: FileData): InstagramData | null {
   // instagram only allows json files
   if (fileData.type !== "application/json") {
     console.log("Invalid file type");
-    return;
+    return null;
   }
 
   // parse json data differently depending on what it is
   switch (fileData.name) {
     case "ads_viewed.json": {
       console.log("Ads viewed");
-      break;
+      return null;
     }
     case "posts_viewed.json": {
       console.log("Your activity");
-      break;
+      return null;
     }
     case "videos_watched.json": {
       console.log("Videos watched");
-      break;
+      return null;
     }
     case "advertisers_using_your_activity_or_information.json": {
       console.log("Advertisers using your data");
-      break;
+      return null;
     }
     case "other_categories_used_to_reach_you.json": {
       console.log("Categories used to reach you");
-      break;
+      return null;
     }
     case "your_activity_off_meta_technologies.json": {
       console.log("Your activity off meta technologies");
       
       const activities: Activity[] = parseActivity(fileData);
+      const instagramData: InstagramData = {
+        activity: activities,
+      }
 
-      console.log("Number of activities:", activities.length);
-      console.log("Number of events:", getNumEvents(activities));
-      console.log("Event type analytics:", getEventTypeAnalytics(activities));
-      console.log("All activities:", getActivities(activities));
-      break;
+      return instagramData;
     }
     default: {
       console.log("Invalid file name");
+      return null;
     }
   }
 }
