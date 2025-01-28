@@ -1,5 +1,5 @@
-import { Activity, FileData, InstagramData } from "../../components/instagram/interfaces.tsx";
-import { getNumEvents, getEventTypeAnalytics, getActivities } from "../../components/instagram/processing.tsx";
+import { FileData } from "../../components/instagram/interfaces.tsx";
+import { InstagramData } from "../../components/instagram/classes.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { convertFileData } from "../../components/instagram/utils.tsx";
 
@@ -57,24 +57,16 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
 export default function InstagramAnalytics({ data } : PageProps<InstagramAnalyticsProps>) {
   const { message, instaData } = data;
 
-  let activity: Activity[] = [];
-
   if (message) {
     console.log(message);
-  }
-
-  if (instaData) {
-    if (instaData.activity) {
-      activity = instaData.activity;
-    }
   }
 
   return (
     <div class="px-4 py-8 mx-auto bg-[#86efac]">
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center w-full">
         <h1 class="text-4xl font-bold">Instagram Analytics</h1>
-        {instaData ? (
-          renderInstagramActivites(activity)
+        {instaData?.activities ? (
+          instaData.activities.render()
         ) : (
           <>
             <p class="text-lg mt mb-4-4">What data does Instagram have on you?</p>
@@ -87,24 +79,6 @@ export default function InstagramAnalytics({ data } : PageProps<InstagramAnalyti
         )}
       </div>
     </div>
-  );
-}
-
-export function renderInstagramActivites(activity: Activity[]) {
-  if (!activity) {
-    return <p>No activity data</p>;
-  }
-
-  return (
-    <>
-      <p class="text-lg mt-4 mb-4">Your Instagram data</p>
-      <p>{`Your actions were tracked across ${activity.length} different apps and websites.`}</p>
-      <p>{`A total of ${getNumEvents(activity)} logs were made.`}</p>
-      {Array.from(getEventTypeAnalytics(activity)).map(([event, count]) => (
-        <p key={event}>{`Event type: ${event}, Count: ${count}`}</p>
-      ))}
-      <p class="max-w-screen-md">{`Apps and websites: ${getActivities(activity).join(', ')}`}</p>
-    </>
   );
 }
 

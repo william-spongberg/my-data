@@ -1,5 +1,5 @@
-import { FileData, Activity, InstagramData } from "./interfaces.tsx";
-import { parseActivity } from "./processing.tsx";
+import { FileData } from "./interfaces.tsx";
+import { Activities, InstagramData } from "./classes.tsx";
 
 // TODO: allow multiple files to be uploaded at once, combine all into one InstagramData object
 export function convertFileData(fileData: FileData): InstagramData | null {
@@ -34,10 +34,8 @@ export function convertFileData(fileData: FileData): InstagramData | null {
     case "your_activity_off_meta_technologies.json": {
       console.log("Your activity off meta technologies");
       
-      const activities: Activity[] = parseActivity(fileData);
-      const instagramData: InstagramData = {
-        activity: activities,
-      }
+      const activities: Activities = new Activities(fileData);
+      const instagramData: InstagramData = new InstagramData(undefined, activities);
 
       return instagramData;
     }

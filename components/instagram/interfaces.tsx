@@ -2,6 +2,8 @@
 // platforms hopefully shouldn't change their data structures too much...
 // while processing, if any data is broken, ignore it? allow null for unimportant stuff
 
+import { JSX } from "preact/jsx-runtime";
+
 // TODO: convert to classes
 
 // *NOTE: timestamps are in unix time
@@ -13,11 +15,9 @@ export interface FileData {
   type: string;
 }
 
-// root of instagram data structure
-export interface InstagramData {
-  ads_information?: AdsInformation;
-  activity?: Activity[];
-  // TODO: messages, likes, etc
+export interface InstagramDataType {
+  render(): JSX.Element;
+  parse(fileData: FileData): void;
 }
 
 export interface Activity {
@@ -26,7 +26,7 @@ export interface Activity {
 }
 
 export interface ActivityEvent {
-  //id: number; only needed if timestamp, type and event all overlap somehow. doubtful
+  //id: number; only needed if timestamp and event type both overlap somehow. doubtful
   type: EventType;
   timestamp: number;
 }
