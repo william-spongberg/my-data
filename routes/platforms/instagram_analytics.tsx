@@ -59,12 +59,11 @@ export default function InstagramAnalytics({ data } : PageProps<InstagramAnalyti
 
   let activity: Activity[] = [];
 
-  if (message !== undefined) {
+  if (message) {
     console.log(message);
   }
 
-  if (instaData !== undefined) {
-    console.log("yay we have data");
+  if (instaData) {
     if (instaData.activity) {
       activity = instaData.activity;
     }

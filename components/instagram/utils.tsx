@@ -1,5 +1,5 @@
 import { FileData, Activity, InstagramData } from "./interfaces.tsx";
-import { getNumEvents, parseActivity, getEventTypeAnalytics, getActivities } from "./processing.tsx";
+import { parseActivity } from "./processing.tsx";
 
 // TODO: allow multiple files to be uploaded at once, combine all into one InstagramData object
 export function convertFileData(fileData: FileData): InstagramData | null {

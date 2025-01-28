@@ -1,5 +1,4 @@
 import { FileData, Activity, ActivityEvent, EventType } from "./interfaces.tsx";
-import Chart from "npm:chart.js";
 
 // TODO: api calls for analytics
 
