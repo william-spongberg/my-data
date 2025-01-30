@@ -2,11 +2,8 @@ import { FileData } from "../../components/interfaces.tsx";
 import { InstagramData } from "../../components/instagram/classes.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { instaFolders } from "../../components/instagram/constants.tsx";
-
-interface InstagramAnalyticsProps {
-  message?: string;
-  instaData?: InstagramData;
-}
+import { InstagramAnalyticsProps } from "../../components/instagram/interfaces.tsx";
+import { unzipFile } from "../../components/utils.tsx";
 
 // file is uploaded through POST request, handled here
 export const handler: Handlers<InstagramAnalyticsProps> = {
@@ -22,8 +19,6 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
     const files = form.getAll("user-file") as File[];
 
     // check if files exist
-    // TODO: enforce max file size, etc
-    // ! one file always uploaded??
     if (files.length === 0) {
       return ctx.render({
         message: `Please try again`,
@@ -31,13 +26,18 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
     }
 
     // handle file data
-    const fileDataArray: FileData[] = await Promise.all(
-      files.map(async (file) => ({
-        text: await file.text(),
-        name: file.name,
-        type: file.type,
-      })),
-    );
+    let fileDataArray: FileData[] = [];
+    for (const file of files) {
+      if (file.name.endsWith('.zip')) {
+        fileDataArray = fileDataArray.concat(await unzipFile(file));
+      } else {
+        fileDataArray.push({
+          text: await file.text(),
+          name: file.name,
+          type: file.type,
+        });
+      }
+    }
 
     // parse fileData
     const instaData = new InstagramData(fileDataArray);
@@ -109,7 +109,6 @@ export default function InstagramAnalytics(
   );
 }
 
-// TODO: allow zip folder uploads using https://deno.land/x/zip@v1.2.5
 // TODO: drag and drop files instead - use package for this
 // TODO: make file uploading a reusable component
 

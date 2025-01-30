@@ -4,6 +4,8 @@
 
 // *NOTE: timestamps are in unix time (milliseconds)
 
+import { InstagramData } from "./classes.tsx";
+
 export enum EventType {
   PAGE_VIEW = "PAGE_VIEW",
   CUSTOM = "CUSTOM",
@@ -53,4 +55,9 @@ export interface AvertiserInfo {
 
 export interface Category {
   name: string;
+}
+
+export interface InstagramAnalyticsProps {
+  message?: string;
+  instaData?: InstagramData;
 }
