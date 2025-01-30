@@ -33,6 +33,9 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
         // fileDataArray = fileDataArray.concat(await unzipFile(file));
 
         // for now, just ignore zip files
+        return ctx.render({
+          message: `Sorry, due to Deno Deploy limitations only individual files are allowed at this time`,
+        });
       } else {
         fileDataArray.push({
           text: await file.text(),
