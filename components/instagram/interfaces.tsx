@@ -62,10 +62,6 @@ export interface InstagramAnalyticsProps {
   instaData?: InstagramData;
 }
 
-export interface PostsChartIslandProps {
-  posts: { timestamp: number }[];
-}
-
 export interface Post {
   author: string;
   href: string;

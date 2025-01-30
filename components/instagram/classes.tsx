@@ -13,8 +13,7 @@ import {
 } from "./interfaces.tsx";
 import { DataType, FileData } from "../interfaces.tsx";
 import { convertUnixTimeToDate } from "../utils.tsx";
-import LikedPostsChartIsland from "../../islands/LikedPostsChart.tsx";
-import SavedPostsChartIsland from "../../islands/SavedPostsChart.tsx";
+import LineChartIsland from "../../islands/LineChart.tsx";
 
 // TODO: only print out titles for data that has been given
 
@@ -133,15 +132,29 @@ export class Activities implements DataType {
           {`Your actions were tracked across ${this.activities.length} different apps and websites.`}
         </p>
         <p>{`A total of ${this.getNumEvents()} logs were made.`}</p>
-        {Array.from(this.getEventTypeAnalytics()).map(([event, count]) => (
-          <p key={event}>{`Event type: ${event}, Count: ${count}`}</p>
-        ))}
-        <p class="max-w-screen-md">
-          {`Apps and websites: ${this.getStringifiedActivities().join(", ")}`}
-        </p>
+        <p>{`The following events were tracked:`}</p>
+        <LineChartIsland
+          id="ActivitiesChart"
+          datasets={Array.from(this.getEventTypeAnalytics()).map(
+            ([event, count]: [EventType, number]) => ({
+              label: event,
+              data: this.activities
+                .flatMap((activity) =>
+                  activity.events.filter((e) => e.type === event)
+                )
+                .map((e) => ({
+                  timestamp: e.timestamp,
+                })),
+              borderColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
+                Math.random() * 255
+              )}, ${Math.floor(Math.random() * 255)}, 1)`,
+            })
+          )}
+        />
       </>
     );
   }
+  
 
   parse(fileData: FileData) {
     // convert to JSON
@@ -374,6 +387,7 @@ export class CategoriesUsedToReachYou implements DataType {
   }
 }
 
+// default data structure for impressions
 export abstract class Impressions implements DataType {
   impressions: Impression[] = [];
 
@@ -390,13 +404,8 @@ export abstract class Impressions implements DataType {
     return (
       <>
         <p>Impressions</p>
-        {this.impressions.map((impression, index) => (
-          <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${
-              convertUnixTimeToDate(impression.timestamp)
-            }`}
-          </p>
-        ))}
+        {`You have seen ${this.impressions.length} impressions`}
+        <LineChartIsland id="Impressions" datasets={[{label: "Impressions", data: this.impressions, borderColor: "rgba(75, 192, 192, 1)"}]} />
       </>
     );
   }
@@ -427,13 +436,7 @@ export class AdImpressions extends Impressions {
         <p class="text-sm italic">
           {`You have seen ${this.impressions.length} ads`}
         </p>
-        {this.impressions.map((impression, index) => (
-          <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${
-              convertUnixTimeToDate(impression.timestamp)
-            }`}
-          </p>
-        ))}
+        <LineChartIsland id="AdImpressions" datasets={[{label: "Ad Impressions", data: this.impressions, borderColor: "rgba(75, 192, 192, 1)"}]} />
       </>
     );
   }
@@ -464,13 +467,7 @@ export class VideoImpressions extends Impressions {
         <p class="text-sm italic">
           {`You have seen ${this.impressions.length} videos`}
         </p>
-        {this.impressions.map((impression, index) => (
-          <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${
-              convertUnixTimeToDate(impression.timestamp)
-            }`}
-          </p>
-        ))}
+        <LineChartIsland id="VideoImpressions" datasets={[{label: "Video Impressions", data: this.impressions, borderColor: "rgba(75, 192, 192, 1)"}]} />
       </>
     );
   }
@@ -501,13 +498,7 @@ export class PostImpressions extends Impressions {
         <p class="text-sm italic">
           {`You have seen ${this.impressions.length} posts`}
         </p>
-        {this.impressions.map((impression, index) => (
-          <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${
-              convertUnixTimeToDate(impression.timestamp)
-            }`}
-          </p>
-        ))}
+        <LineChartIsland id="PostImpressions" datasets={[{label: "Post Impressions", data: this.impressions, borderColor: "rgba(75, 192, 192, 1)"}]} />
       </>
     );
   }
@@ -575,7 +566,7 @@ export class LikedPosts implements DataType {
           convertUnixTimeToDate(this.posts[0].timestamp)
         }`}
 
-        <LikedPostsChartIsland posts={this.posts} />
+        <LineChartIsland id="LikedPosts" datasets={[{label: "Liked Posts", data: this.posts, borderColor: "rgba(75, 192, 192, 1)"}]} />
       </>
     );
   }
@@ -613,7 +604,7 @@ export class SavedPosts implements DataType {
         {`You have saved ${this.posts.length} posts between ${
           convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
         } and ${convertUnixTimeToDate(this.posts[0].timestamp)}`}
-        <SavedPostsChartIsland posts={this.posts} />
+        <LineChartIsland id="SavedPosts" datasets={[{label: "Saved Posts", data: this.posts, borderColor: "rgba(75, 192, 192, 1)"}]} />
       </>
     );
   }

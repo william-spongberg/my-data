@@ -1,0 +1,1 @@
+// TODO: create bar chart component for activities
