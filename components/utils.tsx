@@ -14,10 +14,18 @@ export async function unzipFile(file: File): Promise<FileData[]> {
         const text = await zipEntry.async("text");
         // ignore path
         const name = filename.split('/').pop();
+        let type = "text/plain";
+        if (filename.endsWith(".json")) {
+          type = "application/json";
+        } else if (filename.endsWith(".csv")) {
+          type = "text/csv";
+        } else if (filename.endsWith(".html")) {
+          type = "text/html";
+        }
         fileDataArray.push({
           text,
           name: name || filename,
-          type: "application/json",
+          type,
         });
       }
     }

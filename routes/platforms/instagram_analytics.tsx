@@ -28,13 +28,20 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
     // handle file data
     let fileDataArray: FileData[] = [];
     for (const file of files) {
-      if (file.name.endsWith(".zip")) {
-        // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
-        // fileDataArray = fileDataArray.concat(await unzipFile(file));
-
-        // for now, just ignore zip files
+      // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
+      // fileDataArray = fileDataArray.concat(await unzipFile(file));
+      // for now, just ignore zip files
+      if (file.name.endsWith(".zip") || file.type === "application/zip") {
         return ctx.render({
-          message: `Zip files are not supported at this time`,
+          message: `Zip files are not supported`,
+        });
+        // enforce allowed file types
+      } else if (
+        !(file.type === "application/json" || file.type === "text/plain" ||
+          file.type === "text/csv" || file.type === "text/html")
+      ) {
+        return ctx.render({
+          message: `Only json, txt, csv, and html files are supported`,
         });
       } else {
         fileDataArray.push({
