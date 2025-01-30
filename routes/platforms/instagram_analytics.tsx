@@ -19,7 +19,7 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
     const files = form.getAll("user-file") as File[];
 
     // check if files exist
-    if (files.length === 0) {
+    if (!files || !files[0] || files.length === 0) {
       return ctx.render({
         message: `Please try again`,
       });
