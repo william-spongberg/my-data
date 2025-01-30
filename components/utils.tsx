@@ -25,4 +25,8 @@ export async function unzipFile(file: File): Promise<FileData[]> {
   return fileDataArray;
 }
 
+export function convertUnixTimeToDate(timestamp: number): Date {
+  return new Date(timestamp * 1000);
+}
+
 // TODO: process timestamp number to Date object

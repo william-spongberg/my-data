@@ -11,6 +11,7 @@ import {
   Impression,
 } from "./interfaces.tsx";
 import { DataType, FileData } from "../interfaces.tsx";
+import { convertUnixTimeToDate } from "../utils.tsx";
 
 // TODO: only print out titles for data that has been given
 
@@ -356,7 +357,7 @@ export abstract class Impressions implements DataType {
         <p>Impressions</p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${impression.timestamp}`}
+            {`Impression by ${impression.author} at ${convertUnixTimeToDate(impression.timestamp)}`}
           </p>
         ))}
       </>
@@ -389,7 +390,7 @@ export class AdImpressions extends Impressions {
         <p class="text-sm italic">{`You have seen ${this.impressions.length} ads`}</p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${impression.timestamp}`}
+            {`Impression by ${impression.author} at ${convertUnixTimeToDate(impression.timestamp)}`}
           </p>
         ))}
       </>
@@ -422,7 +423,7 @@ export class VideoImpressions extends Impressions {
         <p class="text-sm italic">{`You have seen ${this.impressions.length} videos`}</p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${impression.timestamp}`}
+            {`Impression by ${impression.author} at ${convertUnixTimeToDate(impression.timestamp)}`}
           </p>
         ))}
       </>
@@ -455,7 +456,7 @@ export class PostImpressions extends Impressions {
         <p class="text-sm italic">{`You have seen ${this.impressions.length} posts`}</p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${impression.timestamp}`}
+            {`Impression by ${impression.author} at ${convertUnixTimeToDate(impression.timestamp)}`}
           </p>
         ))}
       </>
