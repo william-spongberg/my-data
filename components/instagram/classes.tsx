@@ -9,6 +9,7 @@ import {
   Category,
   EventType,
   Impression,
+  Post,
 } from "./interfaces.tsx";
 import { DataType, FileData } from "../interfaces.tsx";
 import { convertUnixTimeToDate } from "../utils.tsx";
@@ -19,8 +20,7 @@ import { convertUnixTimeToDate } from "../utils.tsx";
 export class InstagramData implements DataType {
   activities: Activities = new Activities();
   adsInfo: AdsInformation = new AdsInformation();
-
-  // TODO: messages, likes, etc
+  userActivity: UserActivity = new UserActivity();
 
   constructor(fileData?: FileData[]) {
     if (fileData) {
@@ -35,6 +35,8 @@ export class InstagramData implements DataType {
         {this.activities.render()}
         <br />
         {this.adsInfo.render()}
+        <br />
+        {this.userActivity.render()}
         <br />
       </>
     );
@@ -84,6 +86,16 @@ export class InstagramData implements DataType {
         case "your_activity_off_meta_technologies.json": {
           this.activities = new Activities(file);
           console.log("Parsed your_activity_off_meta_technologies.json");
+          break;
+        }
+        case "saved_posts.json": {
+          this.userActivity.savedPosts = new SavedPosts(file);
+          console.log("Parsed saved_posts.json");
+          break;
+        }
+        case "liked_posts.json": {
+          this.userActivity.likedPosts = new LikedPosts(file);
+          console.log("Parsed liked_posts.json");
           break;
         }
         default: {
@@ -233,11 +245,11 @@ export class InstagramAds implements DataType {
   categories_used_to_reach_you: CategoriesUsedToReachYou =
     new CategoriesUsedToReachYou();
 
-    constructor(fileData?: FileData) {
-      if (fileData) {
-        this.parse(fileData);
-      }
+  constructor(fileData?: FileData) {
+    if (fileData) {
+      this.parse(fileData);
     }
+  }
 
   render() {
     return (
@@ -275,10 +287,29 @@ export class AdvertisersUsingData implements DataType {
     return (
       <>
         <p>Advertisers using your data</p>
-        <p class='text-sm italic'>{`Your data has been sold to ${this.advertisers.length} advertisers`}</p>
-        <p class='text-sm italic'>{`Advertisers with data files on you: ${this.advertisers.filter(advertiser => advertiser.has_data_file_on_you).length}`}</p>
-        <p class='text-sm italic'>{`Advertisers with remarketing just for you: ${this.advertisers.filter(advertiser => advertiser.has_remarketing).length}`}</p>
-        <p class='text-sm italic'>{`Advertisers with in-person store visits from you: ${this.advertisers.filter(advertiser => advertiser.has_in_person_store_visit).length}`}</p>
+        <p class="text-sm italic">
+          {`Your data has been sold to ${this.advertisers.length} advertisers`}
+        </p>
+        <p class="text-sm italic">
+          {`Advertisers with data files on you: ${
+            this.advertisers.filter((advertiser) =>
+              advertiser.has_data_file_on_you
+            ).length
+          }`}
+        </p>
+        <p class="text-sm italic">
+          {`Advertisers with remarketing just for you: ${
+            this.advertisers.filter((advertiser) => advertiser.has_remarketing)
+              .length
+          }`}
+        </p>
+        <p class="text-sm italic">
+          {`Advertisers with in-person store visits from you: ${
+            this.advertisers.filter((advertiser) =>
+              advertiser.has_in_person_store_visit
+            ).length
+          }`}
+        </p>
       </>
     );
   }
@@ -316,7 +347,9 @@ export class CategoriesUsedToReachYou implements DataType {
     return (
       <>
         <p>Categories used to reach you</p>
-        <p class="text-sm italic">{`Your data has been used to reach you in ${this.categories.length} categories`}</p>
+        <p class="text-sm italic">
+          {`Your data has been used to reach you in ${this.categories.length} categories`}
+        </p>
         {this.categories.map((category) => (
           <p key={category.name} class="text-sm">
             {`${category.name}`}
@@ -357,7 +390,9 @@ export abstract class Impressions implements DataType {
         <p>Impressions</p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${convertUnixTimeToDate(impression.timestamp)}`}
+            {`Impression by ${impression.author} at ${
+              convertUnixTimeToDate(impression.timestamp)
+            }`}
           </p>
         ))}
       </>
@@ -387,10 +422,14 @@ export class AdImpressions extends Impressions {
     return (
       <>
         <p>Ad Impressions</p>
-        <p class="text-sm italic">{`You have seen ${this.impressions.length} ads`}</p>
+        <p class="text-sm italic">
+          {`You have seen ${this.impressions.length} ads`}
+        </p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${convertUnixTimeToDate(impression.timestamp)}`}
+            {`Impression by ${impression.author} at ${
+              convertUnixTimeToDate(impression.timestamp)
+            }`}
           </p>
         ))}
       </>
@@ -420,10 +459,14 @@ export class VideoImpressions extends Impressions {
     return (
       <>
         <p>Video Impressions</p>
-        <p class="text-sm italic">{`You have seen ${this.impressions.length} videos`}</p>
+        <p class="text-sm italic">
+          {`You have seen ${this.impressions.length} videos`}
+        </p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${convertUnixTimeToDate(impression.timestamp)}`}
+            {`Impression by ${impression.author} at ${
+              convertUnixTimeToDate(impression.timestamp)
+            }`}
           </p>
         ))}
       </>
@@ -453,10 +496,14 @@ export class PostImpressions extends Impressions {
     return (
       <>
         <p>Post Impressions</p>
-        <p class="text-sm italic">{`You have seen ${this.impressions.length} posts`}</p>
+        <p class="text-sm italic">
+          {`You have seen ${this.impressions.length} posts`}
+        </p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
-            {`Impression by ${impression.author} at ${convertUnixTimeToDate(impression.timestamp)}`}
+            {`Impression by ${impression.author} at ${
+              convertUnixTimeToDate(impression.timestamp)
+            }`}
           </p>
         ))}
       </>
@@ -474,6 +521,108 @@ export class PostImpressions extends Impressions {
         author: stringMapData.Author?.value || "Unknown",
         timestamp: stringMapData.Time?.timestamp || "Unknown",
       } as Impression;
+    });
+  }
+}
+
+export class UserActivity implements DataType {
+  likedPosts: LikedPosts = new LikedPosts();
+  savedPosts: SavedPosts = new SavedPosts();
+
+  constructor(_fileData?: FileData) {
+  }
+
+  render() {
+    return (
+      <>
+        <p class="text-2xl">
+          User Activity
+        </p>
+        <br />
+        {this.likedPosts.render()}
+        <br />
+        {this.savedPosts.render()}
+      </>
+    );
+  }
+
+  parse(_fileData: FileData) {
+  }
+}
+
+// TODO: make graphs using number of posts liked/saved per day over time (days)
+export class LikedPosts implements DataType {
+  posts: Post[] = [];
+
+  constructor(fileData?: FileData) {
+    if (fileData) {
+      this.parse(fileData);
+    }
+  }
+
+  render() {
+    if (this.posts.length === 0) {
+      return <p></p>;
+    }
+    return (
+      <>
+        <p>Liked Posts</p>
+        {`You have liked ${this.posts.length} posts between ${
+          convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
+        } and ${
+          convertUnixTimeToDate(this.posts[0].timestamp)
+        }`}
+      </>
+    );
+  }
+
+  parse(fileData: FileData) {
+    const jsonData = JSON.parse(fileData.text);
+
+    this.posts = jsonData.likes_media_likes.map((post: any) => {
+      const stringMapData = post.string_list_data[0];
+      return {
+        author: post.title || "Unknown",
+        href: stringMapData.href || "Unknown",
+        timestamp: stringMapData.timestamp || 0,
+      } as Post;
+    });
+  }
+}
+
+export class SavedPosts implements DataType {
+  posts: Post[] = [];
+
+  constructor(fileData?: FileData) {
+    if (fileData) {
+      this.parse(fileData);
+    }
+  }
+
+  render() {
+    if (this.posts.length === 0) {
+      return <p></p>;
+    }
+    return (
+      <>
+        <p>Saved Posts</p>
+        {`You have saved ${this.posts.length} posts between ${
+          convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
+        } and ${convertUnixTimeToDate(this.posts[0].timestamp)}`}
+      </>
+    );
+  }
+
+  parse(fileData: FileData) {
+    const jsonData = JSON.parse(fileData.text);
+
+    this.posts = jsonData.saved_saved_media.map((post: any) => {
+      const stringMapData = post.string_map_data["Saved on"];
+      return {
+        author: post.title || "Unknown",
+        href: stringMapData.href || "Unknown",
+        timestamp: stringMapData.timestamp || 0,
+      } as Post;
     });
   }
 }
