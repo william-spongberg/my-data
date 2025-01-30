@@ -1,12 +1,12 @@
 import { Chart } from "https://esm.sh/stable/chart.js@4.4.7/auto";
 
-export interface LineDataset {
+interface LineDataset {
   label: string;
   data: { timestamp: number }[];
   color: string;
 }
 
-export interface MultiChartIslandProps {
+interface MultiChartIslandProps {
   id: string;
   datasets: LineDataset[];
 }
