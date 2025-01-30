@@ -20,7 +20,7 @@ export default function BarChartIsland(
     backgroundColor: dataset.color,
   }));
 
-  const label = ["Events"];
+  const label = [""];
 
   new Chart(id, {
     type: "bar",
