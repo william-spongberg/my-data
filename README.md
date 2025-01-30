@@ -23,17 +23,15 @@ Raise an issue or email me at <william@spongberg.dev> if you want to see a platf
   - [x] Ads data (how many seen, who's been sold your data)
   - [ ] Info about you (device info, where insta thinks you are)
   - [ ] Topics that you like
-  - [ ] Liked/saved posts (no. + graphs)
+  - [x] Liked/saved posts (no. + graphs)
   - [ ] Posts/comments (no. + graphs)
-  - [ ] Message analytics
   - [ ] Logins (where/when, graphs etc)
   - [ ] Followers (stats, e.g. blocked x amount of people)
-  - [ ] (more to come)
 - TikTok
   - [ ] TODO
-- YouTube
-  - [ ] TODO
 - Facebook
+  - [ ] TODO
+- YouTube
   - [ ] TODO
 - Gambling sites
   - [ ] TODO
