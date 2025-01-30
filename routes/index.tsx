@@ -7,7 +7,7 @@ export default function Home() {
           href="/platforms/instagram_analytics"
           class="text-blue-500 hover:underline mt-4"
         >
-          Go to Instagram
+          Go to Instagram Analytics
         </a>
       </div>
     </div>
