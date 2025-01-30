@@ -12,6 +12,8 @@ import {
 } from "./interfaces.tsx";
 import { DataType, FileData } from "../interfaces.tsx";
 
+// TODO: only print out titles for data that has been given
+
 // root of instagram data structure
 export class InstagramData implements DataType {
   activities: Activities = new Activities();
@@ -29,9 +31,9 @@ export class InstagramData implements DataType {
     return (
       <>
         <p class="mt-4 mb-4 text-3xl">Your Instagram data</p>
-        {this.activities?.render()}
+        {this.activities.render()}
         <br />
-        {this.adsInfo?.render()}
+        {this.adsInfo.render()}
         <br />
       </>
     );
