@@ -13,6 +13,8 @@ import {
 } from "./interfaces.tsx";
 import { DataType, FileData } from "../interfaces.tsx";
 import { convertUnixTimeToDate } from "../utils.tsx";
+import LikedPostsChartIsland from "../../islands/LikedPostsChart.tsx";
+import SavedPostsChartIsland from "../../islands/SavedPostsChart.tsx";
 
 // TODO: only print out titles for data that has been given
 
@@ -572,6 +574,8 @@ export class LikedPosts implements DataType {
         } and ${
           convertUnixTimeToDate(this.posts[0].timestamp)
         }`}
+
+        <LikedPostsChartIsland posts={this.posts} />
       </>
     );
   }
@@ -609,6 +613,7 @@ export class SavedPosts implements DataType {
         {`You have saved ${this.posts.length} posts between ${
           convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
         } and ${convertUnixTimeToDate(this.posts[0].timestamp)}`}
+        <SavedPostsChartIsland posts={this.posts} />
       </>
     );
   }

@@ -7,7 +7,8 @@ import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $index from "./routes/index.tsx";
 import * as $platforms_instagram_analytics from "./routes/platforms/instagram_analytics.tsx";
-
+import * as $LikedPostsChart from "./islands/LikedPostsChart.tsx";
+import * as $SavedPostsChart from "./islands/SavedPostsChart.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -19,7 +20,10 @@ const manifest = {
     "./routes/platforms/instagram_analytics.tsx":
       $platforms_instagram_analytics,
   },
-  islands: {},
+  islands: {
+    "./islands/LikedPostsChart.tsx": $LikedPostsChart,
+    "./islands/SavedPostsChart.tsx": $SavedPostsChart,
+  },
   baseUrl: import.meta.url,
 } satisfies Manifest;
 
