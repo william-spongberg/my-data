@@ -1,5 +1,5 @@
 import { FileData } from "./interfaces.tsx";
-import JSZip from "jszip";
+import JSZip from "npm:jszip";
 
 export async function unzipFile(file: File): Promise<FileData[]> {
   const fileDataArray: FileData[] = [];

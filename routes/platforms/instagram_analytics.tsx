@@ -29,7 +29,10 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
     let fileDataArray: FileData[] = [];
     for (const file of files) {
       if (file.name.endsWith('.zip')) {
-        fileDataArray = fileDataArray.concat(await unzipFile(file));
+        // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
+        // fileDataArray = fileDataArray.concat(await unzipFile(file));
+
+        // for now, just ignore zip files
       } else {
         fileDataArray.push({
           text: await file.text(),
