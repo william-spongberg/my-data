@@ -19,7 +19,7 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
     const files = form.getAll("user-file") as File[];
 
     // check if files exist
-    if (files.length === 0) {
+    if (!files || !files[0] || files.length === 0) {
       return ctx.render({
         message: `Please try again`,
       });
@@ -28,13 +28,13 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
     // handle file data
     let fileDataArray: FileData[] = [];
     for (const file of files) {
-      if (file.name.endsWith('.zip')) {
+      if (file.name.endsWith(".zip")) {
         // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
         // fileDataArray = fileDataArray.concat(await unzipFile(file));
 
         // for now, just ignore zip files
         return ctx.render({
-          message: `Sorry, due to Deno Deploy limitations only individual files are allowed at this time`,
+          message: `Zip files are not supported at this time`,
         });
       } else {
         fileDataArray.push({
@@ -89,7 +89,13 @@ export default function InstagramAnalytics(
               </p>
               <br />
               <form method="post" encType="multipart/form-data">
-                <input type="file" name="user-file" class="mb-4" multiple />
+                <input
+                  type="file"
+                  accept=".json, .html, .txt, .csv"
+                  name="user-file"
+                  class="mb-4"
+                  multiple
+                />
                 <button
                   type="submit"
                   class="px-4 py-2 bg-blue-500 text-white rounded-md"
@@ -98,6 +104,12 @@ export default function InstagramAnalytics(
                 </button>
 
                 <p class="text-lg mt-4 mb-4">{message}</p>
+                <br />
+                <p class="text-sm mt mb-4-4">
+                  Sorry, due to Deno Deploy limitations only individual files
+                  are allowed at this time. Zipped files are not supported.
+                </p>
+                <br />
                 <pre class="mt-4 mb-4 overflow-x-auto max-w-full text-sm">
                   {instaFolders}
                 </pre>
