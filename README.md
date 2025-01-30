@@ -1,7 +1,5 @@
 # my_data
 
-**Author:** William Spongberg
-
 Apps and services online grab, use and sell your data all the time. Thanks to privacy acts, you can now request a copy of all the data they have collected from you.
 
 Unfortunately, this data is very hard to read and understand for the average person. It's hidden behind garbled html code, or thousands of lines of JSON code, or maybe it's just simply too much information to fully understand just at a glance. This project aims to make it easier to understand the data you have collected, and gives helpful analytics and notes on who, for example, Instagram has sold your data to.
@@ -49,3 +47,9 @@ This will watch the project directory and restart as necessary.
 
 /routes stores all of the routes. Fresh automatically sorts out all the routes and imports them.
 (Does not include /routes in the url path)
+
+## Contributors
+
+William Spongberg
+[@william-spongberg](https://github.com/william-spongberg)
+[LinkedIn](https://www.linkedin.com/in/william-spongberg/)
