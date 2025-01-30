@@ -20,7 +20,7 @@ Raise an issue or email me at <william@spongberg.dev> if you want to see a platf
 
 - Instagram
   - [x] Logs for what you've done in other apps (creepy as fuck, see your_activity_off_meta_technologies)
-  - [ ] Ads data (how many seen, who's been sold your data)
+  - [x] Ads data (how many seen, who's been sold your data)
   - [ ] Info about you (device info, where insta thinks you are)
   - [ ] Topics that you like
   - [ ] Liked/saved posts (no. + graphs)
