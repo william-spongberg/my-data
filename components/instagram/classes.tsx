@@ -14,6 +14,7 @@ import {
 import { DataType, FileData } from "../interfaces.tsx";
 import { convertUnixTimeToDate } from "../utils.tsx";
 import LineChartIsland from "../../islands/LineChart.tsx";
+import BarChartIsland from "../../islands/BarChart.tsx";
 
 // TODO: only print out titles for data that has been given
 
@@ -127,12 +128,24 @@ export class Activities implements DataType {
 
     return (
       <>
-        <p class="text-2xl">Activities</p>
+        <p class="text-2xl">Your actions outside Instagram</p>
         <p>
           {`Your actions were tracked across ${this.activities.length} different apps and websites.`}
         </p>
         <p>{`A total of ${this.getNumEvents()} logs were made.`}</p>
-        <p>{`The following events were tracked:`}</p>
+
+        <BarChartIsland
+          id="ActivitiesBar"
+          datasets={Array.from(this.getEventTypeAnalytics()).map(
+            ([event, count]: [EventType, number]) => ({
+              label: event,
+              data: [count],
+              color: `rgba(${Math.floor(Math.random() * 255)}, ${
+                Math.floor(Math.random() * 255)
+              }, ${Math.floor(Math.random() * 255)}, 1)`,
+            }),
+          )}
+        />
         <LineChartIsland
           id="ActivitiesChart"
           datasets={Array.from(this.getEventTypeAnalytics()).map(
@@ -144,17 +157,17 @@ export class Activities implements DataType {
                 )
                 .map((e) => ({
                   timestamp: e.timestamp,
-                })),
-              borderColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(
-                Math.random() * 255
-              )}, ${Math.floor(Math.random() * 255)}, 1)`,
-            })
+                }))
+                .sort((a, b) => a.timestamp - b.timestamp),
+              color: `rgba(${Math.floor(Math.random() * 255)}, ${
+                Math.floor(Math.random() * 255)
+              }, ${Math.floor(Math.random() * 255)}, 1)`,
+            }),
           )}
         />
       </>
     );
   }
-  
 
   parse(fileData: FileData) {
     // convert to JSON
@@ -212,7 +225,7 @@ export class AdsInformation implements DataType {
   render() {
     return (
       <>
-        <p class="text-2xl">Ads Information</p>
+        <p class="text-2xl">Ad Information</p>
         {this.ads_and_topics.render()}
         <br />
         {this.instagram_ads.render()}
@@ -405,7 +418,14 @@ export abstract class Impressions implements DataType {
       <>
         <p>Impressions</p>
         {`You have seen ${this.impressions.length} impressions`}
-        <LineChartIsland id="Impressions" datasets={[{label: "Impressions", data: this.impressions, borderColor: "rgba(75, 192, 192, 1)"}]} />
+        <LineChartIsland
+          id="Impressions"
+          datasets={[{
+            label: "Impressions",
+            data: this.impressions,
+            color: "rgba(75, 192, 192, 1)",
+          }]}
+        />
       </>
     );
   }
@@ -436,7 +456,14 @@ export class AdImpressions extends Impressions {
         <p class="text-sm italic">
           {`You have seen ${this.impressions.length} ads`}
         </p>
-        <LineChartIsland id="AdImpressions" datasets={[{label: "Ad Impressions", data: this.impressions, borderColor: "rgba(75, 192, 192, 1)"}]} />
+        <LineChartIsland
+          id="AdImpressions"
+          datasets={[{
+            label: "Ad Impressions",
+            data: this.impressions,
+            color: "rgba(75, 192, 192, 1)",
+          }]}
+        />
       </>
     );
   }
@@ -467,7 +494,14 @@ export class VideoImpressions extends Impressions {
         <p class="text-sm italic">
           {`You have seen ${this.impressions.length} videos`}
         </p>
-        <LineChartIsland id="VideoImpressions" datasets={[{label: "Video Impressions", data: this.impressions, borderColor: "rgba(75, 192, 192, 1)"}]} />
+        <LineChartIsland
+          id="VideoImpressions"
+          datasets={[{
+            label: "Video Impressions",
+            data: this.impressions,
+            color: "rgba(75, 192, 192, 1)",
+          }]}
+        />
       </>
     );
   }
@@ -498,7 +532,14 @@ export class PostImpressions extends Impressions {
         <p class="text-sm italic">
           {`You have seen ${this.impressions.length} posts`}
         </p>
-        <LineChartIsland id="PostImpressions" datasets={[{label: "Post Impressions", data: this.impressions, borderColor: "rgba(75, 192, 192, 1)"}]} />
+        <LineChartIsland
+          id="PostImpressions"
+          datasets={[{
+            label: "Post Impressions",
+            data: this.impressions,
+            color: "rgba(75, 192, 192, 1)",
+          }]}
+        />
       </>
     );
   }
@@ -562,11 +603,16 @@ export class LikedPosts implements DataType {
         <p>Liked Posts</p>
         {`You have liked ${this.posts.length} posts between ${
           convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
-        } and ${
-          convertUnixTimeToDate(this.posts[0].timestamp)
-        }`}
+        } and ${convertUnixTimeToDate(this.posts[0].timestamp)}`}
 
-        <LineChartIsland id="LikedPosts" datasets={[{label: "Liked Posts", data: this.posts, borderColor: "rgba(75, 192, 192, 1)"}]} />
+        <LineChartIsland
+          id="LikedPosts"
+          datasets={[{
+            label: "Liked Posts",
+            data: this.posts,
+            color: "rgba(75, 192, 192, 1)",
+          }]}
+        />
       </>
     );
   }
@@ -604,7 +650,14 @@ export class SavedPosts implements DataType {
         {`You have saved ${this.posts.length} posts between ${
           convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
         } and ${convertUnixTimeToDate(this.posts[0].timestamp)}`}
-        <LineChartIsland id="SavedPosts" datasets={[{label: "Saved Posts", data: this.posts, borderColor: "rgba(75, 192, 192, 1)"}]} />
+        <LineChartIsland
+          id="SavedPosts"
+          datasets={[{
+            label: "Saved Posts",
+            data: this.posts,
+            color: "rgba(75, 192, 192, 1)",
+          }]}
+        />
       </>
     );
   }
