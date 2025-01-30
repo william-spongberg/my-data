@@ -1,20 +1,20 @@
 import { Chart } from "https://esm.sh/stable/chart.js@4.4.7/auto";
 
-interface Dataset {
+export interface LineDataset {
   label: string;
   data: { timestamp: number }[];
-  borderColor: string;
+  color: string;
 }
 
-interface MultiChartIslandProps {
+export interface MultiChartIslandProps {
   id: string;
-  datasets: Dataset[];
+  datasets: LineDataset[];
 }
 
 export default function LineChartIsland(
   { id, datasets }: MultiChartIslandProps,
 ) {
-  const chartData = datasets.map(dataset => {
+  const chartData = datasets.map((dataset) => {
     const reduced_data = dataset.data.reduce((acc, post) => {
       const date = new Date(post.timestamp * 1000).toISOString().split("T")[0];
       acc[date] = (acc[date] || 0) + 1;
@@ -24,7 +24,7 @@ export default function LineChartIsland(
     return {
       label: dataset.label,
       data: Object.values(reduced_data),
-      borderColor: dataset.borderColor,
+      borderColor: dataset.color,
       fill: false,
     };
   });
@@ -45,7 +45,7 @@ export default function LineChartIsland(
 
   return (
     <>
-      <canvas id={id} style="width:100%;max-width:700px"></canvas>
+      <canvas id={id} style="max-w-screen-md mx-auto flex flex-col"></canvas>
     </>
   );
 }
