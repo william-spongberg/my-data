@@ -128,43 +128,53 @@ export class Activities implements DataType {
 
     return (
       <>
-        <p class="text-2xl">Your actions outside Instagram</p>
-        <p>
-          {`Your actions were tracked across ${this.activities.length} different apps and websites.`}
-        </p>
-        <p>{`A total of ${this.getNumEvents()} logs were made.`}</p>
+      <p class="text-2xl">Your actions outside Instagram</p>
+      <p>
+        {`Your actions were tracked across ${this.activities.length} different apps and websites.`}
+      </p>
+      <p>{`A total of ${this.getNumEvents()} logs were made.`}</p>
 
-        <BarChartIsland
-          id="ActivitiesBar"
-          datasets={Array.from(this.getEventTypeAnalytics()).map(
-            ([event, count]: [EventType, number]) => ({
-              label: event,
-              data: [count],
-              color: `rgba(${Math.floor(Math.random() * 255)}, ${
-                Math.floor(Math.random() * 255)
-              }, ${Math.floor(Math.random() * 255)}, 1)`,
-            }),
-          )}
-        />
-        <LineChartIsland
-          id="ActivitiesChart"
-          datasets={Array.from(this.getEventTypeAnalytics()).map(
-            ([event, count]: [EventType, number]) => ({
-              label: event,
-              data: this.activities
-                .flatMap((activity) =>
-                  activity.events.filter((e) => e.type === event)
-                )
-                .map((e) => ({
-                  timestamp: e.timestamp,
-                }))
-                .sort((a, b) => a.timestamp - b.timestamp),
-              color: `rgba(${Math.floor(Math.random() * 255)}, ${
-                Math.floor(Math.random() * 255)
-              }, ${Math.floor(Math.random() * 255)}, 1)`,
-            }),
-          )}
-        />
+      <BarChartIsland
+        id="ActivitiesBar"
+        datasets={Array.from(this.getEventTypeAnalytics()).map(
+        ([event, count]: [EventType, number]) => ({
+          label: event,
+          data: [count],
+          color: `rgba(${Math.floor(Math.random() * 255)}, ${
+          Math.floor(Math.random() * 255)
+          }, ${Math.floor(Math.random() * 255)}, 1)`,
+        }),
+        )}
+      />
+      <BarChartIsland
+        id="ActivityLogsBar"
+        datasets={this.activities.map((activity) => ({
+        label: activity.name,
+        data: [activity.events.length],
+        color: `rgba(${Math.floor(Math.random() * 255)}, ${
+          Math.floor(Math.random() * 255)
+        }, ${Math.floor(Math.random() * 255)}, 1)`,
+        }))}
+      />
+      <LineChartIsland
+        id="ActivitiesChart"
+        datasets={Array.from(this.getEventTypeAnalytics()).map(
+        ([event, count]: [EventType, number]) => ({
+          label: event,
+          data: this.activities
+          .flatMap((activity) =>
+            activity.events.filter((e) => e.type === event)
+          )
+          .map((e) => ({
+            timestamp: e.timestamp,
+          }))
+          .sort((a, b) => a.timestamp - b.timestamp),
+          color: `rgba(${Math.floor(Math.random() * 255)}, ${
+          Math.floor(Math.random() * 255)
+          }, ${Math.floor(Math.random() * 255)}, 1)`,
+        }),
+        )}
+      />
       </>
     );
   }
