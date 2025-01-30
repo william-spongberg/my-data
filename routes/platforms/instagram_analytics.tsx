@@ -34,8 +34,7 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
 
         // for now, just ignore zip files
         return ctx.render({
-          message:
-            `Please try again`,
+          message: `Zip files are not supported at this time`,
         });
       } else {
         fileDataArray.push({
@@ -90,7 +89,13 @@ export default function InstagramAnalytics(
               </p>
               <br />
               <form method="post" encType="multipart/form-data">
-                <input type="file" name="user-file" class="mb-4" multiple />
+                <input
+                  type="file"
+                  accept=".json, .html, .txt, .csv"
+                  name="user-file"
+                  class="mb-4"
+                  multiple
+                />
                 <button
                   type="submit"
                   class="px-4 py-2 bg-blue-500 text-white rounded-md"
