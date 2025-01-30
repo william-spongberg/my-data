@@ -61,3 +61,9 @@ export interface InstagramAnalyticsProps {
   message?: string;
   instaData?: InstagramData;
 }
+
+export interface Post {
+  author: string;
+  href: string;
+  timestamp: number;
+}

@@ -87,7 +87,7 @@ Currently supported files are marked with a checkmark (✅). All other files are
       │   └── stories.json
       ├── likes/
       │   ├── liked_comments.json
-      │   └── liked_posts.json
+      │   └── liked_posts.json ✅
       ├── messages/
       │   ├── cross-app-inbox/
       │   │   └── [user_ids]/
@@ -110,7 +110,7 @@ Currently supported files are marked with a checkmark (✅). All other files are
       │   └── surveys.json
       ├── saved/
       │   ├── saved_collections.json
-      │   └── saved_posts.json
+      │   └── saved_posts.json ✅
       ├── story_sticker_interactions/
       │   ├── emoji_sliders.json
       │   ├── polls.json

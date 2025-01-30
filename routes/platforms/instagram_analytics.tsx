@@ -81,54 +81,56 @@ export default function InstagramAnalytics(
   }
 
   return (
-    <div class="px-4 py-8 mx-auto bg-[#ffd366]">
-      <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center w-full">
-        <h1 class="text-4xl font-bold">Instagram Analytics</h1>
-        <br />
-        {instaData
-          ? (
-            instaData.render()
-          )
-          : (
-            <>
-              <p class="text-lg mt mb-4-4">
-                What data does Instagram have on you?
-              </p>
-              <br />
-              <form method="post" encType="multipart/form-data">
-                <input
-                  type="file"
-                  accept=".json, .html, .txt, .csv"
-                  name="user-file"
-                  class="mb-4"
-                  multiple
-                />
-                <button
-                  type="submit"
-                  class="px-4 py-2 bg-blue-500 text-white rounded-md"
-                >
-                  Upload
-                </button>
-
-                <p class="text-lg mt-4 mb-4">{message}</p>
-                <br />
-                <p class="text-sm mt mb-4-4 italic">
-                  Sorry, due to Deno Deploy limitations zipped files are not supported at this time. However, multiple files can be uploaded at once.
+    <div class="min-h-screen bg-gray-800">
+      <div class="px-4 py-8 mx-auto bg-[#ffd366]">
+        <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center w-full">
+          <h1 class="text-4xl font-bold">Instagram Analytics</h1>
+          <br />
+          {instaData
+            ? (
+              instaData.render()
+            )
+            : (
+              <>
+                <p class="text-lg mt mb-4-4">
+                  What data does Instagram have on you?
                 </p>
                 <br />
-                <br />
-                <pre class="mt-4 mb-4 overflow-x-auto max-w-full text-sm">
-                  {instaFolders}
-                </pre>
-              </form>
-            </>
-          )}
-        <a
-          href="/"
-          class="text-blue-500 hover:underline mt-4"
-        >
-          Go back Home
-        </a>
+                <form method="post" encType="multipart/form-data">
+                  <input
+                    type="file"
+                    accept=".json, .html, .txt, .csv"
+                    name="user-file"
+                    class="mb-4"
+                    multiple
+                  />
+                  <button
+                    type="submit"
+                    class="px-4 py-2 bg-blue-500 text-white rounded-md"
+                  >
+                    Upload
+                  </button>
+
+                  <p class="text-lg mt-4 mb-4">{message}</p>
+                  <br />
+                  <p class="text-sm mt mb-4-4 italic">
+                    Sorry, due to Deno Deploy limitations zipped files are not supported at this time. However, multiple files can be uploaded at once.
+                  </p>
+                  <br />
+                  <br />
+                  <pre class="mt-4 mb-4 overflow-x-auto max-w-full text-sm">
+                    {instaFolders}
+                  </pre>
+                </form>
+              </>
+            )}
+          <a
+            href="/"
+            class="text-blue-500 hover:underline mt-4"
+          >
+            Go back Home
+          </a>
+        </div>
       </div>
     </div>
   );
