@@ -31,12 +31,12 @@ export enum EventType {
   SUBSCRIBE = "SUBSCRIBE",
 }
 
-export interface Activity {
+export interface Log {
   name: string;
-  events: ActivityEvent[];
+  events: LogEvent[];
 }
 
-export interface ActivityEvent {
+export interface LogEvent {
   type: EventType;
   timestamp: number;
 }
@@ -65,5 +65,10 @@ export interface InstagramAnalyticsProps {
 export interface Post {
   author: string;
   href: string;
+  timestamp: number;
+}
+
+export interface Device {
+  name: string;
   timestamp: number;
 }

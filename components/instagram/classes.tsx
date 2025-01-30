@@ -3,10 +3,11 @@
 // got annoyed by all the methods being in weird places
 
 import {
-  Activity,
-  ActivityEvent,
+  Log,
+  LogEvent,
   AvertiserInfo,
   Category,
+  Device,
   EventType,
   Impression,
   Post,
@@ -20,9 +21,15 @@ import BarChartIsland from "../../islands/BarChart.tsx";
 
 // root of instagram data structure
 export class InstagramData implements DataType {
-  activities: Activities = new Activities();
+  activities: Logs = new Logs();
   adsInfo: AdsInformation = new AdsInformation();
   userActivity: UserActivity = new UserActivity();
+  deviceInfo: DeviceInfo = new DeviceInfo();
+  userInfo: UserInfo = new UserInfo();
+
+  // TODO: initial user sign up data
+  // TODO: login/logout activity
+  // TODO: posts/stories shared
 
   constructor(fileData?: FileData[]) {
     if (fileData) {
@@ -40,6 +47,9 @@ export class InstagramData implements DataType {
         <br />
         {this.userActivity.render()}
         <br />
+        {this.deviceInfo.render()}
+        <br />
+        {this.userInfo.render()}
       </>
     );
   }
@@ -86,7 +96,7 @@ export class InstagramData implements DataType {
           break;
         }
         case "your_activity_off_meta_technologies.json": {
-          this.activities = new Activities(file);
+          this.activities = new Logs(file);
           console.log("Parsed your_activity_off_meta_technologies.json");
           break;
         }
@@ -100,6 +110,26 @@ export class InstagramData implements DataType {
           console.log("Parsed liked_posts.json");
           break;
         }
+        case "devices.json": {
+          this.deviceInfo.devices = new Devices(file);
+          console.log("Parsed devices.json");
+          break;
+        }
+        case "personal_information.json": {
+          this.userInfo.personalInfo = new PersonalInfo(file);
+          console.log("Parsed personal_information.json");
+          break;
+        }
+        case "profile_based_in.json": {
+          this.userInfo.yourLocation = new Location(file);
+          console.log("Parsed profile_based_in.json");
+          break;
+        }
+        case "locations_of_interest.json": {
+          this.userInfo.locationsOfInterest = new LocationsOfInterest(file);
+          console.log("Parsed locations_of_interest.json");
+          break;
+        }        
         default: {
           console.log("Invalid file name:", file.name);
           break;
@@ -109,8 +139,8 @@ export class InstagramData implements DataType {
   }
 }
 
-export class Activities implements DataType {
-  activities: Activity[] = [];
+export class Logs implements DataType {
+  activities: Log[] = [];
 
   constructor(fileData?: FileData) {
     if (fileData) {
@@ -185,14 +215,14 @@ export class Activities implements DataType {
 
     // convert JSON to useable activity objects
     this.activities = jsonData.apps_and_websites_off_meta_activity
-      .map((activity: Activity) => {
+      .map((activity: Log) => {
         return {
           name: activity.name,
-          events: activity.events.map((event: ActivityEvent) => ({
+          events: activity.events.map((event: LogEvent) => ({
             timestamp: event.timestamp,
             type: event.type,
-          })) as ActivityEvent[],
-        } as Activity;
+          })) as LogEvent[],
+        } as Log;
       });
   }
 
@@ -682,6 +712,169 @@ export class SavedPosts implements DataType {
         href: stringMapData.href || "Unknown",
         timestamp: stringMapData.timestamp || 0,
       } as Post;
+    });
+  }
+}
+
+export class DeviceInfo implements DataType {
+  devices: Devices = new Devices();
+
+  constructor(fileData?: FileData) {
+  }
+
+  render() {
+    return (
+      <>
+        <p class="text-2xl">Device Information</p>
+        {this.devices.render()}
+      </>
+    );
+  }
+
+  parse(fileData: FileData) {
+  }
+}
+
+export class Devices implements DataType {
+  devices: Device[] = [];
+
+  constructor(fileData?: FileData) {
+    if (fileData) {
+      this.parse(fileData);
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <p>{`You have used ${this.devices.length} different devices`}</p>
+        <p>
+          {`Your most recent device was a ${this.devices[0].name} on ${
+            convertUnixTimeToDate(this.devices[0].timestamp)
+          }`}
+        </p>
+      </>
+    );
+  }
+
+  parse(fileData: FileData) {
+    const jsonData = JSON.parse(fileData.text);
+    this.devices = jsonData.devices_devices.map((device: any) => {
+      const stringMapData = device.string_map_data;
+      return {
+        name: stringMapData["User Agent"].value,
+        timestamp: stringMapData["Last Login"].timestamp,
+      } as Device;
+    });
+  }
+}
+
+export class UserInfo implements DataType {
+  personalInfo: PersonalInfo = new PersonalInfo();
+  yourLocation: Location = new Location();
+  locationsOfInterest: LocationsOfInterest = new LocationsOfInterest();
+
+  constructor(fileData?: FileData) {
+    if (fileData) {
+      this.parse(fileData);
+    }
+  }
+
+  render() {
+    return <>
+    <p class="text-2xl">Your User Info</p>
+      {this.personalInfo.render()}
+      <br />
+      {this.yourLocation.render()}
+      <br />
+      {this.locationsOfInterest.render()}
+    </>;
+  }
+
+  parse(fileData: FileData) {
+  }
+}
+
+export class PersonalInfo implements DataType {
+  email: string = "Unknown";
+  phone: string = "Unknown";
+  username: string = "Unknown";
+  name: string = "Unknown";
+  gender: string = "Unknown";
+  dob: string = "Unknown";
+
+  constructor(fileData?: FileData) {
+    if (fileData) {
+      this.parse(fileData);
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <p>Your personal information</p>
+        <p>{`Email: ${this.email}`}</p>
+        <p>{`Phone: ${this.phone}`}</p>
+        <p>{`Username: ${this.username}`}</p>
+        <p>{`Name: ${this.name}`}</p>
+        <p>{`Gender: ${this.gender}`}</p>
+        <p>{`Date of Birth: ${this.dob}`}</p>
+      </>
+    );
+  }
+
+  parse(fileData: FileData) {
+    const jsonData = JSON.parse(fileData.text);
+
+    const stringMapData = jsonData.profile_user[0].string_map_data;
+
+    this.email = stringMapData["Email"]?.value || "Unknown";
+    this.phone = stringMapData["Phone Number"]?.value || "Unknown";
+    this.username = stringMapData["Username"]?.value || "Unknown";
+    this.name = stringMapData["Name"]?.value || "Unknown";
+    this.gender = stringMapData["Gender"]?.value || "Unknown";
+    this.dob = stringMapData["Date of birth"]?.value || "Unknown";
+  }
+}
+
+export class Location implements DataType {
+  location: string = "Unknown";
+
+  constructor(fileData?: FileData) {
+    if (fileData) {
+      this.parse(fileData);
+    }
+  }
+
+  render() {
+    return <p>{`You are located at ${this.location}`}</p>;
+  }
+
+  parse(fileData: FileData) {
+    const jsonData = JSON.parse(fileData.text);
+    this.location =
+      jsonData.inferred_data_primary_location[0].string_map_data["City Name"]
+        .value;
+  }
+}
+
+export class LocationsOfInterest implements DataType {
+  locations: string[] = [];
+
+  constructor(fileData?: FileData) {
+    if (fileData) {
+      this.parse(fileData);
+    }
+  }
+
+  render() {
+    return <p>{`Locations of interest: ${this.locations.join(", ")}`}</p>;
+  }
+
+  parse(fileData: FileData) {
+    const jsonData = JSON.parse(fileData.text);
+    this.locations = jsonData.label_values[0].vec.map((location: any) => {
+      return location.value;
     });
   }
 }
