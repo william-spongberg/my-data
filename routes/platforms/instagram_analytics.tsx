@@ -28,13 +28,20 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
     // handle file data
     let fileDataArray: FileData[] = [];
     for (const file of files) {
-      if (file.name.endsWith(".zip")) {
-        // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
-        // fileDataArray = fileDataArray.concat(await unzipFile(file));
-
-        // for now, just ignore zip files
+      // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
+      // fileDataArray = fileDataArray.concat(await unzipFile(file));
+      // for now, just ignore zip files
+      if (file.name.endsWith(".zip") || file.type === "application/zip") {
         return ctx.render({
-          message: `Zip files are not supported at this time`,
+          message: `Zip files are not supported`,
+        });
+        // enforce allowed file types
+      } else if (
+        !(file.type === "application/json" || file.type === "text/plain" ||
+          file.type === "text/csv" || file.type === "text/html")
+      ) {
+        return ctx.render({
+          message: `Only json, txt, csv, and html files are supported`,
         });
       } else {
         fileDataArray.push({
@@ -74,7 +81,7 @@ export default function InstagramAnalytics(
   }
 
   return (
-    <div class="px-4 py-8 mx-auto bg-[#86efac]">
+    <div class="px-4 py-8 mx-auto bg-[#ffd366]">
       <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center w-full">
         <h1 class="text-4xl font-bold">Instagram Analytics</h1>
         <br />
@@ -105,10 +112,10 @@ export default function InstagramAnalytics(
 
                 <p class="text-lg mt-4 mb-4">{message}</p>
                 <br />
-                <p class="text-sm mt mb-4-4">
-                  Sorry, due to Deno Deploy limitations only individual files
-                  are allowed at this time. Zipped files are not supported.
+                <p class="text-sm mt mb-4-4 italic">
+                  Sorry, due to Deno Deploy limitations zipped files are not supported at this time. However, multiple files can be uploaded at once.
                 </p>
+                <br />
                 <br />
                 <pre class="mt-4 mb-4 overflow-x-auto max-w-full text-sm">
                   {instaFolders}

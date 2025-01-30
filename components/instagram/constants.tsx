@@ -2,22 +2,23 @@
 // thanks tree.nathanfriend.com!
 
 export const instaFolders = `
+Currently supported files are marked with a checkmark (✅). All other files are ignored.
 .
 └── instagram-user/
   ├── ads_information/
   │   ├── ads_and_topics/
-  │   │   ├── ads_viewed.json
-  │   │   ├── posts_viewed.json
+  │   │   ├── ads_viewed.json ✅
+  │   │   ├── posts_viewed.json ✅
   │   │   ├── posts_you're_not_interested_in.json
   │   │   ├── profiles_you're_not_interested_in.json
   │   │   ├── suggested_profiles_viewed.json
-  │   │   └── videos_watched.json
+  │   │   └── videos_watched.json ✅
   │   └── instagram_ads_and_businesses/
   │       ├── ads_about_meta.json
-  │       └── other_categories_used_to_reach_you.json
+  │       └── other_categories_used_to_reach_you.json ✅
   ├── apps_and_websites_of_of_instagram/
   │   └── apps_and_websites/
-  │       ├── your_activity_off_meta_technologies.json
+  │       ├── your_activity_off_meta_technologies.json ✅
   │       └── your_activity_off_meta_technologies_settings.json
   ├── connections/
   │   └── followers_and_following/
