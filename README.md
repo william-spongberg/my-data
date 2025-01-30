@@ -19,11 +19,10 @@ Raise an issue or email me at <william@spongberg.dev> if you want to see a platf
 - Instagram
   - [x] Logs for what you've done in other apps (creepy as fuck, see your_activity_off_meta_technologies)
   - [x] Ads data (how many seen, who's been sold your data)
-  - [ ] Info about you (device info, where you are)
+  - [x] Info about you (device info, where you are)
   - [x] Liked/saved posts (no. + graphs)
-  - [ ] Posts/comments (no. + graphs)
+  - [ ] Posts/stories/comments (no. + graphs)
   - [ ] Logins (where/when, graphs etc)
-  - [ ] Followers (stats, e.g. blocked x amount of people)
 - TikTok
   - [ ] TODO
 - Facebook
