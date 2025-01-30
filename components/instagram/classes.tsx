@@ -416,7 +416,7 @@ export class VideoImpressions extends Impressions {
     }
     return (
       <>
-        <p>Ad Impressions</p>
+        <p>Video Impressions</p>
         <p class="text-sm italic">{`You have seen ${this.impressions.length} videos`}</p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
@@ -449,7 +449,7 @@ export class PostImpressions extends Impressions {
     }
     return (
       <>
-        <p>Ad Impressions</p>
+        <p>Post Impressions</p>
         <p class="text-sm italic">{`You have seen ${this.impressions.length} posts`}</p>
         {this.impressions.map((impression, index) => (
           <p key={`${impression.timestamp}-${index}`} class="text-sm">
