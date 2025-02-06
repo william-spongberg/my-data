@@ -74,6 +74,7 @@ This will download and then launch the website locally, restarting the page when
 
 ## Contributors
 
-William Spongberg
-[@william-spongberg](https://github.com/william-spongberg)
-[LinkedIn](https://www.linkedin.com/in/william-spongberg/)
+**William Spongberg**  
+[![GitHub](https://img.shields.io/badge/GitHub-%40william--spongberg-blue?style=flat-square&logo=github)](https://github.com/william-spongberg)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-William%20Spongberg-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/william-spongberg/)  
+
