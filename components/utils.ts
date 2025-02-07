@@ -42,3 +42,8 @@ export function convertUnixTimeToDate(timestamp: number): Date {
   return new Date(timestamp * 1000);
 }
 
+export function randColour(): string {
+  return `rgba(${Math.floor(Math.random() * 255)}, ${
+                Math.floor(Math.random() * 255)
+              }, ${Math.floor(Math.random() * 255)}, 1)`;
+}

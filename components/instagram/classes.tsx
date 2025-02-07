@@ -15,7 +15,7 @@ import {
   Post,
 } from "./types.ts";
 import { DataType, FileData, RenderType } from "../types.ts";
-import { convertUnixTimeToDate } from "../utils.ts";
+import { convertUnixTimeToDate, randColour } from "../utils.ts";
 import LineChartIsland from "../../islands/LineChart.tsx";
 import BarChartIsland from "../../islands/BarChart.tsx";
 
@@ -172,9 +172,7 @@ export class Logs implements DataType {
             ([event, count]: [EventType, number]) => ({
               label: event,
               data: [count],
-              color: `rgba(${Math.floor(Math.random() * 255)}, ${
-                Math.floor(Math.random() * 255)
-              }, ${Math.floor(Math.random() * 255)}, 1)`,
+              color: randColour(),
             }),
           )}
         />
@@ -201,9 +199,7 @@ export class Logs implements DataType {
                   timestamp: e.timestamp,
                 }))
                 .sort((a, b) => a.timestamp - b.timestamp),
-              color: `rgba(${Math.floor(Math.random() * 255)}, ${
-                Math.floor(Math.random() * 255)
-              }, ${Math.floor(Math.random() * 255)}, 1)`,
+              color: randColour(),
             }),
           )}
         />

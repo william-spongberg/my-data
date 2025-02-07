@@ -51,7 +51,7 @@ export const handler: Handlers<UploadProps> = {
           file.type === "text/csv" || file.type === "text/html")
       ) {
         return ctx.render({
-          message: `Only json, txt, csv, html and zip files are supported`,
+          message: `Only json, txt, csv, html and zip files are supported. Please try again`,
         });
       } else {
         fileDataArray.push({
@@ -65,14 +65,8 @@ export const handler: Handlers<UploadProps> = {
     const totalSizeMB = (total_size / (1024 * 1024)).toFixed(2);
     console.log(`Total size of files: ${totalSizeMB} MB (${total_size} bytes)`);
 
-    if (fileDataArray.length === 0) {
-      return ctx.render({
-        message: `No valid files uploaded`,
-      });
-    }
-
     return ctx.render({
-      message: `Files uploaded`,
+      message: `Files uploaded!`,
       uploadData: fileDataArray,
     });
   },
@@ -84,7 +78,11 @@ export default function InstagramAnalytics(
   const { message, uploadData } = data;
 
   console.log(message);
-  const instaData = new InstagramData(uploadData);
+
+  let instaData = null;
+  if (uploadData) {
+    instaData = new InstagramData(uploadData);
+  }
 
   return (
     <div class="min-h-screen bg-light-blue-50">
