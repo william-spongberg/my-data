@@ -6,13 +6,13 @@ interface LineDataset {
   color: string;
 }
 
-interface MultiChartIslandProps {
+interface LineChartProps {
   id: string;
   datasets: LineDataset[];
 }
 
 export default function LineChartIsland(
-  { id, datasets }: MultiChartIslandProps,
+  { id, datasets }: LineChartProps,
 ) {
   const chartData = datasets.map((dataset) => {
     const reduced_data = dataset.data.reduce((acc, post) => {

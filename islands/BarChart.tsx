@@ -1,18 +1,18 @@
 import { Chart } from "https://esm.sh/stable/chart.js@4.4.7/auto";
 
-interface Dataset {
+interface BarDataset {
   label: string;
   data: number[];
   color: string;
 }
 
-interface MultiChartIslandProps {
+interface BarChartProps {
   id: string;
-  datasets: Dataset[];
+  datasets: BarDataset[];
 }
 
 export default function BarChartIsland(
-  { id, datasets }: MultiChartIslandProps,
+  { id, datasets }: BarChartProps,
 ) {
   const chartData = datasets.map((dataset) => ({
     label: dataset.label,
