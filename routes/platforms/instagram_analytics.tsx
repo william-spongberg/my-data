@@ -1,12 +1,15 @@
-import { FileData } from "../../components/interfaces.tsx";
 import { InstagramData } from "../../components/instagram/classes.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { instaFolders } from "../../components/instagram/constants.tsx";
-import { InstagramAnalyticsProps } from "../../components/instagram/interfaces.tsx";
-import { unzipFile } from "../../components/utils.tsx";
+import { UploadProps } from "../../components/instagram/types.ts";
+import { FileData } from "../../components/types.ts";
+import { unzipFile } from "../../components/utils.ts";
+import { MAX_ZIP_FILE_SIZE } from "../../components/constants.ts";
+
+// TODO: make file uploading a reusable component
+// TODO: show word cloud? would be cool to grab the logos of companies and show them in a word cloud
 
 // file is uploaded through POST request, handled here
-export const handler: Handlers<InstagramAnalyticsProps> = {
+export const handler: Handlers<UploadProps> = {
   // ignore get requests
   async GET(_req, ctx) {
     return await ctx.render({
@@ -26,22 +29,29 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
     }
 
     // handle file data
+    let total_size = 0;
     let fileDataArray: FileData[] = [];
     for (const file of files) {
-      // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
-      // fileDataArray = fileDataArray.concat(await unzipFile(file));
-      // for now, just ignore zip files
+      console.log(`File name: ${file.name}, File size: ${file.size} bytes`);
+      total_size += file.size;
+
+      // enforce allowed file types
       if (file.name.endsWith(".zip") || file.type === "application/zip") {
-        return ctx.render({
-          message: `Zip files are not supported`,
-        });
-        // enforce allowed file types
+        // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
+        if (file.size > MAX_ZIP_FILE_SIZE) {
+          return ctx.render({
+            message:
+              `File size is greater than 200MB, please upload a smaller file`,
+          });
+        }
+
+        fileDataArray = fileDataArray.concat(await unzipFile(file));
       } else if (
         !(file.type === "application/json" || file.type === "text/plain" ||
           file.type === "text/csv" || file.type === "text/html")
       ) {
         return ctx.render({
-          message: `Only json, txt, csv, and html files are supported`,
+          message: `Only json, txt, csv, html and zip files are supported`,
         });
       } else {
         fileDataArray.push({
@@ -52,37 +62,33 @@ export const handler: Handlers<InstagramAnalyticsProps> = {
       }
     }
 
-    // parse fileData
-    const instaData = new InstagramData(fileDataArray);
+    const totalSizeMB = (total_size / (1024 * 1024)).toFixed(2);
+    console.log(`Total size of files: ${totalSizeMB} MB (${total_size} bytes)`);
 
-    // if no valid data, return error message
-    if (!instaData) {
+    if (fileDataArray.length === 0) {
       return ctx.render({
-        message: `Invalid file(s)`,
+        message: `No valid files uploaded`,
       });
     }
 
-    const result: InstagramAnalyticsProps = {
-      message: "Files uploaded",
-      instaData: instaData,
-    };
-
-    return ctx.render(result);
+    return ctx.render({
+      message: `Files uploaded`,
+      uploadData: fileDataArray,
+    });
   },
 };
 
 export default function InstagramAnalytics(
-  { data }: PageProps<InstagramAnalyticsProps>,
+  { data }: PageProps<UploadProps>,
 ) {
-  const { message, instaData } = data;
+  const { message, uploadData } = data;
 
-  if (message) {
-    console.log(message);
-  }
+  console.log(message);
+  const instaData = new InstagramData(uploadData);
 
   return (
-    <div class="min-h-screen bg-gray-800">
-      <div class="px-4 py-8 mx-auto bg-[#ffd366]">
+    <div class="min-h-screen bg-light-blue-50">
+      <div class="px-4 py-8 mx-auto bg-white">
         <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center w-full">
           <h1 class="text-4xl font-bold">Instagram Analytics</h1>
           <br />
@@ -99,7 +105,7 @@ export default function InstagramAnalytics(
                 <form method="post" encType="multipart/form-data">
                   <input
                     type="file"
-                    accept=".json, .html, .txt, .csv"
+                    accept=".json, .html, .txt, .csv, .zip"
                     name="user-file"
                     class="mb-4"
                     multiple
@@ -113,30 +119,19 @@ export default function InstagramAnalytics(
 
                   <p class="text-lg mt-4 mb-4">{message}</p>
                   <br />
-                  <p class="text-sm mt mb-4-4 italic">
-                    Sorry, due to Deno Deploy limitations zipped files are not supported at this time. However, multiple files can be uploaded at once.
-                  </p>
-                  <br />
-                  <br />
-                  <pre class="mt-4 mb-4 overflow-x-auto max-w-full text-sm">
-                    {instaFolders}
-                  </pre>
                 </form>
               </>
             )}
-          <a
-            href="/"
-            class="text-blue-500 hover:underline mt-4"
-          >
-            Go back Home
-          </a>
+          <footer class="mt-8">
+            <a
+              href="/"
+              class="text-blue-500 hover:underline"
+            >
+              Go back Home
+            </a>
+          </footer>
         </div>
       </div>
     </div>
   );
 }
-
-// TODO: drag and drop files instead - use package for this
-// TODO: make file uploading a reusable component
-
-// TODO: show graphs, tables, etc (word cloud? would be cool to grab the logos of companies and show them in a word cloud)

@@ -4,7 +4,7 @@
 
 // *NOTE: timestamps are in unix time (milliseconds)
 
-import { InstagramData } from "./classes.tsx";
+import { FileData } from "../types.ts";
 
 export enum EventType {
   PAGE_VIEW = "PAGE_VIEW",
@@ -57,9 +57,9 @@ export interface Category {
   name: string;
 }
 
-export interface InstagramAnalyticsProps {
+export interface UploadProps {
   message?: string;
-  instaData?: InstagramData;
+  uploadData?: FileData[];
 }
 
 export interface Post {

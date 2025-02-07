@@ -1,19 +1,21 @@
-// class for data structure
+// class for instagram data structure
 // allows instantiating with data + methods
 // got annoyed by all the methods being in weird places
 
+// TODO: break up classes into seperate files
+
 import {
-  Log,
-  LogEvent,
   AvertiserInfo,
   Category,
   Device,
   EventType,
   Impression,
+  Log,
+  LogEvent,
   Post,
-} from "./interfaces.tsx";
-import { DataType, FileData } from "../interfaces.tsx";
-import { convertUnixTimeToDate } from "../utils.tsx";
+} from "./types.ts";
+import { DataType, FileData, RenderType } from "../types.ts";
+import { convertUnixTimeToDate } from "../utils.ts";
 import LineChartIsland from "../../islands/LineChart.tsx";
 import BarChartIsland from "../../islands/BarChart.tsx";
 
@@ -129,7 +131,7 @@ export class InstagramData implements DataType {
           this.userInfo.locationsOfInterest = new LocationsOfInterest(file);
           console.log("Parsed locations_of_interest.json");
           break;
-        }        
+        }
         default: {
           console.log("Invalid file name:", file.name);
           break;
@@ -189,7 +191,7 @@ export class Logs implements DataType {
         <LineChartIsland
           id="ActivitiesChart"
           datasets={Array.from(this.getEventTypeAnalytics()).map(
-            ([event, count]: [EventType, number]) => ({
+            ([event, _count]: [EventType, number]) => ({
               label: event,
               data: this.activities
                 .flatMap((activity) =>
@@ -255,12 +257,9 @@ export class Logs implements DataType {
   }
 }
 
-export class AdsInformation implements DataType {
+export class AdsInformation implements RenderType {
   ads_and_topics: AdsAndTopics = new AdsAndTopics();
   instagram_ads: InstagramAds = new InstagramAds();
-
-  constructor(_fileData?: FileData) {
-  }
 
   render() {
     return (
@@ -272,18 +271,12 @@ export class AdsInformation implements DataType {
       </>
     );
   }
-
-  parse(_fileData: FileData) {
-  }
 }
 
-export class AdsAndTopics implements DataType {
+export class AdsAndTopics implements RenderType {
   ads_viewed: AdImpressions = new AdImpressions();
   posts_viewed: PostImpressions = new PostImpressions();
   videos_watched: VideoImpressions = new VideoImpressions();
-
-  constructor(_fileData?: FileData) {
-  }
 
   render() {
     return (
@@ -298,26 +291,17 @@ export class AdsAndTopics implements DataType {
     );
   }
 
-  parse(_fileData: FileData) {
-  }
-
   // for later if needed
   //posts_not_interested: PostsNotInterested;
   //profiles_not_interested: ProfilesNotInterested;
   //suggested_profiles: SuggestedProfiles;
 }
 
-export class InstagramAds implements DataType {
+export class InstagramAds implements RenderType {
   advertisers_using_your_data: AdvertisersUsingData =
     new AdvertisersUsingData();
   categories_used_to_reach_you: CategoriesUsedToReachYou =
     new CategoriesUsedToReachYou();
-
-  constructor(fileData?: FileData) {
-    if (fileData) {
-      this.parse(fileData);
-    }
-  }
 
   render() {
     return (
@@ -329,9 +313,6 @@ export class InstagramAds implements DataType {
         {this.categories_used_to_reach_you?.render()}
       </>
     );
-  }
-
-  parse(_fileData: FileData) {
   }
 
   // for later if needed
@@ -599,12 +580,9 @@ export class PostImpressions extends Impressions {
   }
 }
 
-export class UserActivity implements DataType {
+export class UserActivity implements RenderType {
   likedPosts: LikedPosts = new LikedPosts();
   savedPosts: SavedPosts = new SavedPosts();
-
-  constructor(_fileData?: FileData) {
-  }
 
   render() {
     return (
@@ -618,9 +596,6 @@ export class UserActivity implements DataType {
         {this.savedPosts.render()}
       </>
     );
-  }
-
-  parse(_fileData: FileData) {
   }
 }
 
@@ -716,11 +691,8 @@ export class SavedPosts implements DataType {
   }
 }
 
-export class DeviceInfo implements DataType {
+export class DeviceInfo implements RenderType {
   devices: Devices = new Devices();
-
-  constructor(fileData?: FileData) {
-  }
 
   render() {
     return (
@@ -729,9 +701,6 @@ export class DeviceInfo implements DataType {
         {this.devices.render()}
       </>
     );
-  }
-
-  parse(fileData: FileData) {
   }
 }
 
@@ -749,7 +718,9 @@ export class Devices implements DataType {
       <>
         <p>{`You have used ${this.devices.length} different devices`}</p>
         <p>
-          {`Your most recent device was a ${this.devices[0].name} on ${
+          {`Your most recent device was a ${
+            this.devices[0].name
+          }, and you last logged in on ${
             convertUnixTimeToDate(this.devices[0].timestamp)
           }`}
         </p>
@@ -769,29 +740,22 @@ export class Devices implements DataType {
   }
 }
 
-export class UserInfo implements DataType {
+export class UserInfo implements RenderType {
   personalInfo: PersonalInfo = new PersonalInfo();
   yourLocation: Location = new Location();
   locationsOfInterest: LocationsOfInterest = new LocationsOfInterest();
 
-  constructor(fileData?: FileData) {
-    if (fileData) {
-      this.parse(fileData);
-    }
-  }
-
   render() {
-    return <>
-    <p class="text-2xl">Your User Info</p>
-      {this.personalInfo.render()}
-      <br />
-      {this.yourLocation.render()}
-      <br />
-      {this.locationsOfInterest.render()}
-    </>;
-  }
-
-  parse(fileData: FileData) {
+    return (
+      <>
+        <p class="text-2xl">Your User Info</p>
+        {this.personalInfo.render()}
+        <br />
+        {this.yourLocation.render()}
+        <br />
+        {this.locationsOfInterest.render()}
+      </>
+    );
   }
 }
 

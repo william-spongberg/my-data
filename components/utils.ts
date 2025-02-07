@@ -1,4 +1,4 @@
-import { FileData } from "./interfaces.tsx";
+import { FileData } from "./types.ts";
 import JSZip from "npm:jszip";
 
 export async function unzipFile(file: File): Promise<FileData[]> {
@@ -10,10 +10,14 @@ export async function unzipFile(file: File): Promise<FileData[]> {
     if (Object.hasOwn(files, filename)) {
       const zipEntry = files[filename];
       // allow json, txt, csv, html
-      if (!zipEntry.dir && (filename.endsWith(".json") || filename.endsWith(".txt") || filename.endsWith(".csv") || filename.endsWith(".html"))) {
+      if (
+        !zipEntry.dir &&
+        (filename.endsWith(".json") || filename.endsWith(".txt") ||
+          filename.endsWith(".csv") || filename.endsWith(".html"))
+      ) {
         const text = await zipEntry.async("text");
         // ignore path
-        const name = filename.split('/').pop();
+        const name = filename.split("/").pop();
         let type = "text/plain";
         if (filename.endsWith(".json")) {
           type = "application/json";
@@ -37,3 +41,4 @@ export async function unzipFile(file: File): Promise<FileData[]> {
 export function convertUnixTimeToDate(timestamp: number): Date {
   return new Date(timestamp * 1000);
 }
+

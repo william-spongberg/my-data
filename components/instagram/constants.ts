@@ -1,7 +1,7 @@
 // TODO: tick off files that have been uploaded
 // thanks tree.nathanfriend.com!
 
-export const instaFolders = `
+export const INSTA_FOLDERS = `
 Currently supported files are marked with a checkmark (✅). All other files are ignored.
 .
 └── instagram-user/
