@@ -11,6 +11,8 @@ There will also be links to solutions like [delete.me](https://joindeleteme.com/
 
 ## Making it profitable
 
+We will be moving to [Deno SaaSKit](https://deno.com/saaskit) in the future to allow for payments and educational blogs.
+
 _Note that these prices are just placeholders for now - not sure how much this service will cost once scaled._
 
 - Free tier: what is my data worth + ad insights
