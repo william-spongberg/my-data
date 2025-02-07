@@ -41,7 +41,7 @@ export const handler: Handlers<UploadProps> = {
         if (file.size > MAX_ZIP_FILE_SIZE) {
           return ctx.render({
             message:
-              `File size is greater than 200MB, please upload a smaller file`,
+              `${file.name} is greater than 5MB, please upload a smaller file`,
           });
         }
 
