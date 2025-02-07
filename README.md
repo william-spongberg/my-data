@@ -51,6 +51,8 @@ _Note that these prices are just placeholders for now - not sure how much this s
 
 ## Developers
 
+[![Made with Fresh](https://fresh.deno.dev/fresh-badge-dark.svg)](https://fresh.deno.dev)
+
 ### Getting Started
 
 First install [Deno](https://deno.land/manual/getting_started/installation)
@@ -77,7 +79,3 @@ This will download and then launch the website locally, restarting the page when
 **William Spongberg**  
 [![GitHub](https://img.shields.io/badge/GitHub-%40william--spongberg-blue?style=flat-square&logo=github)](https://github.com/william-spongberg)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-William%20Spongberg-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/william-spongberg/)  
-
----
-
-[![Made with Fresh](https://fresh.deno.dev/fresh-badge-dark.svg)](https://fresh.deno.dev)
