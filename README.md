@@ -25,6 +25,7 @@ _Note that these prices are just placeholders for now - not sure how much this s
 | External tracking (has this platform seen what I've done outside the app?) | ✅ | ✅ | ✅ |
 | Total time spent on the app (how do you compare to other users?) | ❌ | ✅ | ✅ |
 | Number of liked/saved posts | ❌ | ✅ | ✅ |
+| Number of posts and comments | ❌ | ✅ | ✅ |
 | Message insights (number of messages sent/received, favourite people, etc) | ❌ | ✅ | ✅ |
 | Insights across all platforms at once | ❌ | ❌ | ✅ |
 | Unlimited data limits | ❌ | ❌ | ✅ |
