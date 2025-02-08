@@ -13,9 +13,9 @@ import {
   Log,
   LogEvent,
   Post,
-} from "./types.ts";
-import { DataType, FileData, RenderType } from "../types.ts";
-import { convertUnixTimeToDate, randColour } from "../utils.ts";
+} from "../../utils/instagram/types.ts";
+import { DataType, FileData, RenderType } from "../../utils/types.ts";
+import { convertUnixTimeToDate, randColour } from "../../utils/utils.ts";
 import LineChartIsland from "../../islands/LineChart.tsx";
 import BarChartIsland from "../../islands/BarChart.tsx";
 
