@@ -16,14 +16,14 @@ import {
 } from "../../utils/instagram/types.ts";
 import { DataType, FileData, RenderType } from "../../utils/types.ts";
 import { convertUnixTimeToDate, randColour } from "../../utils/utils.ts";
-import LineChartIsland from "../../islands/LineChart.tsx";
-import BarChartIsland from "../../islands/BarChart.tsx";
+import LineChart from "../LineChart.tsx";
+import BarChart from "../BarChart.tsx";
 
 // TODO: only print out titles for data that has been given
 
 // root of instagram data structure
 export class InstagramData implements DataType {
-  activities: Logs = new Logs();
+  logs: Logs = new Logs();
   adsInfo: AdsInformation = new AdsInformation();
   userActivity: UserActivity = new UserActivity();
   deviceInfo: DeviceInfo = new DeviceInfo();
@@ -43,7 +43,7 @@ export class InstagramData implements DataType {
     return (
       <>
         <p class="mt-4 mb-4 text-3xl">Your Instagram data</p>
-        {this.activities.render()}
+        {this.logs.render()}
         <br />
         {this.adsInfo.render()}
         <br />
@@ -98,7 +98,7 @@ export class InstagramData implements DataType {
           break;
         }
         case "your_activity_off_meta_technologies.json": {
-          this.activities = new Logs(file);
+          this.logs = new Logs(file);
           console.log("Parsed your_activity_off_meta_technologies.json");
           break;
         }
@@ -142,7 +142,7 @@ export class InstagramData implements DataType {
 }
 
 export class Logs implements DataType {
-  activities: Log[] = [];
+  logs: Log[] = [];
 
   constructor(fileData?: FileData) {
     if (fileData) {
@@ -151,7 +151,7 @@ export class Logs implements DataType {
   }
 
   render() {
-    if (this.activities.length === 0) {
+    if (this.logs.length === 0) {
       return (
         <p>
         </p>
@@ -162,11 +162,11 @@ export class Logs implements DataType {
       <>
         <p class="text-2xl">Your actions outside Instagram</p>
         <p>
-          {`Your actions were tracked across ${this.activities.length} different apps and websites.`}
+          {`Your actions were tracked across ${this.logs.length} different apps and websites.`}
         </p>
         <p>{`A total of ${this.getNumEvents()} logs were made.`}</p>
 
-        <BarChartIsland
+        <BarChart
           id="ActivitiesBar"
           datasets={Array.from(this.getEventTypeAnalytics()).map(
             ([event, count]: [EventType, number]) => ({
@@ -176,9 +176,9 @@ export class Logs implements DataType {
             }),
           )}
         />
-        <BarChartIsland
+        <BarChart
           id="ActivityLogsBar"
-          datasets={this.activities.map((activity) => ({
+          datasets={this.logs.map((activity) => ({
             label: activity.name,
             data: [activity.events.length],
             color: `rgba(${Math.floor(Math.random() * 255)}, ${
@@ -186,12 +186,12 @@ export class Logs implements DataType {
             }, ${Math.floor(Math.random() * 255)}, 1)`,
           }))}
         />
-        <LineChartIsland
+        <LineChart
           id="ActivitiesChart"
           datasets={Array.from(this.getEventTypeAnalytics()).map(
             ([event, _count]: [EventType, number]) => ({
               label: event,
-              data: this.activities
+              data: this.logs
                 .flatMap((activity) =>
                   activity.events.filter((e) => e.type === event)
                 )
@@ -212,7 +212,7 @@ export class Logs implements DataType {
     const jsonData = JSON.parse(fileData.text);
 
     // convert JSON to useable activity objects
-    this.activities = jsonData.apps_and_websites_off_meta_activity
+    this.logs = jsonData.apps_and_websites_off_meta_activity
       .map((activity: Log) => {
         return {
           name: activity.name,
@@ -225,7 +225,7 @@ export class Logs implements DataType {
   }
 
   getNumEvents(): number {
-    return this.activities?.reduce(
+    return this.logs?.reduce(
       (acc, activity) => acc + activity.events.length,
       0,
     );
@@ -234,7 +234,7 @@ export class Logs implements DataType {
   getEventTypeAnalytics(): Map<EventType, number> {
     const typeAnalytics = new Map<EventType, number>();
 
-    this.activities.forEach((activity) => {
+    this.logs.forEach((activity) => {
       activity.events.forEach((event) => {
         const type = event.type as EventType;
         if (typeAnalytics.has(type)) {
@@ -249,7 +249,7 @@ export class Logs implements DataType {
   }
 
   getStringifiedActivities(): string[] {
-    return this.activities.map((activity) => activity.name);
+    return this.logs.map((activity) => activity.name);
   }
 }
 
@@ -435,7 +435,7 @@ export abstract class Impressions implements DataType {
       <>
         <p>Impressions</p>
         {`You have seen ${this.impressions.length} impressions`}
-        <LineChartIsland
+        <LineChart
           id="Impressions"
           datasets={[{
             label: "Impressions",
@@ -473,7 +473,7 @@ export class AdImpressions extends Impressions {
         <p class="text-sm italic">
           {`You have seen ${this.impressions.length} ads`}
         </p>
-        <LineChartIsland
+        <LineChart
           id="AdImpressions"
           datasets={[{
             label: "Ad Impressions",
@@ -511,7 +511,7 @@ export class VideoImpressions extends Impressions {
         <p class="text-sm italic">
           {`You have seen ${this.impressions.length} videos`}
         </p>
-        <LineChartIsland
+        <LineChart
           id="VideoImpressions"
           datasets={[{
             label: "Video Impressions",
@@ -549,7 +549,7 @@ export class PostImpressions extends Impressions {
         <p class="text-sm italic">
           {`You have seen ${this.impressions.length} posts`}
         </p>
-        <LineChartIsland
+        <LineChart
           id="PostImpressions"
           datasets={[{
             label: "Post Impressions",
@@ -616,7 +616,7 @@ export class LikedPosts implements DataType {
           convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
         } and ${convertUnixTimeToDate(this.posts[0].timestamp)}`}
 
-        <LineChartIsland
+        <LineChart
           id="LikedPosts"
           datasets={[{
             label: "Liked Posts",
@@ -661,7 +661,7 @@ export class SavedPosts implements DataType {
         {`You have saved ${this.posts.length} posts between ${
           convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
         } and ${convertUnixTimeToDate(this.posts[0].timestamp)}`}
-        <LineChartIsland
+        <LineChart
           id="SavedPosts"
           datasets={[{
             label: "Saved Posts",

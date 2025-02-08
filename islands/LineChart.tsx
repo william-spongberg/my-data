@@ -1,4 +1,5 @@
-import { Chart } from "https://esm.sh/stable/chart.js@4.4.7/auto";
+import { Chart } from "https://esm.sh/stable/chart.js/auto";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 interface LineDataset {
   label: string;
@@ -11,9 +12,13 @@ interface LineChartProps {
   datasets: LineDataset[];
 }
 
-export default function LineChartIsland(
+export default function LineChart(
   { id, datasets }: LineChartProps,
 ) {
+  // if (!IS_BROWSER) {
+  //   return <div></div>
+  // }
+
   const chartData = datasets.map((dataset) => {
     const reduced_data = dataset.data.reduce((acc, post) => {
       const date = new Date(post.timestamp * 1000).toISOString().split("T")[0];

@@ -8,8 +8,9 @@ import * as $api_joke from "./routes/api/joke.ts";
 import * as $index from "./routes/index.tsx";
 import * as $platforms_instagram from "./routes/platforms/instagram.tsx";
 import * as $BarChart from "./islands/BarChart.tsx";
-import * as $InstagramUpload from "./islands/InstagramUpload.tsx";
+import * as $DragAndDrop from "./islands/DragAndDrop.tsx";
 import * as $LineChart from "./islands/LineChart.tsx";
+import * as $instagram_classes from "./islands/instagram/classes.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -22,8 +23,9 @@ const manifest = {
   },
   islands: {
     "./islands/BarChart.tsx": $BarChart,
-    "./islands/InstagramUpload.tsx": $InstagramUpload,
+    "./islands/DragAndDrop.tsx": $DragAndDrop,
     "./islands/LineChart.tsx": $LineChart,
+    "./islands/instagram/classes.tsx": $instagram_classes,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

@@ -1,4 +1,5 @@
-import { Chart } from "https://esm.sh/stable/chart.js@4.4.7/auto";
+import { Chart } from "https://esm.sh/stable/chart.js/auto";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 interface BarDataset {
   label: string;
@@ -11,9 +12,13 @@ interface BarChartProps {
   datasets: BarDataset[];
 }
 
-export default function BarChartIsland(
+export default function BarChart(
   { id, datasets }: BarChartProps,
 ) {
+  // if (!IS_BROWSER) {
+  //   return <div></div>
+  // }
+
   const chartData = datasets.map((dataset) => ({
     label: dataset.label,
     data: dataset.data,
