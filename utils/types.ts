@@ -14,3 +14,8 @@ export interface DataType {
 export interface RenderType {
   render(): JSX.Element;
 }
+
+export interface UploadProps {
+  message?: string;
+  uploadData?: FileData[];
+}
