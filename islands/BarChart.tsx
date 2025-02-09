@@ -1,5 +1,5 @@
 import { Chart } from "https://esm.sh/stable/chart.js/auto";
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { useEffect } from "preact/hooks";
 
 interface BarDataset {
   label: string;
@@ -15,25 +15,23 @@ interface BarChartProps {
 export default function BarChart(
   { id, datasets }: BarChartProps,
 ) {
-  // if (!IS_BROWSER) {
-  //   return <div></div>
-  // }
+  useEffect(() => {
+    const chartData = datasets.map((dataset) => ({
+      label: dataset.label,
+      data: dataset.data,
+      backgroundColor: dataset.color,
+    }));
 
-  const chartData = datasets.map((dataset) => ({
-    label: dataset.label,
-    data: dataset.data,
-    backgroundColor: dataset.color,
-  }));
+    const label = [""];
 
-  const label = [""];
-
-  new Chart(id, {
-    type: "bar",
-    data: {
-      labels: label,
-      datasets: chartData,
-    },
-  });
+    new Chart(id, {
+      type: "bar",
+      data: {
+        labels: label,
+        datasets: chartData,
+      },
+    });
+  }, []);
 
   return (
     <>
