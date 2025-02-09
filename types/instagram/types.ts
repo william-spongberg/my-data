@@ -4,7 +4,7 @@
 
 // *NOTE: timestamps are in unix time (milliseconds)
 
-import { FileData } from "../types.ts";
+import { FileData } from "../global/types.ts";
 
 export enum EventType {
   PAGE_VIEW = "PAGE_VIEW",
@@ -46,7 +46,7 @@ export interface Impression {
   timestamp: number;
 }
 
-export interface AvertiserInfo {
+export interface Avertiser {
   name: string;
   has_data_file_on_you: boolean;
   has_remarketing: boolean;
@@ -55,11 +55,6 @@ export interface AvertiserInfo {
 
 export interface Category {
   name: string;
-}
-
-export interface UploadProps {
-  message?: string;
-  uploadData?: FileData[];
 }
 
 export interface Post {

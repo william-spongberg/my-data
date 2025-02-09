@@ -1,8 +1,7 @@
-import { FileData } from "./types.ts";
 import JSZip from "npm:jszip";
 import { Handlers } from "$fresh/server.ts";
-import { UploadProps } from "../utils/instagram/types.ts";
-import { MAX_ZIP_FILE_SIZE } from "../utils/constants.ts";
+import { FileData, UploadProps } from "../types/global/types.ts";
+import { MAX_ZIP_FILE_SIZE } from "../constants/global/constants.ts";
 
 export async function unzipFile(file: File): Promise<FileData[]> {
   const fileDataArray: FileData[] = [];
@@ -51,6 +50,59 @@ export function randColour(): string {
   }, ${Math.floor(Math.random() * 255)}, 1)`;
 }
 
+export async function processFiles(files: File[]): Promise<{ message: string; uploadData: FileData[] }> {
+  // check if files exist
+  if (!files || !files[0] || files.length === 0) {
+    return {
+      message: `Please try again`,
+      uploadData: []
+    };
+  }
+
+  // handle file data
+  let total_size = 0;
+  let fileDataArray: FileData[] = [];
+  for (const file of files) {
+    console.log(`File name: ${file.name}, File size: ${file.size} bytes`);
+    total_size += file.size;
+
+    // enforce allowed file types
+    if (file.name.endsWith(".zip") || file.type === "application/zip") {
+      // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
+      if (file.size > MAX_ZIP_FILE_SIZE) {
+        return {
+          message: `${file.name} is greater than 5MB, please upload a smaller zip file`,
+          uploadData: []
+        };
+      }
+
+      fileDataArray = fileDataArray.concat(await unzipFile(file));
+    } else if (
+      !(file.type === "application/json" || file.type === "text/plain" ||
+        file.type === "text/csv" || file.type === "text/html")
+    ) {
+      return {
+        message: `Only json, txt, csv, html and zip files are supported. Please try again`,
+        uploadData: []
+      };
+    } else {
+      fileDataArray.push({
+        text: await file.text(),
+        name: file.name,
+        type: file.type,
+      });
+    }
+  }
+
+  const totalSizeMB = (total_size / (1024 * 1024)).toFixed(2);
+  console.log(`Total size of files: ${totalSizeMB} MB (${total_size} bytes)`);
+
+  return { 
+    message: `Files uploaded!`,
+    uploadData: fileDataArray,
+  };
+}
+
 // file is uploaded through POST request, handled here
 export const fileUploadHandler: Handlers<UploadProps> = {
   // ignore get requests
@@ -64,54 +116,11 @@ export const fileUploadHandler: Handlers<UploadProps> = {
     const form = await req.formData();
     const files = form.getAll("user-file") as File[];
 
-    // check if files exist
-    if (!files || !files[0] || files.length === 0) {
-      return ctx.render({
-        message: `Please try again`,
-      });
-    }
-
-    // handle file data
-    let total_size = 0;
-    let fileDataArray: FileData[] = [];
-    for (const file of files) {
-      console.log(`File name: ${file.name}, File size: ${file.size} bytes`);
-      total_size += file.size;
-
-      // enforce allowed file types
-      if (file.name.endsWith(".zip") || file.type === "application/zip") {
-        // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
-        if (file.size > MAX_ZIP_FILE_SIZE) {
-          return ctx.render({
-            message:
-              `${file.name} is greater than 5MB, please upload a smaller file`,
-          });
-        }
-
-        fileDataArray = fileDataArray.concat(await unzipFile(file));
-      } else if (
-        !(file.type === "application/json" || file.type === "text/plain" ||
-          file.type === "text/csv" || file.type === "text/html")
-      ) {
-        return ctx.render({
-          message:
-            `Only json, txt, csv, html and zip files are supported. Please try again`,
-        });
-      } else {
-        fileDataArray.push({
-          text: await file.text(),
-          name: file.name,
-          type: file.type,
-        });
-      }
-    }
-
-    const totalSizeMB = (total_size / (1024 * 1024)).toFixed(2);
-    console.log(`Total size of files: ${totalSizeMB} MB (${total_size} bytes)`);
+    const { message, uploadData } = await processFiles(files)
 
     return ctx.render({
-      message: `Files uploaded!`,
-      uploadData: fileDataArray,
+      message: message,
+      uploadData: uploadData,
     });
   },
 };
