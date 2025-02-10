@@ -1,5 +1,6 @@
 import { ComponentChildren } from "preact";
 import Footer from "../components/Footer.tsx";
+import DragAndDrop from "./DragAndDrop.tsx";
 
 interface PlatformProps {
   title: string;
@@ -13,7 +14,9 @@ export default function Platform({ title, children }: PlatformProps) {
         <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center w-full">
           <h1 class="text-4xl font-bold">{title}</h1>
           <br />
+          <DragAndDrop />
           {children}
+          <br />
         </div>
       </div>
       <Footer />

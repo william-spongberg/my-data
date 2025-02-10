@@ -5,7 +5,6 @@ import InstagramAnalytics from "../../islands/InstagramAnalytics.tsx";
 export default function TikTok() {
   return (
     <Platform title={"Instagram Analytics"}>
-      <DragAndDrop />
       <InstagramAnalytics />
     </Platform>
   );
