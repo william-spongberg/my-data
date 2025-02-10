@@ -19,24 +19,20 @@ export default function Footer({ home = false }: Props) {
           />
         )}
       </div>
-      <footer className="flex justify-center items-center h-16 bg-black text-white">
-        <br />
-        <p className="text-yellow-500">This website is in beta.</p>
-        <p className="mx-2">|</p>
-        <p>
+      <footer class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 bg-black text-white p-4">
+        <p class="text-yellow-500 mb-2 md:mb-0">This website is in beta.</p>
+        <p class="hidden md:block mx-2">|</p>
+        <p class="mb-2 md:mb-0">
           Made with ❤️ by{" "}
           <a
             href="https://github.com/william-spongberg"
-            className="text-blue-500 hover:underline my-4"
+            class="text-blue-500 hover:underline"
           >
             William Spongberg
           </a>
         </p>
-        <p className="mx-2">|</p>
-        <p>
-          &copy; William Spongberg{" "}
-          {new Date().getFullYear()}. All rights reserved.
-        </p>
+        <p class="hidden md:block mx-2">|</p>
+        <p>&copy; William Spongberg {new Date().getFullYear()}. All rights reserved.</p>
       </footer>
     </>
   );
