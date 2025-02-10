@@ -92,36 +92,30 @@ export default function DragAndDrop() {
     console.log("dragging over");
   };
 
-  return (
-    <>
-        <div
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          className="border-2 border-dashed border-gray-300 rounded p-14 text-center w-full"
-        >
-          Drag and drop files here
-        
-        <input
-          type="file"
-          multiple
-          onChange={handleFolderUpload}
-          className="hidden"
-          id="fileInput"
-          ref={(input) => {
-            if (input) {
-              input.setAttribute("webkitdirectory", "true");
-              input.setAttribute("directory", "true");
-            }
-          }}
-        />
-        <br />
-        <label
-          htmlFor="fileInput"
-          className="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
-        >
-          Select Folder
-        </label>
-        </div>
-    </>
-  );
+    return (
+      <>
+          <label
+            htmlFor="fileInput"
+            className="border-2 border-dashed border-gray-300 rounded p-14 text-center w-full cursor-pointer"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+          >
+            Drag and drop files here or click to select a folder
+          
+            <input
+              type="file"
+              multiple
+              onChange={handleFolderUpload}
+              className="hidden"
+              id="fileInput"
+              ref={(input) => {
+                if (input) {
+                  input.setAttribute("webkitdirectory", "true");
+                  input.setAttribute("directory", "true");
+                }
+              }}
+            />
+          </label>
+      </>
+    );
 }
