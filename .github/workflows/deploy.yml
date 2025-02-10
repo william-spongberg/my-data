@@ -1,9 +1,9 @@
 name: Deploy
 on:
   push:
-    branches: main
+    branches: prod
   pull_request:
-    branches: main
+    branches: prod
 
 jobs:
   deploy:
@@ -29,6 +29,6 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "my-data"
+          project: "mydata"
           entrypoint: "main.ts"
           root: "."
