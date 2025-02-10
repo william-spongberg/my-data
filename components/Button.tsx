@@ -1,15 +1,29 @@
 
+
 interface ButtonProps {
   href: string;
   name: string;
+  textColour?: string;
+  backgroundColour?: string;
+  hoverBackgroundColour?: string;
+  hoverTextColour?: string;
 }
 
-export default function Button({ href, name }: ButtonProps) {
+export default function Button({
+  href,
+  name,
+  backgroundColour = 'bg-white',
+  textColour = 'text-light-blue-500',
+  hoverBackgroundColour = 'hover:bg-yellow-500',
+  hoverTextColour = 'hover:text-white'
+}: ButtonProps) {
   return (
-    <button class="flex items-center justify-center bg-white rounded-2xl p-4 my-2 hover:bg-yellow-500 hover:text-white">
+    <button
+      className={`flex items-center justify-center ${backgroundColour} rounded-2xl p-4 my-2 ${hoverBackgroundColour} ${hoverTextColour}`}
+    >
       <a
         href={href}
-        class="text-light-blue-500"
+        className={`${textColour}`}
       >
         {name}
       </a>
