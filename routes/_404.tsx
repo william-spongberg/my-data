@@ -15,7 +15,7 @@ export default function Error404() {
           </p>
           <Button
             href="/"
-            name="Go back home"
+            text="Go back home"
           />
         </div>
       </div>

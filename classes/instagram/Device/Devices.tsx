@@ -19,7 +19,7 @@ export default class Devices implements DataType {
         </p>
       );
     }
-    
+
     return (
       <>
         <p>{`You have used ${this.devices.length} different devices`}</p>

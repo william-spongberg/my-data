@@ -11,7 +11,7 @@ export default function Footer({ home = false }: FooterProps) {
         {!home && (
           <Button
             href="/"
-            name="Go back Home"
+            text="Go back Home"
             textColour="text-white"
             backgroundColour="bg-blue-500"
             hoverTextColour="hover:text-white"
@@ -32,7 +32,10 @@ export default function Footer({ home = false }: FooterProps) {
           </a>
         </p>
         <p class="hidden md:block mx-2">|</p>
-        <p>&copy; William Spongberg {new Date().getFullYear()}. All rights reserved.</p>
+        <p>
+          &copy; William Spongberg{" "}
+          {new Date().getFullYear()}. All rights reserved.
+        </p>
       </footer>
     </>
   );
