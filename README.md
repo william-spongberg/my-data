@@ -33,6 +33,10 @@ _Note that these prices are just placeholders for now - not sure how much this s
 | SQL query your data or export as csv | ❌ | ❌ | ✅ |
 | [FUTURE] Link data analysis to platform directly (instant insights) | ❌ | ❌ | ✅ |
 
+## Security
+
+Data is stored locally, and processed locally. Nothing is sent to the server - however this may change for paid plans that want to see analysis across multiple platforms at once.
+
 ## Supported Platforms
 
 - Instagram
