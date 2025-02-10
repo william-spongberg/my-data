@@ -1,4 +1,3 @@
-import DragAndDrop from "../../islands/DragAndDrop.tsx";
 import Platform from "../../islands/Platform.tsx";
 import InstagramAnalytics from "../../islands/InstagramAnalytics.tsx";
 
