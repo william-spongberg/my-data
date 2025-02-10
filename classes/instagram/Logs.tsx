@@ -28,7 +28,6 @@ export default class Logs implements DataType {
           {`Your actions were tracked across ${this.logs.length} different apps and websites.`}
         </p>
         <p>{`A total of ${this.getNumEvents()} logs were made.`}</p>
-
         <BarChart
           id="ActivitiesBar"
           datasets={Array.from(this.getEventTypeAnalytics()).map(
@@ -39,16 +38,16 @@ export default class Logs implements DataType {
             }),
           )}
         />
+        <br />
         <BarChart
           id="ActivityLogsBar"
           datasets={this.logs.map((activity) => ({
             label: activity.name,
             data: [activity.events.length],
-            color: `rgba(${Math.floor(Math.random() * 255)}, ${
-              Math.floor(Math.random() * 255)
-            }, ${Math.floor(Math.random() * 255)}, 1)`,
+            color: randColour(),
           }))}
         />
+        <br />
         <LineChart
           id="ActivitiesChart"
           datasets={Array.from(this.getEventTypeAnalytics()).map(

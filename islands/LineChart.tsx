@@ -17,6 +17,7 @@ interface LineChartProps {
 export default function LineChart(
   { id, datasets }: LineChartProps,
 ) {
+  // check document has been painted before rendering chart
   useEffect(() => {
     if (IS_BROWSER) {
       const chartData = datasets.map((dataset) => {

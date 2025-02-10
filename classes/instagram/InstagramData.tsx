@@ -1,8 +1,8 @@
 import { DataType, FileData } from "../../types/global/types.ts";
 import Logs from "./Logs.tsx";
 import Ads from "./Ads/Ads.tsx";
-import Activity from "./Activity/UserActivity.tsx";
-import Device from "./Device/Device.tsx";
+import Activity from "./Activity/Activity.tsx";
+import DeviceInfo from "./Device/DeviceInfo.tsx";
 import Info from "./Info/UserInfo.tsx";
 
 // root of instagram data structure
@@ -10,7 +10,7 @@ export default class InstagramData implements DataType {
   logs: Logs = new Logs();
   ads: Ads = new Ads();
   activity: Activity = new Activity();
-  device: Device = new Device();
+  device: DeviceInfo = new DeviceInfo();
   info: Info = new Info();
 
   // TODO: initial user sign up data
@@ -26,7 +26,7 @@ export default class InstagramData implements DataType {
   render() {
     return (
       <>
-        <p class="mt-4 mb-4 text-3xl">Your Instagram data</p>
+        <p class="mt-8 mb-8 text-3xl">Your Instagram data</p>
         {this.logs.render()}
         <br />
         {this.ads.render()}

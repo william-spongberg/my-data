@@ -1,6 +1,6 @@
 import { DataType, FileData } from "../../../types/global/types.ts";
 import { Post } from "../../../types/instagram/types.ts";
-import { convertUnixTimeToDate } from "../../../utils/utils.ts";
+import { convertUnixTimeToDate, randColour } from "../../../utils/utils.ts";
 import LineChart from "../../../islands/LineChart.tsx";
 
 export default class SavedPosts implements DataType {
@@ -14,9 +14,11 @@ export default class SavedPosts implements DataType {
 
   render() {
     if (this.posts.length === 0) {
-      return <p>
-        No saved posts found.
-      </p>;
+      return (
+        <p>
+          No saved posts found.
+        </p>
+      );
     }
     return (
       <>
@@ -29,7 +31,7 @@ export default class SavedPosts implements DataType {
           datasets={[{
             label: "Saved Posts",
             data: this.posts.reverse(),
-            color: "rgba(75, 192, 192, 1)",
+            color: randColour(),
           }]}
         />
       </>

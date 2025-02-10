@@ -13,10 +13,12 @@ export function bytesToMBFormatter(bytes: number): number {
   return (bytes / (1024 * 1024));
 }
 
+// bright random colours
 export function randColour(): string {
-  return `rgba(${Math.floor(Math.random() * 255)}, ${
-    Math.floor(Math.random() * 255)
-  }, ${Math.floor(Math.random() * 255)}, 1)`;
+  const h = Math.floor(Math.random() * 360); // 0-359
+  const s = Math.floor(Math.random() * 50) + 50; // 50-100%
+  const l = Math.floor(Math.random() * 40) + 50; // 50-89%
+  return `hsl(${h}, ${s}%, ${l}%)`;
 }
 
 export async function processFiles(
@@ -71,13 +73,13 @@ export async function processFiles(
   if (fileDataArray.length === 0) {
     return {
       message: `No files uploaded. Make sure to unzip your folder first`,
-      uploadData: []
-    }
+      uploadData: [],
+    };
   }
 
   return {
     message: `Files uploaded!`,
-    uploadData: fileDataArray
+    uploadData: fileDataArray,
   };
 }
 

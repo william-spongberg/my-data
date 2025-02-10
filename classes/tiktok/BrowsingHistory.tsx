@@ -1,6 +1,7 @@
 import { DataType, FileData } from "../../types/global/types.ts";
 import { TikTokHistory } from "../../types/tiktok/types.ts";
 import LineChart from "../../islands/LineChart.tsx";
+import { randColour } from "../../utils/utils.ts";
 
 export default class BrowsingHistory implements DataType {
   history: TikTokHistory[] = [];
@@ -23,7 +24,7 @@ export default class BrowsingHistory implements DataType {
           datasets={[{
             label: "History",
             data: this.history,
-            color: "rgba(75, 192, 192, 1)",
+            color: randColour(),
           }]}
         />
       </>
@@ -42,7 +43,7 @@ export default class BrowsingHistory implements DataType {
         const date = dateLine.replace("Date: ", "").trim();
         const link = linkLine.replace("Link: ", "").trim();
 
-        // not unix time, so divide by 1000
+        // divide by 1000 to force unix timestamp
         const timestamp = new Date(date).getTime() / 1000;
 
         this.history.push({ link, timestamp });

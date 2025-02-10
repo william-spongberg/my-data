@@ -1,27 +1,55 @@
 import Button from "../components/Button.tsx";
-import Footer from "../components/Footer.tsx";
+import Grid from "../components/Grid.tsx";
+import Page from "../components/Page.tsx";
+import Title from "../components/Title.tsx";
+import Text from "../components/Text.tsx";
+import Center from "../components/Center.tsx";
+import * as Icons from "../components/Icons.tsx";
 
 export default function Home() {
   return (
-    <div class="flex flex-col min-h-screen bg-white">
-      <div class="flex-grow flex items-center justify-center">
-        <div class="px-4 py-8 mx-auto bg-blue-500 rounded-2xl">
-          <div class="max-w-screen-md mx-auto flex flex-col items-center">
-            <h1 class="text-4xl font-bold text-white">
-              What is my data worth?
-            </h1>
-            <p class="text-lg text-white mt-4 mb-4">
-              Welcome to your own data.
-            </p>
-            <Button
-              href="/platforms/instagram"
-              name="Go to Instagram Analytics"
-            />
-            <Button href="/platforms/tiktok" name="Go to TikTok Analytics" />
-          </div>
-        </div>
-      </div>
-      <Footer home={true} />
-    </div>
+    <Page home={true}>
+      <Title>
+        What is my data worth?
+      </Title>
+
+      <Text>
+        <i>
+          Welcome to your own data.
+        </i>
+      </Text>
+
+      <Grid>
+        <Button
+          href="/platforms/instagram"
+          text="Analytics"
+          backgroundColour="bg-black"
+          hoverBackgroundColour="hover:bg-gray-800"
+          textColour="text-white"
+        >
+          <Icons.IconInstagram />
+        </Button>
+        <Button
+          href="/platforms/tiktok"
+          text="Analytics"
+          backgroundColour="bg-black"
+          hoverBackgroundColour="hover:bg-gray-800"
+          textColour="text-white"
+        >
+          <Icons.IconTikTok />
+        </Button>
+      </Grid>
+
+      <Center>
+        <Button
+          href="/faq"
+          text="❓ How do I get my data?"
+          backgroundColour="bg-blue-500"
+          textColour="text-white"
+          hoverBackgroundColour="hover:bg-blue-600"
+          hoverTextColour="hover:text-white"
+        />
+      </Center>
+    </Page>
   );
 }

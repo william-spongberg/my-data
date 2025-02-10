@@ -12,9 +12,11 @@ export default class AdvertisersUsingData implements DataType {
 
   render() {
     if (this.advertisers.length === 0) {
-      return <p>
-        No advertisers found.
-      </p>;
+      return (
+        <p>
+          No advertisers found.
+        </p>
+      );
     }
 
     return (

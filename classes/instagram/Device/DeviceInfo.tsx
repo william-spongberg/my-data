@@ -1,9 +1,7 @@
 import Devices from "./Devices.tsx";
 import { RenderType } from "../../../types/global/types.ts";
 
-// TODO: merge this file with Devices.tsx??
-
-export default class Device implements RenderType {
+export default class DeviceInfo implements RenderType {
   devices: Devices = new Devices();
 
   render() {

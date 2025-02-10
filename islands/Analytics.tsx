@@ -3,7 +3,9 @@ import { JSX } from "preact";
 import { getFromIndexedDB } from "../utils/utils.ts";
 
 interface SharedAnalyticsProps<T> {
+  // class to be instantiated with data
   DataClass: new (data: any) => T;
+  // method in data class to render data
   renderData: (data: T) => JSX.Element;
   title: string;
 }
@@ -14,10 +16,12 @@ export default function Analytics<T>(
   const [data, setData] = useState<T | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
+  // make sure browser has been painted before loading data
   useEffect(() => {
     const handleStorageEvent = async () => {
       console.log("Storage event!");
 
+      // load data from indexedDB
       const message = await getFromIndexedDB("message");
       const uploadData = await getFromIndexedDB("uploadData");
 
@@ -35,8 +39,10 @@ export default function Analytics<T>(
       }
     };
 
+    // listen for storage events
     globalThis.addEventListener("storage", handleStorageEvent);
 
+    // kill listener when finished
     return () => {
       globalThis.removeEventListener("storage", handleStorageEvent);
     };

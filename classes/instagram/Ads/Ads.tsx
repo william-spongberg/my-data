@@ -1,9 +1,9 @@
 import { RenderType } from "../../../types/global/types.ts";
-import Impressions from "./Impressions/Impressions.tsx";
+import ImpressionsInfo from "./Impressions/ImpressionsInfo.tsx";
 import Avertisers from "./Advertisers/Advertisers.tsx";
 
 export default class Ads implements RenderType {
-  impressions: Impressions = new Impressions();
+  impressions: ImpressionsInfo = new ImpressionsInfo();
   advertisers: Avertisers = new Avertisers();
 
   render() {
