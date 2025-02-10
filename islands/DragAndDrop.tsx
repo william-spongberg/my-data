@@ -28,15 +28,15 @@ export default function DragAndDrop() {
     await storeInIndexedDB("message", message);
     if (uploadData.length > 0) {
       await storeInIndexedDB("uploadData", uploadData);
+    } else {
+      await storeInIndexedDB("uploadData", []);
     }
-
-    console.log("Message + Storage updated!");
 
     globalThis.dispatchEvent(new Event("storage"));
   };
 
   const handleFolderUpload = async (event: any) => {
-    const files = Array.from(event.target.files);
+    const files: File[] = Array.from(event.target.files) as File[];
     const fileNames = files.map((file: File) => file.name).join(", ");
     console.log(`Selected files: ${fileNames}`);
 
