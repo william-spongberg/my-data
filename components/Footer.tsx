@@ -1,10 +1,10 @@
 import Button from "./Button.tsx";
 
-interface Props {
+interface FooterProps {
   home?: boolean;
 }
 
-export default function Footer({ home = false }: Props) {
+export default function Footer({ home = false }: FooterProps) {
   return (
     <>
       <div class="flex justify-center w-auto">

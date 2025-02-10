@@ -1,7 +1,7 @@
 import { DataType, FileData } from "../../types/global/types.ts";
 import Logs from "./Logs.tsx";
 import Ads from "./Ads/Ads.tsx";
-import Activity from "./Activity/UserActivity.tsx";
+import Activity from "./Activity/Activity.tsx";
 import Device from "./Device/Device.tsx";
 import Info from "./Info/UserInfo.tsx";
 
