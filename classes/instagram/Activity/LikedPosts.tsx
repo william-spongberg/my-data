@@ -14,7 +14,9 @@ export default class LikedPosts implements DataType {
 
   render() {
     if (this.posts.length === 0) {
-      return <p></p>;
+      return <p>
+        No liked posts found.
+      </p>;
     }
     return (
       <>

@@ -13,7 +13,9 @@ export default abstract class AbstractImpressions implements DataType {
 
   render() {
     if (this.impressions.length === 0) {
-      return <p></p>;
+      return <p>
+        No impressions found.
+      </p>;
     }
     return (
       <>

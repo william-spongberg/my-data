@@ -6,7 +6,9 @@ import { Impression } from "../../../../types/instagram/types.ts";
 export default class VideoImpressions extends AbstractImpressions {
   override render() {
     if (this.impressions.length === 0) {
-      return <p></p>;
+      return <p>
+        No video impressions found.
+      </p>;
     }
     return (
       <>

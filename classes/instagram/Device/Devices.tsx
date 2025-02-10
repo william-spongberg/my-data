@@ -12,6 +12,14 @@ export default class Devices implements DataType {
   }
 
   render() {
+    if (this.devices.length === 0) {
+      return (
+        <p>
+          No device data found.
+        </p>
+      );
+    }
+    
     return (
       <>
         <p>{`You have used ${this.devices.length} different devices`}</p>
