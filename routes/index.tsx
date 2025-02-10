@@ -1,6 +1,10 @@
 import Button from "../components/Button.tsx";
+import Grid from "../components/Grid.tsx";
 import Page from "../components/Page.tsx";
 import Title from "../components/Title.tsx";
+import Text from "../components/Text.tsx";
+import Center from "../components/Center.tsx";
+import * as Icons from "../components/Icons.tsx";
 
 export default function Home() {
   return (
@@ -8,16 +12,35 @@ export default function Home() {
       <Title>
         What is my data worth?
       </Title>
-      <p class="text-base sm:text-lg text-white mt-4 mb-4 text-center">
-        Welcome to your own data.
-      </p>
-      <Button
-        href="/platforms/instagram"
-        text="Go to Instagram Analytics"
-      />
-      <Button href="/platforms/tiktok" text="Go to TikTok Analytics" />
 
-      <div class="flex items-center justify-center px-4 py-4 sm:px-8">
+      <Text>
+        <i>
+          Welcome to your own data.
+        </i>
+      </Text>
+
+      <Grid>
+        <Button
+          href="/platforms/instagram"
+          text="Analytics"
+          backgroundColour="bg-black"
+          hoverBackgroundColour="hover:bg-gray-800"
+          textColour="text-white"
+        >
+          <Icons.IconInstagram />
+        </Button>
+        <Button
+          href="/platforms/tiktok"
+          text="Analytics"
+          backgroundColour="bg-black"
+          hoverBackgroundColour="hover:bg-gray-800"
+          textColour="text-white"
+        >
+          <Icons.IconTikTok />
+        </Button>
+      </Grid>
+
+      <Center>
         <Button
           href="/faq"
           text="❓ How do I get my data?"
@@ -26,7 +49,7 @@ export default function Home() {
           hoverBackgroundColour="hover:bg-blue-600"
           hoverTextColour="hover:text-white"
         />
-      </div>
+      </Center>
     </Page>
   );
 }

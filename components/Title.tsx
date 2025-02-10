@@ -1,10 +1,6 @@
-import { ComponentChildren } from "preact";
+import { ChildrenProps } from "../types/global/types.ts";
 
-interface TitleProps {
-  children: ComponentChildren;
-}
-
-export default function Title({ children }: TitleProps) {
+export default function Title({ children }: ChildrenProps) {
   return (
     <h1 class="text-2xl sm:text-4xl font-bold text-white text-center">
       {children}

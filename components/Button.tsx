@@ -30,8 +30,8 @@ export default function Button({
       target={target}
       rel={rel}
     >
-      {children}
       <button class="w-full h-full">
+        {children}
         {text}
       </button>
     </a>

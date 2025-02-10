@@ -1,3 +1,4 @@
+import { ComponentChildren } from "preact";
 import { JSX } from "preact/jsx-runtime";
 
 export interface FileData {
@@ -18,4 +19,8 @@ export interface RenderType {
 export interface UploadProps {
   message?: string;
   uploadData?: FileData[];
+}
+
+export interface ChildrenProps {
+  children: ComponentChildren
 }
