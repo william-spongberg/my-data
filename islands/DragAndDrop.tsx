@@ -1,4 +1,4 @@
-import { processFiles } from "../utils/utils.ts";
+import { processFiles, storeInIndexedDB } from "../utils/utils.ts";
 
 export default function DragAndDrop() {
   const handleDrop = async (event: any) => {
@@ -70,40 +70,6 @@ export default function DragAndDrop() {
   const handleDragOver = (event: any) => {
     event.preventDefault();
     console.log("dragging over");
-  };
-
-  const storeInIndexedDB = (key: string, value: any) => {
-    return new Promise<void>((resolve, reject) => {
-      const request = indexedDB.open("myDatabase", 1);
-
-      request.onupgradeneeded = (event: any) => {
-        const db = event.target.result;
-        if (!db.objectStoreNames.contains("myStore")) {
-          db.createObjectStore("myStore");
-        }
-      };
-
-      request.onsuccess = (event: any) => {
-        const db = event.target.result;
-        const transaction = db.transaction("myStore", "readwrite");
-        const store = transaction.objectStore("myStore");
-        store.put(value, key);
-
-        transaction.oncomplete = () => {
-          resolve();
-        };
-
-        transaction.onerror = (error: any) => {
-          console.error("Error storing data in IndexedDB:", error);
-          reject(error);
-        };
-      };
-
-      request.onerror = (error: any) => {
-        console.error("Error opening IndexedDB:", error);
-        reject(error);
-      };
-    });
   };
 
   return (

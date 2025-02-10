@@ -1,5 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
 import { JSX } from "preact";
+import { getFromIndexedDB } from "../utils/utils.ts";
 
 interface SharedAnalyticsProps<T> {
   DataClass: new (data: any) => T;
@@ -40,40 +41,6 @@ export default function Analytics<T>(
       globalThis.removeEventListener("storage", handleStorageEvent);
     };
   }, []);
-
-  const getFromIndexedDB = (key: string): Promise<any> => {
-    return new Promise((resolve, reject) => {
-      const request = indexedDB.open("myDatabase", 1);
-
-      request.onupgradeneeded = (event: any) => {
-        const db = event.target.result;
-        if (!db.objectStoreNames.contains("myStore")) {
-          db.createObjectStore("myStore");
-        }
-      };
-
-      request.onsuccess = (event: any) => {
-        const db = event.target.result;
-        const transaction = db.transaction("myStore", "readonly");
-        const store = transaction.objectStore("myStore");
-        const getRequest = store.get(key);
-
-        getRequest.onsuccess = () => {
-          resolve(getRequest.result);
-        };
-
-        getRequest.onerror = (error: any) => {
-          console.error("Error getting data from IndexedDB:", error);
-          reject(error);
-        };
-      };
-
-      request.onerror = (error: any) => {
-        console.error("Error opening IndexedDB:", error);
-        reject(error);
-      };
-    });
-  };
 
   return (
     <div>

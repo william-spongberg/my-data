@@ -91,3 +91,71 @@ export const fileUploadHandler: Handlers<UploadProps> = {
     });
   },
 };
+
+export function storeInIndexedDB (key: string, value: any) {
+  return new Promise<void>((resolve, reject) => {
+    const request = indexedDB.open("myDatabase", 1);
+
+    request.onupgradeneeded = (event: any) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains("myStore")) {
+        db.createObjectStore("myStore");
+      }
+    };
+
+    request.onsuccess = (event: any) => {
+      const db = event.target.result;
+      const transaction = db.transaction("myStore", "readwrite");
+      const store = transaction.objectStore("myStore");
+      store.put(value, key);
+
+      transaction.oncomplete = () => {
+        resolve();
+      };
+
+      transaction.onerror = (error: any) => {
+        console.error("Error storing data in IndexedDB:", error);
+        reject(error);
+      };
+    };
+
+    request.onerror = (error: any) => {
+      console.error("Error opening IndexedDB:", error);
+      reject(error);
+    };
+  });
+};
+
+export function getFromIndexedDB (key: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("myDatabase", 1);
+
+    request.onupgradeneeded = (event: any) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains("myStore")) {
+        db.createObjectStore("myStore");
+      }
+    };
+
+    request.onsuccess = (event: any) => {
+      const db = event.target.result;
+      const transaction = db.transaction("myStore", "readonly");
+      const store = transaction.objectStore("myStore");
+      const getRequest = store.get(key);
+
+      getRequest.onsuccess = () => {
+        resolve(getRequest.result);
+      };
+
+      getRequest.onerror = (error: any) => {
+        console.error("Error getting data from IndexedDB:", error);
+        reject(error);
+      };
+    };
+
+    request.onerror = (error: any) => {
+      console.error("Error opening IndexedDB:", error);
+      reject(error);
+    };
+  });
+};
