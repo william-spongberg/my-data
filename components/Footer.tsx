@@ -7,12 +7,18 @@ interface Props {
 export default function Footer({ home = false }: Props) {
   return (
     <>
-      {!home && (
-        <Button
-          href="/"
-          name="Go back Home"
-        />
-      )}
+      <div class="flex justify-center w-auto">
+        {!home && (
+          <Button
+            href="/"
+            name="Go back Home"
+            textColour="text-white"
+            backgroundColour="bg-blue-500"
+            hoverTextColour="hover:text-white"
+            hoverBackgroundColour="hover:bg-blue-400"
+          />
+        )}
+      </div>
       <footer className="flex justify-center items-center h-16 bg-black text-white">
         <br />
         <p className="text-yellow-500">This website is in beta.</p>
