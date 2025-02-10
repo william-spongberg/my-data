@@ -12,7 +12,9 @@ export default class CategoriesUsedToReachYou implements DataType {
 
   render() {
     if (this.categories.length === 0) {
-      return <p></p>;
+      return <p>
+        No categories found.
+      </p>;
     }
 
     return (
