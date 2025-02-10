@@ -2,9 +2,21 @@ import { RenderType } from "../../../../types/global/types.ts";
 import Impressions from "./Impressions.tsx";
 
 export default class ImpressionsInfo implements RenderType {
-  ads_viewed: Impressions = new Impressions(undefined, "Ad Impressions", "impressions_history_ads_seen");
-  posts_viewed: Impressions = new Impressions(undefined, "Post Impressions", "impressions_history_posts_seen");
-  videos_watched: Impressions = new Impressions(undefined, "Video Impressions", "impressions_history_videos_watched");
+  ads_viewed: Impressions = new Impressions(
+    undefined,
+    "Ad Impressions",
+    "impressions_history_ads_seen",
+  );
+  posts_viewed: Impressions = new Impressions(
+    undefined,
+    "Post Impressions",
+    "impressions_history_posts_seen",
+  );
+  videos_watched: Impressions = new Impressions(
+    undefined,
+    "Video Impressions",
+    "impressions_history_videos_watched",
+  );
 
   render() {
     return (

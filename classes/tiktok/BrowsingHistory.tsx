@@ -43,7 +43,7 @@ export default class BrowsingHistory implements DataType {
         const date = dateLine.replace("Date: ", "").trim();
         const link = linkLine.replace("Link: ", "").trim();
 
-        // not unix time, so divide by 1000
+        // divide by 1000 to force unix timestamp
         const timestamp = new Date(date).getTime() / 1000;
 
         this.history.push({ link, timestamp });

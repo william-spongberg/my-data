@@ -70,7 +70,7 @@ export default function DragAndDrop() {
             // if is file, add to files array
             if (entry.isFile) {
               files.push(await getFile(entry));
-            // else if is directory, recursively read directory
+              // else if is directory, recursively read directory
             } else if (entry.isDirectory) {
               await readDirectory(entry, files);
             }
@@ -111,7 +111,7 @@ export default function DragAndDrop() {
     <>
       <label
         htmlFor="fileInput"
-        className="border-2 border-dashed border-gray-300 rounded p-14 text-center w-full cursor-pointer"
+        class="border-2 border-dashed border-gray-300 rounded p-14 text-center w-full cursor-pointer"
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
@@ -121,7 +121,7 @@ export default function DragAndDrop() {
           type="file"
           multiple
           onChange={handleFolderUpload}
-          className="hidden"
+          class="hidden"
           id="fileInput"
           ref={(input) => {
             if (input) {

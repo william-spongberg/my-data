@@ -13,7 +13,7 @@ export default class TikTokData implements DataType {
   render() {
     return (
       <>
-        <p class="mt-4 mb-4 text-3xl">Your TikTok data</p>
+        <p class="mt-8 mb-8 text-3xl">Your TikTok data</p>
         {this.activity.render()}
         <br />
       </>

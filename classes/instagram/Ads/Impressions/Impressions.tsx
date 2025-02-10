@@ -24,7 +24,7 @@ export default class Impressions implements DataType {
     if (this.impressions.length === 0) {
       return (
         <p>
-          No {(this.title).toLowerCase()} found.
+          No {this.title.toLowerCase()} found.
         </p>
       );
     }

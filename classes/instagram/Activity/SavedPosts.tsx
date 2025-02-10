@@ -14,9 +14,11 @@ export default class SavedPosts implements DataType {
 
   render() {
     if (this.posts.length === 0) {
-      return <p>
-        No saved posts found.
-      </p>;
+      return (
+        <p>
+          No saved posts found.
+        </p>
+      );
     }
     return (
       <>

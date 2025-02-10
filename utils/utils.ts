@@ -73,13 +73,13 @@ export async function processFiles(
   if (fileDataArray.length === 0) {
     return {
       message: `No files uploaded. Make sure to unzip your folder first`,
-      uploadData: []
-    }
+      uploadData: [],
+    };
   }
 
   return {
     message: `Files uploaded!`,
-    uploadData: fileDataArray
+    uploadData: fileDataArray,
   };
 }
 
