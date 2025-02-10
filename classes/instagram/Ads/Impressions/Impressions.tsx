@@ -6,7 +6,7 @@ import { randColour } from "../../../../utils/utils.ts";
 export default class Impressions implements DataType {
   impressions: Impression[] = [];
   title: string = "Impressions";
-  section: any;
+  section: string = "impressions";
 
   constructor(fileData?: FileData, title?: string, section?: any) {
     if (fileData) {
