@@ -19,7 +19,7 @@ export default function Footer({ home = false }: FooterProps) {
           />
         )}
       </div>
-      <footer class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 bg-black text-white p-4">
+      <footer class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 bg-black text-white p-4 md:p-2 pb-16 md:pb-2">
         <p class="text-yellow-500 mb-2 md:mb-0">This website is in beta.</p>
         <p class="hidden md:block mx-2">|</p>
         <p class="mb-2 md:mb-0">
