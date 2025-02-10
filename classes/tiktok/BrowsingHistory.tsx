@@ -1,6 +1,7 @@
 import { DataType, FileData } from "../../types/global/types.ts";
 import { TikTokHistory } from "../../types/tiktok/types.ts";
 import LineChart from "../../islands/LineChart.tsx";
+import { randColour } from "../../utils/utils.ts";
 
 export default class BrowsingHistory implements DataType {
   history: TikTokHistory[] = [];
@@ -23,7 +24,7 @@ export default class BrowsingHistory implements DataType {
           datasets={[{
             label: "History",
             data: this.history,
-            color: "rgba(75, 192, 192, 1)",
+            color: randColour(),
           }]}
         />
       </>

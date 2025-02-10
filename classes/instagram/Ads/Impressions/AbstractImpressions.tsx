@@ -1,6 +1,7 @@
 import { DataType, FileData } from "../../../../types/global/types.ts";
 import { Impression } from "../../../../types/instagram/types.ts";
 import LineChart from "../../../../islands/LineChart.tsx";
+import { randColour } from "../../../../utils/utils.ts";
 
 export default abstract class AbstractImpressions implements DataType {
   impressions: Impression[] = [];
@@ -26,7 +27,7 @@ export default abstract class AbstractImpressions implements DataType {
           datasets={[{
             label: "Impressions",
             data: this.impressions,
-            color: "rgba(75, 192, 192, 1)",
+            color: randColour(),
           }]}
         />
       </>

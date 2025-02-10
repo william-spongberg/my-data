@@ -1,6 +1,6 @@
 import { DataType, FileData } from "../../../types/global/types.ts";
 import { Post } from "../../../types/instagram/types.ts";
-import { convertUnixTimeToDate } from "../../../utils/utils.ts";
+import { convertUnixTimeToDate, randColour } from "../../../utils/utils.ts";
 import LineChart from "../../../islands/LineChart.tsx";
 
 export default class LikedPosts implements DataType {
@@ -30,7 +30,7 @@ export default class LikedPosts implements DataType {
           datasets={[{
             label: "Liked Posts",
             data: this.posts.reverse(),
-            color: "rgba(75, 192, 192, 1)",
+            color: randColour(),
           }]}
         />
       </>

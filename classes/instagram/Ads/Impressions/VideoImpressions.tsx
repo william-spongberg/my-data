@@ -2,6 +2,7 @@ import { FileData } from "../../../../types/global/types.ts";
 import AbstractImpressions from "./AbstractImpressions.tsx";
 import LineChart from "../../../../islands/LineChart.tsx";
 import { Impression } from "../../../../types/instagram/types.ts";
+import { randColour } from "../../../../utils/utils.ts";
 
 export default class VideoImpressions extends AbstractImpressions {
   override render() {
@@ -21,7 +22,7 @@ export default class VideoImpressions extends AbstractImpressions {
           datasets={[{
             label: "Video Impressions",
             data: this.impressions,
-            color: "rgba(75, 192, 192, 1)",
+            color: randColour(),
           }]}
         />
       </>
