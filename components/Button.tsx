@@ -18,15 +18,13 @@ export default function Button({
   hoverTextColour = 'hover:text-white'
 }: ButtonProps) {
   return (
-    <button
-      className={`flex items-center justify-center ${backgroundColour} rounded-2xl p-4 my-2 ${hoverBackgroundColour} ${hoverTextColour}`}
+    <a
+      href={href}
+      className={`flex items-center justify-center ${backgroundColour} rounded-2xl p-4 my-2 ${hoverBackgroundColour} ${hoverTextColour} ${textColour}`}
     >
-      <a
-        href={href}
-        className={`${textColour}`}
-      >
+      <button className="w-full h-full">
         {name}
-      </a>
-    </button>
+      </button>
+    </a>
   );
 }
