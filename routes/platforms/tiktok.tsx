@@ -1,12 +1,12 @@
 import DragAndDrop from "../../islands/DragAndDrop.tsx";
 import Platform from "../../islands/Platform.tsx";
-import InstagramAnalytics from "../../islands/InstagramAnalytics.tsx";
+import TikTokAnalytics from "../../islands/TikTokAnalytics.tsx";
 
 export default function TikTok() {
   return (
-    <Platform title={"Instagram Analytics"}>
+    <Platform title={"TikTok Analytics"}>
       <DragAndDrop />
-      <InstagramAnalytics />
+      <TikTokAnalytics />
     </Platform>
   );
 }

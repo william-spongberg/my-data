@@ -1,47 +1,13 @@
-import JSZip from "npm:jszip";
 import { Handlers } from "$fresh/server.ts";
 import { FileData, UploadProps } from "../types/global/types.ts";
-import { MAX_ZIP_FILE_SIZE } from "../constants/global/constants.ts";
-
-export async function unzipFile(file: File): Promise<FileData[]> {
-  const fileDataArray: FileData[] = [];
-  const zip = await JSZip.loadAsync(file);
-  const files = zip.files;
-
-  for (const filename in files) {
-    if (Object.hasOwn(files, filename)) {
-      const zipEntry = files[filename];
-      // allow json, txt, csv, html
-      if (
-        !zipEntry.dir &&
-        (filename.endsWith(".json") || filename.endsWith(".txt") ||
-          filename.endsWith(".csv") || filename.endsWith(".html"))
-      ) {
-        const text = await zipEntry.async("text");
-        // ignore path
-        const name = filename.split("/").pop();
-        let type = "text/plain";
-        if (filename.endsWith(".json")) {
-          type = "application/json";
-        } else if (filename.endsWith(".csv")) {
-          type = "text/csv";
-        } else if (filename.endsWith(".html")) {
-          type = "text/html";
-        }
-        fileDataArray.push({
-          text,
-          name: name || filename,
-          type,
-        });
-      }
-    }
-  }
-
-  return fileDataArray;
-}
+import { MAX_FILE_SIZE_B, MAX_FILE_SIZE_MB } from "../constants/global/constants.ts";
 
 export function convertUnixTimeToDate(timestamp: number): Date {
   return new Date(timestamp * 1000);
+}
+
+export function bytesToMBFormatter(bytes: number): number {
+  return (bytes / (1024 * 1024));
 }
 
 export function randColour(): string {
@@ -50,12 +16,14 @@ export function randColour(): string {
   }, ${Math.floor(Math.random() * 255)}, 1)`;
 }
 
-export async function processFiles(files: File[]): Promise<{ message: string; uploadData: FileData[] }> {
+export async function processFiles(
+  files: File[],
+): Promise<{ message: string; uploadData: FileData[] }> {
   // check if files exist
   if (!files || !files[0] || files.length === 0) {
     return {
-      message: `Please try again`,
-      uploadData: []
+      message: `No files uploaded. Please try again`,
+      uploadData: [],
     };
   }
 
@@ -67,23 +35,15 @@ export async function processFiles(files: File[]): Promise<{ message: string; up
     total_size += file.size;
 
     // enforce allowed file types
-    if (file.name.endsWith(".zip") || file.type === "application/zip") {
-      // Deno deploy only has 1/2 GB of ram, so we can't unzip large files :(
-      if (file.size > MAX_ZIP_FILE_SIZE) {
-        return {
-          message: `${file.name} is greater than 5MB, please upload a smaller zip file`,
-          uploadData: []
-        };
-      }
-
-      fileDataArray = fileDataArray.concat(await unzipFile(file));
-    } else if (
+    if (
       !(file.type === "application/json" || file.type === "text/plain" ||
-        file.type === "text/csv" || file.type === "text/html")
+        file.type === "text/csv" || file.type === "text/html" ||
+        file.type === "application/zip" || file.name.endsWith(".zip"))
     ) {
       return {
-        message: `Only json, txt, csv, html and zip files are supported. Please try again`,
-        uploadData: []
+        message:
+          `Only json, txt, csv and html files are supported. Please try again`,
+        uploadData: [],
       };
     } else {
       fileDataArray.push({
@@ -94,10 +54,17 @@ export async function processFiles(files: File[]): Promise<{ message: string; up
     }
   }
 
-  const totalSizeMB = (total_size / (1024 * 1024)).toFixed(2);
-  console.log(`Total size of files: ${totalSizeMB} MB (${total_size} bytes)`);
+  const totalSizeMB: number = bytesToMBFormatter(total_size);
+  console.log(`Total size of files: ${totalSizeMB.toFixed(2)} MB (${total_size} bytes)`);
 
-  return { 
+  if (total_size > MAX_FILE_SIZE_B) {
+    return {
+      message: `Total file size of ${totalSizeMB.toFixed(2)} MB is greater than ${MAX_FILE_SIZE_MB} MB. Please try again`,
+      uploadData: []
+    }
+  }
+
+  return {
     message: `Files uploaded!`,
     uploadData: fileDataArray,
   };
@@ -116,7 +83,7 @@ export const fileUploadHandler: Handlers<UploadProps> = {
     const form = await req.formData();
     const files = form.getAll("user-file") as File[];
 
-    const { message, uploadData } = await processFiles(files)
+    const { message, uploadData } = await processFiles(files);
 
     return ctx.render({
       message: message,

@@ -1,5 +1,3 @@
-
-
 interface ButtonProps {
   href: string;
   name: string;
@@ -12,10 +10,10 @@ interface ButtonProps {
 export default function Button({
   href,
   name,
-  backgroundColour = 'bg-white',
-  textColour = 'text-light-blue-500',
-  hoverBackgroundColour = 'hover:bg-yellow-500',
-  hoverTextColour = 'hover:text-white'
+  backgroundColour = "bg-white",
+  textColour = "text-light-blue-500",
+  hoverBackgroundColour = "hover:bg-yellow-500",
+  hoverTextColour = "hover:text-white",
 }: ButtonProps) {
   return (
     <a

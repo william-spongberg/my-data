@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "jszip": "^3.10.1"
+    "jszip": "^3.10.1",
+    "simple-dropzone": "^0.8.3"
   }
 }

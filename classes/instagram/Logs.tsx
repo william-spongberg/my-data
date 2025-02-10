@@ -1,5 +1,5 @@
 import { DataType, FileData } from "../../types/global/types.ts";
-import { Log, LogEvent, EventType } from "../../types/instagram/types.ts";
+import { EventType, Log, LogEvent } from "../../types/instagram/types.ts";
 import BarChart from "../../islands/BarChart.tsx";
 import LineChart from "../../islands/LineChart.tsx";
 import { randColour } from "../../utils/utils.ts";

@@ -1,5 +1,4 @@
-import { DataType, FileData, RenderType } from "../../types/global/types.ts";
-import BrowsingHistory from "./BrowsingHistory.tsx";
+import { DataType, FileData } from "../../types/global/types.ts";
 import Activity from "./Activity.tsx";
 
 export default class TikTokData implements DataType {
@@ -14,7 +13,7 @@ export default class TikTokData implements DataType {
   render() {
     return (
       <>
-        <p class="mt-4 mb-4 text-3xl">Your Instagram data</p>
+        <p class="mt-4 mb-4 text-3xl">Your TikTok data</p>
         {this.activity.render()}
         <br />
       </>
@@ -24,13 +23,14 @@ export default class TikTokData implements DataType {
   parse(fileData: FileData[]) {
     for (const file of fileData) {
       if (file.type !== "text/plain") {
-        console.log("Invalid file type");
+        console.log(`Invalid file type: ${file.type} for ${file.name}`);
         continue;
       }
 
       switch (file.name) {
         case "Browsing History.txt":
-          this.activity.history = new BrowsingHistory(file);
+          this.activity.history.parse(file);
+          console.log(`Parsed ${file.name}`);
           break;
         default:
           console.log(`Unknown file: ${file.name}`);

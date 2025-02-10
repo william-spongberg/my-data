@@ -13,11 +13,15 @@ export default function Home() {
             <p class="text-lg text-white mt-4 mb-4">
               Welcome to your own data.
             </p>
-            <Button href="/platforms/instagram" />
+            <Button
+              href="/platforms/instagram"
+              name="Go to Instagram Analytics"
+            />
+            <Button href="/platforms/tiktok" name="Go to TikTok Analytics" />
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer home={true} />
     </div>
   );
 }

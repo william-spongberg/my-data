@@ -32,5 +32,3 @@ jobs:
           project: "my-data"
           entrypoint: "main.ts"
           root: "."
-          
-          
