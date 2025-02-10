@@ -2,7 +2,6 @@ import { useEffect, useState } from "preact/hooks";
 import { JSX } from "preact";
 import { getFromIndexedDB } from "../utils/utils.ts";
 
-
 interface SharedAnalyticsProps<T> {
   // class to be instantiated with data
   DataClass: new (data: any) => T;
