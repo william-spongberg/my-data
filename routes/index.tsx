@@ -21,6 +21,16 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div class="flex items-center justify-center px-4 py-4 sm:px-8">
+        <Button
+          href="/faq"
+          name="❓ How do I get my data?"
+          backgroundColour="bg-blue-500"
+          textColour="text-white"
+          hoverBackgroundColour="hover:bg-blue-600"
+          hoverTextColour="hover:text-white"
+        />
+      </div>
       <Footer home={true} />
     </div>
   );
