@@ -6,9 +6,15 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $index from "./routes/index.tsx";
-import * as $platforms_instagram_analytics from "./routes/platforms/instagram_analytics.tsx";
+import * as $platforms_instagram from "./routes/platforms/instagram.tsx";
+import * as $platforms_tiktok from "./routes/platforms/tiktok.tsx";
+import * as $Analytics from "./islands/Analytics.tsx";
 import * as $BarChart from "./islands/BarChart.tsx";
+import * as $DragAndDrop from "./islands/DragAndDrop.tsx";
+import * as $InstagramAnalytics from "./islands/InstagramAnalytics.tsx";
 import * as $LineChart from "./islands/LineChart.tsx";
+import * as $Platform from "./islands/Platform.tsx";
+import * as $TikTokAnalytics from "./islands/TikTokAnalytics.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -17,12 +23,17 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/api/joke.ts": $api_joke,
     "./routes/index.tsx": $index,
-    "./routes/platforms/instagram_analytics.tsx":
-      $platforms_instagram_analytics,
+    "./routes/platforms/instagram.tsx": $platforms_instagram,
+    "./routes/platforms/tiktok.tsx": $platforms_tiktok,
   },
   islands: {
+    "./islands/Analytics.tsx": $Analytics,
     "./islands/BarChart.tsx": $BarChart,
+    "./islands/DragAndDrop.tsx": $DragAndDrop,
+    "./islands/InstagramAnalytics.tsx": $InstagramAnalytics,
     "./islands/LineChart.tsx": $LineChart,
+    "./islands/Platform.tsx": $Platform,
+    "./islands/TikTokAnalytics.tsx": $TikTokAnalytics,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
