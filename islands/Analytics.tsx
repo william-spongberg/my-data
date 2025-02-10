@@ -46,6 +46,7 @@ export default function Analytics<T>(
     <div>
       {data ? renderData(data) : (
         <>
+          <br />
           <p class="text-lg">
             {title}
           </p>

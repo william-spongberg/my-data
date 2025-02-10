@@ -35,6 +35,26 @@ export default function DragAndDrop() {
     globalThis.dispatchEvent(new Event("storage"));
   };
 
+  const handleFolderUpload = async (event: any) => {
+    const files = Array.from(event.target.files);
+    const fileNames = files.map((file: File) => file.name).join(", ");
+    console.log(`Selected files: ${fileNames}`);
+
+    const { message, uploadData } = await processFiles(files);
+
+    console.log("Message:", message);
+    console.log("Upload data:", uploadData);
+
+    await storeInIndexedDB("message", message);
+    if (uploadData.length > 0) {
+      await storeInIndexedDB("uploadData", uploadData);
+    }
+
+    console.log("Message + Storage updated!");
+
+    globalThis.dispatchEvent(new Event("storage"));
+  };
+
   const readDirectory = (directory: any, files: File[]) => {
     return new Promise<void>((resolve, reject) => {
       const reader = directory.createReader();
@@ -74,19 +94,34 @@ export default function DragAndDrop() {
 
   return (
     <>
-      <form
-        action=""
-        method="post"
-        className="dropzone"
-      >
         <div
           onDrop={handleDrop}
           onDragOver={handleDragOver}
-          class="border-2 border-dashed border-gray-300 rounded p-10 text-center"
+          className="border-2 border-dashed border-gray-300 rounded p-14 text-center w-full"
         >
           Drag and drop files here
+        
+        <input
+          type="file"
+          multiple
+          onChange={handleFolderUpload}
+          className="hidden"
+          id="fileInput"
+          ref={(input) => {
+            if (input) {
+              input.setAttribute("webkitdirectory", "true");
+              input.setAttribute("directory", "true");
+            }
+          }}
+        />
+        <br />
+        <label
+          htmlFor="fileInput"
+          className="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded cursor-pointer"
+        >
+          Select Folder
+        </label>
         </div>
-      </form>
     </>
   );
 }
