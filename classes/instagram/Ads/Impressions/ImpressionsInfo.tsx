@@ -1,5 +1,6 @@
 import { RenderType } from "../../../../types/global/types.ts";
 import Impressions from "./Impressions.tsx";
+import * as Text from "../../../../components/Text.tsx";
 
 export default class ImpressionsInfo implements RenderType {
   ads_viewed: Impressions = new Impressions(
@@ -21,12 +22,14 @@ export default class ImpressionsInfo implements RenderType {
   render() {
     return (
       <>
-        <p class="text-xl">Ads and Topics</p>
+        <Text.Heading>Ads and Topics</Text.Heading>
+        <br />
         {this.ads_viewed?.render()}
         <br />
         {this.posts_viewed?.render()}
         <br />
         {this.videos_watched?.render()}
+        <br />
       </>
     );
   }

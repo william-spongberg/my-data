@@ -1,5 +1,6 @@
 import { DataType, FileData } from "../../../../types/global/types.ts";
 import { Avertiser } from "../../../../types/instagram/types.ts";
+import * as Text from "../../../../components/Text.tsx";
 
 export default class AdvertisersUsingData implements DataType {
   advertisers: Avertiser[] = [];
@@ -13,38 +14,38 @@ export default class AdvertisersUsingData implements DataType {
   render() {
     if (this.advertisers.length === 0) {
       return (
-        <p>
+        <Text.Small>
           No advertisers found.
-        </p>
+        </Text.Small>
       );
     }
 
     return (
       <>
-        <p>Advertisers using your data</p>
-        <p class="text-sm italic">
+        <Text.SubHeading>Advertisers using your data</Text.SubHeading>
+        <Text.Small>
           {`Your data has been sold to ${this.advertisers.length} advertisers`}
-        </p>
-        <p class="text-sm italic">
+        </Text.Small>
+        <Text.Small>
           {`Advertisers with data files on you: ${
             this.advertisers.filter((advertiser) =>
               advertiser.has_data_file_on_you
             ).length
           }`}
-        </p>
-        <p class="text-sm italic">
+        </Text.Small>
+        <Text.Small>
           {`Advertisers with remarketing just for you: ${
             this.advertisers.filter((advertiser) => advertiser.has_remarketing)
               .length
           }`}
-        </p>
-        <p class="text-sm italic">
+        </Text.Small>
+        <Text.Small>
           {`Advertisers with in-person store visits from you: ${
             this.advertisers.filter((advertiser) =>
               advertiser.has_in_person_store_visit
             ).length
           }`}
-        </p>
+        </Text.Small>
       </>
     );
   }

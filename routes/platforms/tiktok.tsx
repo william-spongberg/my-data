@@ -1,10 +1,10 @@
-import Platform from "../../islands/Platform.tsx";
+import Page from "../../islands/Page.tsx";
 import TikTokAnalytics from "../../islands/TikTokAnalytics.tsx";
 
 export default function TikTok() {
   return (
-    <Platform title={"TikTok Analytics"}>
+    <Page title={"TikTok Analytics"} dragAndDrop={true}>
       <TikTokAnalytics />
-    </Platform>
+    </Page>
   );
 }

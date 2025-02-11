@@ -1,5 +1,6 @@
 import Devices from "./Devices.tsx";
 import { RenderType } from "../../../types/global/types.ts";
+import * as Text from "../../../components/Text.tsx";
 
 export default class DeviceInfo implements RenderType {
   devices: Devices = new Devices();
@@ -7,7 +8,9 @@ export default class DeviceInfo implements RenderType {
   render() {
     return (
       <>
-        <p class="text-2xl">Device Information</p>
+        <Text.SubHeading>
+          Device Information
+        </Text.SubHeading>
         {this.devices.render()}
       </>
     );

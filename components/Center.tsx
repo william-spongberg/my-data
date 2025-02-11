@@ -1,4 +1,4 @@
-import { ChildrenProps } from "../types/global/types.ts"
+import { ChildrenProps } from "../types/global/types.ts";
 
 export default function Center({ children }: ChildrenProps) {
   return (

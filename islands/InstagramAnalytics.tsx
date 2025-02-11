@@ -6,7 +6,7 @@ export default function InstagramAnalytics() {
     <Analytics
       DataClass={InstagramData}
       renderData={(data) => data.render()}
-      title="What data does Instagram have on you?"
+      subtitle="What data does Instagram have on you?"
     />
   );
 }

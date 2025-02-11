@@ -56,6 +56,7 @@ export default function LineChart(
   return (
     <>
       <canvas id={id} style="max-w-screen-md mx-auto flex flex-col"></canvas>
+      <br />
     </>
   );
 }

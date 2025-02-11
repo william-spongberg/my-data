@@ -2,6 +2,7 @@ import { DataType, FileData } from "../../../../types/global/types.ts";
 import { Impression } from "../../../../types/instagram/types.ts";
 import LineChart from "../../../../islands/LineChart.tsx";
 import { randColour } from "../../../../utils/utils.ts";
+import * as Text from "../../../../components/Text.tsx";
 
 export default class Impressions implements DataType {
   impressions: Impression[] = [];
@@ -23,17 +24,17 @@ export default class Impressions implements DataType {
   render() {
     if (this.impressions.length === 0) {
       return (
-        <p>
+        <Text.Small>
           No {this.title.toLowerCase()} found.
-        </p>
+        </Text.Small>
       );
     }
     return (
       <>
-        <p>{this.title}</p>
-        <p class="text-sm italic">
+        <Text.SubHeading>{this.title}</Text.SubHeading>
+        <Text.Small>
           {`You have seen ${this.impressions.length} impressions`}
-        </p>
+        </Text.Small>
         <LineChart
           id={this.title}
           datasets={[{

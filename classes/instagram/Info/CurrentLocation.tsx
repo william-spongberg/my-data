@@ -1,4 +1,5 @@
 import { DataType, FileData } from "../../../types/global/types.ts";
+import * as Text from "../../../components/Text.tsx";
 
 export default class CurrentLocation implements DataType {
   location: string = "Unknown";
@@ -10,7 +11,11 @@ export default class CurrentLocation implements DataType {
   }
 
   render() {
-    return <p>{`You are located at ${this.location}`}</p>;
+    return (
+      <Text.Paragraph>
+        {`You are currently located at ${this.location}.`}
+      </Text.Paragraph>
+    );
   }
 
   parse(fileData: FileData) {

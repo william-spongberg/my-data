@@ -2,6 +2,7 @@ import { DataType, FileData } from "../../../types/global/types.ts";
 import { Post } from "../../../types/instagram/types.ts";
 import { convertUnixTimeToDate, randColour } from "../../../utils/utils.ts";
 import LineChart from "../../../islands/LineChart.tsx";
+import * as Text from "../../../components/Text.tsx";
 
 export default class LikedPosts implements DataType {
   posts: Post[] = [];
@@ -15,18 +16,19 @@ export default class LikedPosts implements DataType {
   render() {
     if (this.posts.length === 0) {
       return (
-        <p>
+        <Text.Small>
           No liked posts found.
-        </p>
+        </Text.Small>
       );
     }
     return (
       <>
-        <p>Liked Posts</p>
-        {`You have liked ${this.posts.length} posts between ${
-          convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
-        } and ${convertUnixTimeToDate(this.posts[0].timestamp)}`}
-
+        <Text.SubHeading>Liked Posts</Text.SubHeading>
+        <Text.Small>
+          {`You have liked ${this.posts.length} posts between ${
+            convertUnixTimeToDate(this.posts[this.posts.length - 1].timestamp)
+          } and ${convertUnixTimeToDate(this.posts[0].timestamp)}`}
+        </Text.Small>
         <LineChart
           id="LikedPosts"
           datasets={[{

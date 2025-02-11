@@ -1,6 +1,7 @@
 import { DataType, FileData } from "../../../types/global/types.ts";
 import { Device } from "../../../types/instagram/types.ts";
 import { convertUnixTimeToDate } from "../../../utils/utils.ts";
+import * as Text from "../../../components/Text.tsx";
 
 export default class Devices implements DataType {
   devices: Device[] = [];
@@ -14,22 +15,24 @@ export default class Devices implements DataType {
   render() {
     if (this.devices.length === 0) {
       return (
-        <p>
+        <Text.Small>
           No device data found.
-        </p>
+        </Text.Small>
       );
     }
 
     return (
       <>
-        <p>{`You have used ${this.devices.length} different devices`}</p>
-        <p>
+        <Text.Small>
+          {`You have logged in across ${this.devices.length} different devices.`}
+        </Text.Small>
+        <Text.Small>
           {`Your most recent device was a ${
             this.devices[0].name
           }, and you last logged in on ${
             convertUnixTimeToDate(this.devices[0].timestamp)
           }`}
-        </p>
+        </Text.Small>
       </>
     );
   }

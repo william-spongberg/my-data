@@ -3,6 +3,7 @@ import { EventType, Log, LogEvent } from "../../types/instagram/types.ts";
 import BarChart from "../../islands/BarChart.tsx";
 import LineChart from "../../islands/LineChart.tsx";
 import { randColour } from "../../utils/utils.ts";
+import * as Text from "../../components/Text.tsx";
 
 export default class Logs implements DataType {
   logs: Log[] = [];
@@ -16,18 +17,22 @@ export default class Logs implements DataType {
   render() {
     if (this.logs.length === 0) {
       return (
-        <p>
-        </p>
+        <Text.Small>
+          No logs found.
+        </Text.Small>
       );
     }
 
     return (
       <>
-        <p class="text-2xl">Your actions outside Instagram</p>
-        <p>
+        <Text.Heading>Your actions outside Instagram</Text.Heading>
+        <Text.Small>
           {`Your actions were tracked across ${this.logs.length} different apps and websites.`}
-        </p>
-        <p>{`A total of ${this.getNumEvents()} logs were made.`}</p>
+        </Text.Small>
+        <Text.Small>
+          {`A total of ${this.getNumEvents()} logs were made.`}
+        </Text.Small>
+        <br />
         <BarChart
           id="ActivitiesBar"
           datasets={Array.from(this.getEventTypeAnalytics()).map(
@@ -38,7 +43,6 @@ export default class Logs implements DataType {
             }),
           )}
         />
-        <br />
         <BarChart
           id="ActivityLogsBar"
           datasets={this.logs.map((activity) => ({
@@ -47,7 +51,6 @@ export default class Logs implements DataType {
             color: randColour(),
           }))}
         />
-        <br />
         <LineChart
           id="ActivitiesChart"
           datasets={Array.from(this.getEventTypeAnalytics()).map(

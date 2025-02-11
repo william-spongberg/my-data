@@ -1,6 +1,7 @@
 import { RenderType } from "../../../../types/global/types.ts";
 import AdvertisersUsingData from "./AdvertisersUsingData.tsx";
 import CategoriesUsedToReachYou from "./CategoriesUsedToReachYou.tsx";
+import * as Text from "../../../../components/Text.tsx";
 
 export default class Avertisers implements RenderType {
   advertisers_using_your_data: AdvertisersUsingData =
@@ -11,11 +12,12 @@ export default class Avertisers implements RenderType {
   render() {
     return (
       <>
-        <p class="text-xl">Instagram Ads</p>
+        <Text.Heading>Instagram Ads</Text.Heading>
         <br />
         {this.advertisers_using_your_data?.render()}
         <br />
         {this.categories_used_to_reach_you?.render()}
+        <br />
       </>
     );
   }

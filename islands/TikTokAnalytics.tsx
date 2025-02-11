@@ -6,7 +6,7 @@ export default function TikTokAnalytics() {
     <Analytics
       DataClass={TikTokData}
       renderData={(data) => data.render()}
-      title="What data does TikTok have on you?"
+      subtitle="What data does TikTok have on you?"
     />
   );
 }
