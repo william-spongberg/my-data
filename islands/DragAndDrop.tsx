@@ -116,9 +116,9 @@ export default function DragAndDrop() {
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
-        <Text.Small>
+        <Text.Paragraph textColour="text-gray-300">
           Drag and drop files here or click to select a folder
-        </Text.Small>
+        </Text.Paragraph>
         <input
           type="file"
           multiple
