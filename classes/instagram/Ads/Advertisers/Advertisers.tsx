@@ -3,7 +3,7 @@ import AdvertisersUsingData from "./AdvertisersUsingData.tsx";
 import CategoriesUsedToReachYou from "./CategoriesUsedToReachYou.tsx";
 import * as Text from "../../../../components/Text.tsx";
 
-export default class Avertisers implements RenderType {
+export default class Advertisers implements RenderType {
   advertisers_using_your_data: AdvertisersUsingData =
     new AdvertisersUsingData();
   categories_used_to_reach_you: CategoriesUsedToReachYou =

@@ -1,9 +1,9 @@
 import { DataType, FileData } from "../../../../global/types.ts";
-import { Avertiser } from "../../../../types/instagram.ts";
+import { Advertiser } from "../../../../types/instagram.ts";
 import * as Text from "../../../../components/Text.tsx";
 
 export default class AdvertisersUsingData implements DataType {
-  advertisers: Avertiser[] = [];
+  advertisers: Advertiser[] = [];
 
   constructor(fileData?: FileData) {
     if (fileData) {
@@ -60,7 +60,7 @@ export default class AdvertisersUsingData implements DataType {
           has_data_file_on_you: advertiser.has_data_file_custom_audience,
           has_remarketing: advertiser.has_remarketing_custom_audience,
           has_in_person_store_visit: advertiser.has_in_person_store_visit,
-        } as Avertiser;
+        } as Advertiser;
       },
     );
   }
