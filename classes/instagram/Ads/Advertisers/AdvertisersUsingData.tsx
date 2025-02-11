@@ -1,5 +1,5 @@
-import { DataType, FileData } from "../../../../types/global/types.ts";
-import { Avertiser } from "../../../../types/instagram/types.ts";
+import { DataType, FileData } from "../../../../global/types.ts";
+import { Avertiser } from "../../../../types/instagram.ts";
 import * as Text from "../../../../components/Text.tsx";
 
 export default class AdvertisersUsingData implements DataType {

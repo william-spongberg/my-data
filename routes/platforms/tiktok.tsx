@@ -1,4 +1,4 @@
-import Page from "../../islands/Page.tsx";
+import Page from "../../components/Page.tsx";
 import TikTokAnalytics from "../../islands/TikTokAnalytics.tsx";
 
 export default function TikTok() {

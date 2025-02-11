@@ -1,9 +1,8 @@
-import { DataType, FileData } from "../../../../types/global/types.ts";
-import { Category } from "../../../../types/instagram/types.ts";
+import { DataType, FileData } from "../../../../global/types.ts";
 import * as Text from "../../../../components/Text.tsx";
 
 export default class CategoriesUsedToReachYou implements DataType {
-  categories: Category[] = [];
+  categories: string[] = [];
 
   constructor(fileData?: FileData) {
     if (fileData) {
@@ -28,9 +27,7 @@ export default class CategoriesUsedToReachYou implements DataType {
         </Text.Small>
         {this.categories.map((category) => (
           <Text.Small>
-            <p key={category.name}>
-              {`${category.name}`}
-            </p>
+              {`${category}`}
           </Text.Small>
         ))}
       </>
@@ -42,9 +39,7 @@ export default class CategoriesUsedToReachYou implements DataType {
 
     this.categories = jsonData.label_values[0].vec.map(
       (category: any) => {
-        return {
-          name: category.value,
-        } as Category;
+        return category.value;
       },
     );
   }

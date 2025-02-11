@@ -1,11 +1,12 @@
 import { useEffect, useState } from "preact/hooks";
 import { JSX } from "preact";
-import { getFromIndexedDB } from "../utils/utils.ts";
+import { getFromIndexedDB } from "../global/utils.ts";
 import * as Text from "../components/Text.tsx";
+import { FileData } from "../global/types.ts";
 
 interface SharedAnalyticsProps<T> {
   // class to be instantiated with data
-  DataClass: new (data: any) => T;
+  DataClass: new (data: FileData[]) => T;
   // method in data class to render data
   renderData: (data: T) => JSX.Element;
   subtitle: string;
@@ -27,13 +28,13 @@ export default function Analytics<T>(
       if (message) {
         setMessage(message);
       } else {
-        console.log("No message");
+        console.log("No message.");
       }
       if (uploadData && uploadData.length > 0) {
         setData(new DataClass(uploadData));
         console.log("Data loaded!");
       } else {
-        console.log("No upload data");
+        console.log("No upload data.");
       }
     };
 
@@ -55,8 +56,10 @@ export default function Analytics<T>(
             {subtitle}
           </Text.Small>
           <br />
-          <Text.Small textColour="red">
-            {message}
+          <Text.Small textColour="text-orange-500">
+            <i>
+              {message}
+            </i>
           </Text.Small>
           <br />
         </>

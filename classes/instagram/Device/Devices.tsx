@@ -1,10 +1,9 @@
-import { DataType, FileData } from "../../../types/global/types.ts";
-import { Device } from "../../../types/instagram/types.ts";
-import { convertUnixTimeToDate } from "../../../utils/utils.ts";
+import { DataType, FileData, Log } from "../../../global/types.ts";
+import { convertUnixTimeToDate } from "../../../global/utils.ts";
 import * as Text from "../../../components/Text.tsx";
 
 export default class Devices implements DataType {
-  devices: Device[] = [];
+  devices: Log[] = [];
 
   constructor(fileData?: FileData) {
     if (fileData) {
@@ -28,7 +27,7 @@ export default class Devices implements DataType {
         </Text.Small>
         <Text.Small>
           {`Your most recent device was a ${
-            this.devices[0].name
+            this.devices[0].data
           }, and you last logged in on ${
             convertUnixTimeToDate(this.devices[0].timestamp)
           }`}
@@ -42,9 +41,9 @@ export default class Devices implements DataType {
     this.devices = jsonData.devices_devices.map((device: any) => {
       const stringMapData = device.string_map_data;
       return {
-        name: stringMapData["User Agent"].value,
+        data: stringMapData["User Agent"].value,
         timestamp: stringMapData["Last Login"].timestamp,
-      } as Device;
+      } as Log;
     });
   }
 }

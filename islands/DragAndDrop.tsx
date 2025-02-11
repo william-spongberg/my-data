@@ -1,4 +1,4 @@
-import { processFiles, storeInIndexedDB } from "../utils/utils.ts";
+import { storeFiles } from "../global/utils.ts";
 import * as Text from "../components/Text.tsx";
 
 export default function DragAndDrop() {
@@ -28,23 +28,6 @@ export default function DragAndDrop() {
     const files: File[] = Array.from(event.target.files) as File[];
 
     await storeFiles(files);
-  };
-
-  const storeFiles = async (files: File[]) => {
-    const fileNames = files.map((file: File) => file.name).join(", ");
-    console.log(`Files: ${fileNames}`);
-
-    const { message, uploadData } = await processFiles(files);
-
-    // store message and upload data (if exists) in indexedDB
-    await storeInIndexedDB("message", message);
-    if (uploadData.length > 0) {
-      await storeInIndexedDB("uploadData", uploadData);
-    } else {
-      await storeInIndexedDB("uploadData", []);
-    }
-
-    globalThis.dispatchEvent(new Event("storage"));
   };
 
   // recursively read directory and get files

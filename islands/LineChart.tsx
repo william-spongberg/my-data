@@ -1,5 +1,5 @@
 import { Chart } from "https://esm.sh/stable/chart.js/auto";
-import { convertUnixTimeToDate } from "../utils/utils.ts";
+import { convertUnixTimeToDate } from "../global/utils.ts";
 import { useEffect } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 

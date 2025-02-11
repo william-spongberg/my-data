@@ -1,4 +1,4 @@
-import { RenderType } from "../../../types/global/types.ts";
+import { RenderType } from "../../../global/types.ts";
 import PersonalInfo from "./PersonalInfo.tsx";
 import CurrentLocation from "./CurrentLocation.tsx";
 import PreviousLocations from "./PreviousLocations.tsx";

@@ -1,5 +1,5 @@
 import Button from "../components/Button.tsx";
-import Page from "../islands/Page.tsx";
+import Page from "../components/Page.tsx";
 import Grid from "../components/Grid.tsx";
 import Center from "../components/Center.tsx";
 import * as Text from "../components/Text.tsx";
@@ -9,20 +9,29 @@ import * as Icons from "../components/Icons.tsx";
 export default function FAQ() {
   return (
     <Page>
-      <Text.Title textColour="text-white">
+      <Text.Title >
         Frequently Asked Questions
       </Text.Title>
       <Center>
-        <Text.Heading textColour="text-white">
+        <Text.Heading >
           What is this website?
         </Text.Heading>
 
-        <Text.Paragraph textColour="text-white">
+        <Text.Paragraph>
           This website is a platform for you to see your data, understand it and
           see its estimated worth to companies around the world.
         </Text.Paragraph>
 
-        <Text.Heading textColour="text-white">
+        <Text.Heading >
+          Is this website secure?
+        </Text.Heading>
+
+        <Text.Paragraph >
+          All data is loaded in and processed client-side. This means nothing is sent to the server.
+          In fact, you can open one of the platform pages, disconnect from the internet, and the data will still load and be analysed fine.
+        </Text.Paragraph>
+
+        <Text.Heading >
           How do I get my data?
         </Text.Heading>
 
@@ -51,15 +60,15 @@ export default function FAQ() {
             <Icons.IconTikTok />
           </Button>
         </Grid>
-        <Text.Paragraph textColour="text-white">
+        <Text.Paragraph >
           Make sure to configure for records across all time, and export as JSON
           where possible.
         </Text.Paragraph>
-        <Text.Heading textColour="text-white">
+        <Text.Heading >
           How much does it cost?
         </Text.Heading>
 
-        <Text.Paragraph textColour="text-white">
+        <Text.Paragraph >
           This website is free to use. However, there are plans to add premium
           features in the future.
         </Text.Paragraph>

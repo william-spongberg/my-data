@@ -1,6 +1,6 @@
-import { DataType, FileData } from "../../../types/global/types.ts";
-import { Post } from "../../../types/instagram/types.ts";
-import { convertUnixTimeToDate, randColour } from "../../../utils/utils.ts";
+import { DataType, FileData } from "../../../global/types.ts";
+import { Post } from "../../../types/instagram.ts";
+import { convertUnixTimeToDate, randColour } from "../../../global/utils.ts";
 import LineChart from "../../../islands/LineChart.tsx";
 import * as Text from "../../../components/Text.tsx";
 

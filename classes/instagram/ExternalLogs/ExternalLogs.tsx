@@ -1,12 +1,11 @@
-import { DataType, FileData } from "../../types/global/types.ts";
-import { EventType, Log, LogEvent } from "../../types/instagram/types.ts";
-import BarChart from "../../islands/BarChart.tsx";
-import LineChart from "../../islands/LineChart.tsx";
-import { randColour } from "../../utils/utils.ts";
-import * as Text from "../../components/Text.tsx";
+import { DataType, FileData, EventType, ExternalLog, ExternalEvent } from "../../../global/types.ts";
+import BarChart from "../../../islands/BarChart.tsx";
+import LineChart from "../../../islands/LineChart.tsx";
+import { randColour } from "../../../global/utils.ts";
+import * as Text from "../../../components/Text.tsx";
 
-export default class Logs implements DataType {
-  logs: Log[] = [];
+export default class ExternalLogs implements DataType {
+  logs: ExternalLog[] = [];
 
   constructor(fileData?: FileData) {
     if (fileData) {
@@ -34,7 +33,7 @@ export default class Logs implements DataType {
         </Text.Small>
         <br />
         <BarChart
-          id="ActivitiesBar"
+          id="EventTypesBarChart"
           datasets={Array.from(this.getEventTypeAnalytics()).map(
             ([event, count]: [EventType, number]) => ({
               label: event,
@@ -44,7 +43,7 @@ export default class Logs implements DataType {
           )}
         />
         <BarChart
-          id="ActivityLogsBar"
+          id="LogsBarChart"
           datasets={this.logs.map((activity) => ({
             label: activity.name,
             data: [activity.events.length],
@@ -52,7 +51,7 @@ export default class Logs implements DataType {
           }))}
         />
         <LineChart
-          id="ActivitiesChart"
+          id="LogsLineChart"
           datasets={Array.from(this.getEventTypeAnalytics()).map(
             ([event, _count]: [EventType, number]) => ({
               label: event,
@@ -78,14 +77,14 @@ export default class Logs implements DataType {
 
     // convert JSON to useable activity objects
     this.logs = jsonData.apps_and_websites_off_meta_activity
-      .map((activity: Log) => {
+      .map((activity: ExternalLog) => {
         return {
           name: activity.name,
-          events: activity.events.map((event: LogEvent) => ({
+          events: activity.events.map((event: ExternalEvent) => ({
             timestamp: event.timestamp,
             type: event.type,
-          })) as LogEvent[],
-        } as Log;
+          })) as ExternalEvent[],
+        } as ExternalLog;
       });
   }
 

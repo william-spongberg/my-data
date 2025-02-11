@@ -1,4 +1,4 @@
-import { RenderType } from "../../../types/global/types.ts";
+import { RenderType } from "../../../global/types.ts";
 import LikedPosts from "./LikedPosts.tsx";
 import SavedPosts from "./SavedPosts.tsx";
 import * as Text from "../../../components/Text.tsx";
