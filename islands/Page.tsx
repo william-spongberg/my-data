@@ -21,6 +21,7 @@ export default function Page(
         <Text.Title>{title}</Text.Title>
         <br />
         {dragAndDrop ? <DragAndDrop /> : null}
+        <br />
         {children}
         <br />
         </div>

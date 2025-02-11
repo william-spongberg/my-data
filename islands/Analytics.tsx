@@ -47,7 +47,7 @@ export default function Analytics<T>(
   }, []);
 
   return (
-    <div>
+    <div class="w-full max-w-screen-md">
       {data ? renderData(data) : (
         <>
           <br />

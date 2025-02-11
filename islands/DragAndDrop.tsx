@@ -20,13 +20,21 @@ export default function DragAndDrop() {
       }
     }
 
+    await storeFiles(files);
+  };
+
+  // called after clicking on the drag area
+  const handleFolderUpload = async (event: any) => {
+    const files: File[] = Array.from(event.target.files) as File[];
+
+    await storeFiles(files);
+  };
+
+  const storeFiles = async (files: File[]) => {
     const fileNames = files.map((file: File) => file.name).join(", ");
-    console.log(`Dropped files: ${fileNames}`);
+    console.log(`Files: ${fileNames}`);
 
     const { message, uploadData } = await processFiles(files);
-
-    console.log("Message:", message);
-    console.log("Upload data:", uploadData);
 
     // store message and upload data (if exists) in indexedDB
     await storeInIndexedDB("message", message);
@@ -35,28 +43,6 @@ export default function DragAndDrop() {
     } else {
       await storeInIndexedDB("uploadData", []);
     }
-
-    globalThis.dispatchEvent(new Event("storage"));
-  };
-
-  // called after clicking on the drag area
-  const handleFolderUpload = async (event: any) => {
-    const files: File[] = Array.from(event.target.files) as File[];
-    const fileNames = files.map((file: File) => file.name).join(", ");
-    console.log(`Selected files: ${fileNames}`);
-
-    const { message, uploadData } = await processFiles(files);
-
-    console.log("Message:", message);
-    console.log("Upload data:", uploadData);
-
-    // store message and upload data (if exists) in indexedDB
-    await storeInIndexedDB("message", message);
-    if (uploadData.length > 0) {
-      await storeInIndexedDB("uploadData", uploadData);
-    }
-
-    console.log("Message + Storage updated!");
 
     globalThis.dispatchEvent(new Event("storage"));
   };
