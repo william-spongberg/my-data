@@ -1,6 +1,7 @@
 import { RenderType } from "../../../types/global/types.ts";
 import LikedPosts from "./LikedPosts.tsx";
 import SavedPosts from "./SavedPosts.tsx";
+import * as Text from "../../../components/Text.tsx";
 
 export default class Activity implements RenderType {
   likedPosts: LikedPosts = new LikedPosts();
@@ -9,13 +10,14 @@ export default class Activity implements RenderType {
   render() {
     return (
       <>
-        <p class="text-2xl">
+        <Text.Heading>
           User Activity
-        </p>
+        </Text.Heading>
         <br />
         {this.likedPosts.render()}
         <br />
         {this.savedPosts.render()}
+        <br />
       </>
     );
   }

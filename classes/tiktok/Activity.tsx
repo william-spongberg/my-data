@@ -1,3 +1,4 @@
+import * as Text from "../../components/Text.tsx";
 import { RenderType } from "../../types/global/types.ts";
 import BrowsingHistory from "./BrowsingHistory.tsx";
 
@@ -22,7 +23,7 @@ export default class Activity implements RenderType {
   render() {
     return (
       <>
-        <p class="text-2xl">Activity</p>
+        <Text.Heading>Activity</Text.Heading>
         <br />
         {this.history.render()}
       </>

@@ -2,6 +2,7 @@ import { DataType, FileData } from "../../types/global/types.ts";
 import { TikTokHistory } from "../../types/tiktok/types.ts";
 import LineChart from "../../islands/LineChart.tsx";
 import { randColour } from "../../utils/utils.ts";
+import * as Text from "../../components/Text.tsx";
 
 export default class BrowsingHistory implements DataType {
   history: TikTokHistory[] = [];
@@ -15,10 +16,10 @@ export default class BrowsingHistory implements DataType {
   render() {
     return (
       <>
-        <p>Browsing History</p>
-        <p class="text-sm italic">
+        <Text.SubHeading>Browsing History</Text.SubHeading>
+        <Text.Small>
           {`You have watched ${this.history.length} TikToks`}
-        </p>
+        </Text.Small>
         <LineChart
           id="History"
           datasets={[{

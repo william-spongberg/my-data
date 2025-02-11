@@ -26,7 +26,6 @@ export default class InstagramData implements DataType {
   render() {
     return (
       <>
-        <p class="mt-8 mb-8 text-3xl">Your Instagram data</p>
         {this.logs.render()}
         <br />
         {this.ads.render()}
@@ -36,6 +35,7 @@ export default class InstagramData implements DataType {
         {this.device.render()}
         <br />
         {this.info.render()}
+        <br />
       </>
     );
   }
@@ -44,7 +44,7 @@ export default class InstagramData implements DataType {
     for (const file of fileData) {
       // instagram only allows json files, skip non-json
       if (file.type !== "application/json") {
-        console.log(`Invalid file type: ${file.type} for ${file.name}`);
+        console.error(`Invalid file type: ${file.type} for ${file.name}`);
         continue;
       }
 
@@ -111,7 +111,7 @@ export default class InstagramData implements DataType {
           break;
         }
         default: {
-          console.log(`Unknown file: ${file.name}`);
+          console.error(`Unknown file: ${file.name}`);
           break;
         }
       }

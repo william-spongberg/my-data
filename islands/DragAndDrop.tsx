@@ -1,4 +1,5 @@
 import { processFiles, storeInIndexedDB } from "../utils/utils.ts";
+import * as Text from "../components/Text.tsx";
 
 export default function DragAndDrop() {
   // called after dropping files into drag area
@@ -115,8 +116,9 @@ export default function DragAndDrop() {
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
-        Drag and drop files here or click to select a folder
-
+        <Text.Small>
+          Drag and drop files here or click to select a folder
+        </Text.Small>
         <input
           type="file"
           multiple

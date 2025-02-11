@@ -13,9 +13,7 @@ export default class TikTokData implements DataType {
   render() {
     return (
       <>
-        <p class="mt-8 mb-8 text-3xl">Your TikTok data</p>
         {this.activity.render()}
-        <br />
       </>
     );
   }
@@ -23,7 +21,7 @@ export default class TikTokData implements DataType {
   parse(fileData: FileData[]) {
     for (const file of fileData) {
       if (file.type !== "text/plain") {
-        console.log(`Invalid file type: ${file.type} for ${file.name}`);
+        console.error(`Invalid file type: ${file.type} for ${file.name}`);
         continue;
       }
 
@@ -33,7 +31,7 @@ export default class TikTokData implements DataType {
           console.log(`Parsed ${file.name}`);
           break;
         default:
-          console.log(`Unknown file: ${file.name}`);
+          console.error(`Unknown file: ${file.name}`);
       }
     }
   }

@@ -1,23 +1,22 @@
 import Button from "../components/Button.tsx";
+import Page from "../islands/Page.tsx";
 import Grid from "../components/Grid.tsx";
-import Page from "../components/Page.tsx";
-import Title from "../components/Title.tsx";
-import Text from "../components/Text.tsx";
 import Center from "../components/Center.tsx";
+import * as Text from "../components/Text.tsx";
 import * as Icons from "../components/Icons.tsx";
 
 export default function Home() {
   return (
     <Page home={true}>
-      <Title>
+      <Text.Title textColour="text-white">
         What is my data worth?
-      </Title>
+      </Text.Title>
 
-      <Text>
+      <Text.Paragraph textColour="text-white">
         <i>
           Welcome to your own data.
         </i>
-      </Text>
+      </Text.Paragraph>
 
       <Grid>
         <Button

@@ -1,4 +1,5 @@
 import { DataType, FileData } from "../../../types/global/types.ts";
+import * as Text from "../../../components/Text.tsx";
 
 export default class PreviousLocations implements DataType {
   locations: string[] = [];
@@ -10,7 +11,16 @@ export default class PreviousLocations implements DataType {
   }
 
   render() {
-    return <p>{`Locations of interest: ${this.locations.join(", ")}`}</p>;
+    return (
+      <>
+        <Text.SubHeading>
+          Previous Locations
+        </Text.SubHeading>
+        <Text.Small>
+          {`${this.locations.join(", ")}`}
+        </Text.Small>
+      </>
+    );
   }
 
   parse(fileData: FileData) {

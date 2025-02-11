@@ -1,32 +1,30 @@
 import Button from "../components/Button.tsx";
-import Page from "../components/Page.tsx";
-import Title from "../components/Title.tsx";
-import * as Icons from "../components/Icons.tsx";
+import Page from "../islands/Page.tsx";
 import Grid from "../components/Grid.tsx";
-import Heading from "../components/Heading.tsx";
-import Text from "../components/Text.tsx";
 import Center from "../components/Center.tsx";
+import * as Text from "../components/Text.tsx";
+import * as Icons from "../components/Icons.tsx";
 
 // frequently asked questions page
 export default function FAQ() {
   return (
     <Page>
-      <Title>
+      <Text.Title textColour="text-white">
         Frequently Asked Questions
-      </Title>
+      </Text.Title>
       <Center>
-        <Heading>
+        <Text.Heading textColour="text-white">
           What is this website?
-        </Heading>
+        </Text.Heading>
 
-        <Text>
+        <Text.Paragraph textColour="text-white">
           This website is a platform for you to see your data, understand it and
           see its estimated worth to companies around the world.
-        </Text>
+        </Text.Paragraph>
 
-        <Heading>
+        <Text.Heading textColour="text-white">
           How do I get my data?
-        </Heading>
+        </Text.Heading>
 
         <Grid>
           <Button
@@ -53,15 +51,18 @@ export default function FAQ() {
             <Icons.IconTikTok />
           </Button>
         </Grid>
-
-        <Heading>
+        <Text.Paragraph textColour="text-white">
+          Make sure to configure for records across all time, and export as JSON
+          where possible.
+        </Text.Paragraph>
+        <Text.Heading textColour="text-white">
           How much does it cost?
-        </Heading>
+        </Text.Heading>
 
-        <Text>
+        <Text.Paragraph textColour="text-white">
           This website is free to use. However, there are plans to add premium
           features in the future.
-        </Text>
+        </Text.Paragraph>
       </Center>
     </Page>
   );

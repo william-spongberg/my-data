@@ -1,5 +1,6 @@
 import { DataType, FileData } from "../../../../types/global/types.ts";
 import { Category } from "../../../../types/instagram/types.ts";
+import * as Text from "../../../../components/Text.tsx";
 
 export default class CategoriesUsedToReachYou implements DataType {
   categories: Category[] = [];
@@ -13,22 +14,24 @@ export default class CategoriesUsedToReachYou implements DataType {
   render() {
     if (this.categories.length === 0) {
       return (
-        <p>
+        <Text.Small>
           No categories found.
-        </p>
+        </Text.Small>
       );
     }
 
     return (
       <>
-        <p>Categories used to reach you</p>
-        <p class="text-sm italic">
+        <Text.SubHeading>Categories used to reach you</Text.SubHeading>
+        <Text.Small>
           {`Your data has been used to reach you in ${this.categories.length} categories`}
-        </p>
+        </Text.Small>
         {this.categories.map((category) => (
-          <p key={category.name} class="text-sm">
-            {`${category.name}`}
-          </p>
+          <Text.Small>
+            <p key={category.name}>
+              {`${category.name}`}
+            </p>
+          </Text.Small>
         ))}
       </>
     );

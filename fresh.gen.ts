@@ -14,7 +14,7 @@ import * as $BarChart from "./islands/BarChart.tsx";
 import * as $DragAndDrop from "./islands/DragAndDrop.tsx";
 import * as $InstagramAnalytics from "./islands/InstagramAnalytics.tsx";
 import * as $LineChart from "./islands/LineChart.tsx";
-import * as $Platform from "./islands/Platform.tsx";
+import * as $Page from "./islands/Page.tsx";
 import * as $TikTokAnalytics from "./islands/TikTokAnalytics.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -34,7 +34,7 @@ const manifest = {
     "./islands/DragAndDrop.tsx": $DragAndDrop,
     "./islands/InstagramAnalytics.tsx": $InstagramAnalytics,
     "./islands/LineChart.tsx": $LineChart,
-    "./islands/Platform.tsx": $Platform,
+    "./islands/Page.tsx": $Page,
     "./islands/TikTokAnalytics.tsx": $TikTokAnalytics,
   },
   baseUrl: import.meta.url,

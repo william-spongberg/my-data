@@ -1,4 +1,5 @@
 import { DataType, FileData } from "../../../types/global/types.ts";
+import * as Text from "../../../components/Text.tsx";
 
 export default class PersonalInfo implements DataType {
   email: string = "Unknown";
@@ -17,13 +18,15 @@ export default class PersonalInfo implements DataType {
   render() {
     return (
       <>
-        <p>Your personal information</p>
-        <p>{`Email: ${this.email}`}</p>
-        <p>{`Phone: ${this.phone}`}</p>
-        <p>{`Username: ${this.username}`}</p>
-        <p>{`Name: ${this.name}`}</p>
-        <p>{`Gender: ${this.gender}`}</p>
-        <p>{`Date of Birth: ${this.dob}`}</p>
+        <Text.SubHeading>
+          Personal Information
+        </Text.SubHeading>
+        <Text.Small>{`Email: ${this.email}`}</Text.Small>
+        <Text.Small>{`Phone: ${this.phone}`}</Text.Small>
+        <Text.Small>{`Username: ${this.username}`}</Text.Small>
+        <Text.Small>{`Name: ${this.name}`}</Text.Small>
+        <Text.Small>{`Gender: ${this.gender}`}</Text.Small>
+        <Text.Small>{`Date of Birth: ${this.dob}`}</Text.Small>
       </>
     );
   }
