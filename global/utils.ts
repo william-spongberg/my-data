@@ -1,12 +1,16 @@
 import { Handlers } from "$fresh/server.ts";
-import { FileData, UploadProps } from "../types/global/types.ts";
+import { FileData, UploadProps } from "./types.ts";
 import {
   MAX_FILE_SIZE_B,
   MAX_FILE_SIZE_MB,
-} from "../constants/global/constants.ts";
+} from "./constants.ts";
 
 export function convertUnixTimeToDate(timestamp: number): Date {
   return new Date(timestamp * 1000);
+}
+
+export function convertDateToUnixTime(date: string): number {
+  return new Date(date).getTime() / 1000;
 }
 
 export function bytesToMBFormatter(bytes: number): number {
@@ -19,6 +23,23 @@ export function randColour(): string {
   const s = Math.floor(Math.random() * 50) + 50; // 50-100%
   const l = Math.floor(Math.random() * 40) + 50; // 50-89%
   return `hsl(${h}, ${s}%, ${l}%)`;
+}
+
+export async function storeFiles(files: File[]) {
+  const fileNames = files.map((file: File) => file.name).join(", ");
+  console.log(`Files: ${fileNames}`);
+
+  const { message, uploadData } = await processFiles(files);
+
+  // store message and upload data (if exists) in indexedDB
+  await storeInIndexedDB("message", message);
+  if (uploadData.length > 0) {
+    await storeInIndexedDB("uploadData", uploadData);
+  } else {
+    await storeInIndexedDB("uploadData", []);
+  }
+
+  globalThis.dispatchEvent(new Event("storage"));
 }
 
 export async function processFiles(
@@ -38,11 +59,12 @@ export async function processFiles(
   for (const file of files) {
     // enforce allowed file types
     if (
-      !(file.type === "application/json" || file.type === "text/plain" ||
-        file.type === "text/csv" || file.type === "text/html")
+      file.type !== "application/json"
+      // !(file.type === "application/json" || file.type === "text/plain" ||
+      //   file.type === "text/csv" || file.type === "text/html")
     ) {
       console.error(
-        `${file.name} was not uploaded. Only json, txt, csv and html files are supported.`,
+        `${file.name} was not uploaded. Only json files are currently supported.`,
       );
     } else {
       fileDataArray.push({
@@ -72,7 +94,8 @@ export async function processFiles(
 
   if (fileDataArray.length === 0) {
     return {
-      message: `No files uploaded. Make sure to unzip your folder first`,
+      message:
+        `No files uploaded. Make sure to unzip your folder first, and that you requested the data in type JSON.`,
       uploadData: [],
     };
   }

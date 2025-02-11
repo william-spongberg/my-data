@@ -1,4 +1,4 @@
-import { RenderType } from "../../../../types/global/types.ts";
+import { RenderType } from "../../../../global/types.ts";
 import AdvertisersUsingData from "./AdvertisersUsingData.tsx";
 import CategoriesUsedToReachYou from "./CategoriesUsedToReachYou.tsx";
 import * as Text from "../../../../components/Text.tsx";

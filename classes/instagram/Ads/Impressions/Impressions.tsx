@@ -1,11 +1,10 @@
-import { DataType, FileData } from "../../../../types/global/types.ts";
-import { Impression } from "../../../../types/instagram/types.ts";
+import { DataType, FileData, Log } from "../../../../global/types.ts";
 import LineChart from "../../../../islands/LineChart.tsx";
-import { randColour } from "../../../../utils/utils.ts";
+import { randColour } from "../../../../global/utils.ts";
 import * as Text from "../../../../components/Text.tsx";
 
 export default class Impressions implements DataType {
-  impressions: Impression[] = [];
+  impressions: Log[] = [];
   title: string = "Impressions";
   section: string = "impressions";
 
@@ -54,9 +53,9 @@ export default class Impressions implements DataType {
     ) => {
       const stringMapData = impression.string_map_data;
       return {
-        author: stringMapData.Author?.value || "Unknown",
+        data: stringMapData.Author?.value || "Unknown",
         timestamp: stringMapData.Time?.timestamp || "Unknown",
-      } as Impression;
+      } as Log;
     });
   }
 }

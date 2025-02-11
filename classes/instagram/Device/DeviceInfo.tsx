@@ -1,5 +1,5 @@
 import Devices from "./Devices.tsx";
-import { RenderType } from "../../../types/global/types.ts";
+import { RenderType } from "../../../global/types.ts";
 import * as Text from "../../../components/Text.tsx";
 
 export default class DeviceInfo implements RenderType {

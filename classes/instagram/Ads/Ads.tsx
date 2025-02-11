@@ -1,4 +1,4 @@
-import { RenderType } from "../../../types/global/types.ts";
+import { RenderType } from "../../../global/types.ts";
 import ImpressionsInfo from "./Impressions/ImpressionsInfo.tsx";
 import Avertisers from "./Advertisers/Advertisers.tsx";
 import * as Text from "../../../components/Text.tsx";

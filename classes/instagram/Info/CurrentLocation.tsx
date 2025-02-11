@@ -1,4 +1,4 @@
-import { DataType, FileData } from "../../../types/global/types.ts";
+import { DataType, FileData } from "../../../global/types.ts";
 import * as Text from "../../../components/Text.tsx";
 
 export default class CurrentLocation implements DataType {

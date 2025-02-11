@@ -1,4 +1,4 @@
-import { processFiles, storeInIndexedDB } from "../utils/utils.ts";
+import { storeFiles } from "../global/utils.ts";
 import * as Text from "../components/Text.tsx";
 
 export default function DragAndDrop() {
@@ -20,45 +20,14 @@ export default function DragAndDrop() {
       }
     }
 
-    const fileNames = files.map((file: File) => file.name).join(", ");
-    console.log(`Dropped files: ${fileNames}`);
-
-    const { message, uploadData } = await processFiles(files);
-
-    console.log("Message:", message);
-    console.log("Upload data:", uploadData);
-
-    // store message and upload data (if exists) in indexedDB
-    await storeInIndexedDB("message", message);
-    if (uploadData.length > 0) {
-      await storeInIndexedDB("uploadData", uploadData);
-    } else {
-      await storeInIndexedDB("uploadData", []);
-    }
-
-    globalThis.dispatchEvent(new Event("storage"));
+    await storeFiles(files);
   };
 
   // called after clicking on the drag area
   const handleFolderUpload = async (event: any) => {
     const files: File[] = Array.from(event.target.files) as File[];
-    const fileNames = files.map((file: File) => file.name).join(", ");
-    console.log(`Selected files: ${fileNames}`);
 
-    const { message, uploadData } = await processFiles(files);
-
-    console.log("Message:", message);
-    console.log("Upload data:", uploadData);
-
-    // store message and upload data (if exists) in indexedDB
-    await storeInIndexedDB("message", message);
-    if (uploadData.length > 0) {
-      await storeInIndexedDB("uploadData", uploadData);
-    }
-
-    console.log("Message + Storage updated!");
-
-    globalThis.dispatchEvent(new Event("storage"));
+    await storeFiles(files);
   };
 
   // recursively read directory and get files
