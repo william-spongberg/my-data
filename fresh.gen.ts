@@ -4,7 +4,6 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
-import * as $api_joke from "./routes/api/joke.ts";
 import * as $faq from "./routes/faq.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $platforms_instagram from "./routes/platforms/instagram.tsx";
@@ -21,7 +20,6 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
-    "./routes/api/joke.ts": $api_joke,
     "./routes/faq.tsx": $faq,
     "./routes/index.tsx": $index,
     "./routes/platforms/instagram.tsx": $platforms_instagram,
