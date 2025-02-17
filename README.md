@@ -1,4 +1,4 @@
-# What does my data mean?
+# Your Data Insights
 
 > See the [wiki](https://github.com/william-spongberg/my_data/wiki) for more in-depth information and future plans.
 
