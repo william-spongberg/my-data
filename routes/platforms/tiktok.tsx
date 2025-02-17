@@ -1,10 +1,12 @@
-import Page from "../../components/Page.tsx";
+import * as Layout from "../../components/Layout.tsx";
 import TikTokAnalytics from "../../islands/TikTokAnalytics.tsx";
 
 export default function TikTok() {
   return (
-    <Page title={"TikTok Analytics"} dragAndDrop={true}>
-      <TikTokAnalytics />
-    </Page>
+    <Layout.Background>
+      <Layout.Element title={"TikTok Analytics"} dragAndDrop={true}>
+        <TikTokAnalytics />
+      </Layout.Element>
+    </Layout.Background>
   );
 }

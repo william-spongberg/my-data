@@ -1,5 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import Button from "../components/Button.tsx";
+import * as Layout from "../components/Layout.tsx";
+import * as Text from "../components/Text.tsx";
 
 export default function Error404() {
   return (
@@ -7,18 +9,19 @@ export default function Error404() {
       <Head>
         <title>404 - Page not found</title>
       </Head>
-      <div class="px-4 py-8 mx-auto bg-[#5b68ad2d]">
-        <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-          <h1 class="text-4xl font-bold">404 - Page not found</h1>
-          <p class="my-4">
+      <Layout.Background disableFooter={true}>
+        <Layout.Element>
+          <Text.Title>404 - Page not found</Text.Title>
+          <br />
+          <Text.Paragraph>
             The page you were looking for does not exist.
-          </p>
+          </Text.Paragraph>
           <Button
             href="/"
             text="Go back home"
           />
-        </div>
-      </div>
+        </Layout.Element>
+      </Layout.Background>
     </>
   );
 }

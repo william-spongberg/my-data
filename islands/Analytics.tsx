@@ -1,6 +1,8 @@
 import { useEffect, useState } from "preact/hooks";
 import { JSX } from "preact";
 import { getFromIndexedDB } from "../global/utils.ts";
+import Button from "../components/Button.tsx";
+import * as Layout from "../components/Layout.tsx";
 import * as Text from "../components/Text.tsx";
 import { FileData } from "../global/types.ts";
 
@@ -62,6 +64,12 @@ export default function Analytics<T>(
             </i>
           </Text.Small>
           <br />
+          <Layout.Center>
+          <Button
+            href="/faq"
+            text="❓ How do I get my data?"
+          />
+        </Layout.Center>
         </>
       )}
     </div>

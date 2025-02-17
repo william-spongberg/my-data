@@ -1,4 +1,4 @@
-export interface Avertiser {
+export interface Advertiser {
   name: string;
   has_data_file_on_you: boolean;
   has_remarketing: boolean;
