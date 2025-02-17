@@ -17,7 +17,7 @@ export default function Button({
   text,
   backgroundColour = "bg-blue-500",
   textColour = "text-white",
-  hoverBackgroundColour = "hover:bg-blue-600",
+  hoverBackgroundColour = "hover:bg-blue-400",
   hoverTextColour = "hover:text-white",
   target = "_self",
   rel = "",
