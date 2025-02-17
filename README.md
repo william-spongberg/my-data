@@ -1,9 +1,4 @@
-# NEW FOCUS
-
-Got bored after getting backend all set up smoothly. Going to focus now on determining viewing habits for TikTok, Youtube, etc which include ALL videos you have watched (limited to last 2 years (roughly?) for YouTube, last 6 months for TikTok).
-Can determine tags, likes, etc used through web scrapers. Want to avoid using paid APIs, some free alternatives online. Currently only really worried about speed of application. Certainly a paid feature. Will still retain all main points below.
-
-# What is my data worth?
+# What does my data mean?
 
 > See the [wiki](https://github.com/william-spongberg/my_data/wiki) for more in-depth information and future plans.
 
