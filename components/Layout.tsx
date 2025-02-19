@@ -60,7 +60,6 @@ export function Element(
   );
 }
 
-// TODO: add small, medium, large grid options (change depending on screen size, up to user of function)
 export function Grid({ children }: ChildrenProps) {
   const childCount = Array.isArray(children) ? children.length : 1;
   const gridCols = childCount <= 2 ? `grid-cols-${childCount}` : "grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3";
