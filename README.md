@@ -1,6 +1,6 @@
-# Your Data Insights
+# My Data
 
-> See the [wiki](https://github.com/william-spongberg/my_data/wiki) for more in-depth information and future plans.
+> See the [wiki](https://github.com/william-spongberg/my_data/wiki) for more in-depth information and future ideas/plans.
 
 ## Aim
 
@@ -75,10 +75,6 @@ deno task start
 ```
 
 This will download and then launch the website locally, restarting the page whenever a change is made to the code
-
-### Dev Notes
-
- - /routes stores all of the routes. Fresh automatically sorts out all the routes and imports them.
 
 ## Contributors
 
