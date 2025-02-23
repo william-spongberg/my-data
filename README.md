@@ -1,5 +1,7 @@
 # My Statistics
 
+[![Made with Fresh](https://fresh.deno.dev/fresh-badge-dark.svg)](https://fresh.deno.dev)
+
 > See the [wiki](https://github.com/william-spongberg/my_data/wiki) for more in-depth information and future ideas/plans.
 
 ## Aim
@@ -56,8 +58,6 @@ Data is stored locally, and processed locally. Nothing is sent to the server - h
   - [ ] TODO
 
 ## Developers
-
-[![Made with Fresh](https://fresh.deno.dev/fresh-badge-dark.svg)](https://fresh.deno.dev)
 
 ### Getting Started
 
