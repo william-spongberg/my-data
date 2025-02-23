@@ -1,4 +1,4 @@
-# My Data
+# My Statistics
 
 > See the [wiki](https://github.com/william-spongberg/my_data/wiki) for more in-depth information and future ideas/plans.
 
