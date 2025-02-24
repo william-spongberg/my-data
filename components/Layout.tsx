@@ -63,7 +63,9 @@ export function Element(
 // TODO: add small, medium, large grid options (change depending on screen size, up to user of function)
 export function Grid({ children }: ChildrenProps) {
   const childCount = Array.isArray(children) ? children.length : 1;
-  const gridCols = childCount <= 2 ? `grid-cols-${childCount}` : "grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3";
+  const gridCols = childCount <= 2
+    ? `grid-cols-${childCount}`
+    : "grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3";
 
   return (
     <div class={`grid ${gridCols} gap-4 mt-4 mb-4`}>
@@ -88,30 +90,30 @@ export function Footer({ disableFooter = false }: FooterProps) {
   return (
     <>
       <footer class="flex flex-col items-center w-auto bg-gray-900 text-white">
-      {!disableFooter && (
-        <Button
-        href="/"
-        text="Go back Home"
-        />
-      )}
-      <div class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 p-4 md:p-2 pb-16 md:pb-2">
-        <p class="text-yellow-500 mb-2 md:mb-0">This website is in beta.</p>
-        <p class="hidden md:block mx-2">|</p>
-        <p class="mb-2 md:mb-0">
-        Made with ❤️ by{" "}
-        <a
-          href="https://github.com/william-spongberg"
-          class="text-blue-500 hover:underline"
-        >
-          William Spongberg
-        </a>
-        </p>
-        <p class="hidden md:block mx-2">|</p>
-        <p>
-        &copy; William Spongberg{" "}
-        {new Date().getFullYear()}. All rights reserved.
-        </p>
-      </div>
+        {!disableFooter && (
+          <Button
+            href="/"
+            text="Go back Home"
+          />
+        )}
+        <div class="flex flex-col md:flex-row justify-center items-center h-auto md:h-16 p-4 md:p-2 pb-16 md:pb-2">
+          <p class="text-yellow-500 mb-2 md:mb-0">This website is in beta.</p>
+          <p class="hidden md:block mx-2">|</p>
+          <p class="mb-2 md:mb-0">
+            Made with ❤️ by{" "}
+            <a
+              href="https://github.com/william-spongberg"
+              class="text-blue-500 hover:underline"
+            >
+              William Spongberg
+            </a>
+          </p>
+          <p class="hidden md:block mx-2">|</p>
+          <p>
+            &copy; William Spongberg{" "}
+            {new Date().getFullYear()}. All rights reserved.
+          </p>
+        </div>
       </footer>
     </>
   );

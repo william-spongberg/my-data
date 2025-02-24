@@ -31,16 +31,17 @@ export default class LikedTikToks implements DataType {
     );
   }
 
-    parse(fileData: FileData) {
-      const jsonData = JSON.parse(fileData.text).Activity["Like List"].ItemFavoriteList;
-  
-      this.liked = jsonData.map((
-        log: any,
-      ) => {
-        return {
-          data: log.link,
-          timestamp: convertDateToUnixTime(log.date),
-        } as Log;
-      }).reverse();
-    }
+  parse(fileData: FileData) {
+    const jsonData =
+      JSON.parse(fileData.text).Activity["Like List"].ItemFavoriteList;
+
+    this.liked = jsonData.map((
+      log: any,
+    ) => {
+      return {
+        data: log.link,
+        timestamp: convertDateToUnixTime(log.date),
+      } as Log;
+    }).reverse();
+  }
 }

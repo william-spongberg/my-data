@@ -8,7 +8,7 @@ export default function Home() {
     <Layout.Background disableFooter={true}>
       <Layout.Element>
         <Text.Title>
-          Your Data Insights
+          My Stats
         </Text.Title>
 
         <Text.Paragraph>
@@ -38,7 +38,8 @@ export default function Home() {
           </Button>
           <Button
             href="/faq"
-            text="❓FAQ">
+            text="❓FAQ"
+          >
           </Button>
         </Layout.Grid>
       </Layout.Element>

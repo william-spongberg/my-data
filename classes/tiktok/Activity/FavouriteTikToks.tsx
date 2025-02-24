@@ -31,16 +31,17 @@ export default class FavouriteTikToks implements DataType {
     );
   }
 
-    parse(fileData: FileData) {
-      const jsonData = JSON.parse(fileData.text).Activity["Favorite Videos"].FavoriteVideoList;
-  
-      this.favourited = jsonData.map((
-        log: any,
-      ) => {
-        return {
-          data: log.Link,
-          timestamp: convertDateToUnixTime(log.Date),
-        } as Log;
-      }).reverse();
-    }
+  parse(fileData: FileData) {
+    const jsonData =
+      JSON.parse(fileData.text).Activity["Favorite Videos"].FavoriteVideoList;
+
+    this.favourited = jsonData.map((
+      log: any,
+    ) => {
+      return {
+        data: log.Link,
+        timestamp: convertDateToUnixTime(log.Date),
+      } as Log;
+    }).reverse();
+  }
 }

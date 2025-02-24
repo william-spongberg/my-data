@@ -27,7 +27,7 @@ export default class CategoriesUsedToReachYou implements DataType {
         </Text.Small>
         {this.categories.map((category) => (
           <Text.Small>
-              {`${category}`}
+            {`${category}`}
           </Text.Small>
         ))}
       </>

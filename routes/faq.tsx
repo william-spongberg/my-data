@@ -70,8 +70,8 @@ export default function FAQ() {
           </Text.Heading>
 
           <Text.Paragraph>
-            This website is free to use. However, there may be plans to add premium
-            features in the future.
+            This website is free to use. However, there may be plans to add
+            premium features in the future.
           </Text.Paragraph>
         </Layout.Center>
       </Layout.Element>

@@ -11,15 +11,15 @@ export interface Login {
 
 interface RootObject {
   Activity: Activity;
-  'Ads and data': AdsAndData;
-  'App Settings': AppSettings;
+  "Ads and data": AdsAndData;
+  "App Settings": AppSettings;
   Comment: Comment;
-  'Direct Messages': DirectMessages;
-  'Income Plus Wallet Transactions': IncomePlusWalletTransactions;
-  'Poi Review': PoiReview;
+  "Direct Messages": DirectMessages;
+  "Income Plus Wallet Transactions": IncomePlusWalletTransactions;
+  "Poi Review": PoiReview;
   Profile: Profile;
-  'Tiktok Live': TiktokLive;
-  'Tiktok Shopping': TiktokShopping;
+  "Tiktok Live": TiktokLive;
+  "Tiktok Shopping": TiktokShopping;
   Video: Video;
 }
 
@@ -55,16 +55,16 @@ interface RecentlyDeletedPosts {
 }
 
 interface TiktokShopping {
-  'Communication History': CommunicationHistory;
-  'Current Payment Information': CurrentPaymentInformation;
-  'Customer Support History': CustomerSupportHistory;
-  'Order Dispute History': OrderDisputeHistory;
-  'Order History': OrderHistory;
-  'Product Browsing History': ProductBrowsingHistory;
-  'Product Review History': ProductReviewHistory;
-  'Return and Refund History': ReturnAndRefundHistory;
-  'Saved Address Information': SavedAddressInformation;
-  'Shopping Cart List': ShoppingCartList;
+  "Communication History": CommunicationHistory;
+  "Current Payment Information": CurrentPaymentInformation;
+  "Customer Support History": CustomerSupportHistory;
+  "Order Dispute History": OrderDisputeHistory;
+  "Order History": OrderHistory;
+  "Product Browsing History": ProductBrowsingHistory;
+  "Product Review History": ProductReviewHistory;
+  "Return and Refund History": ReturnAndRefundHistory;
+  "Saved Address Information": SavedAddressInformation;
+  "Shopping Cart List": ShoppingCartList;
   Vouchers: Vouchers;
 }
 
@@ -113,10 +113,10 @@ interface CommunicationHistory {
 }
 
 interface TiktokLive {
-  'Go Live History': GoLiveHistory;
-  'Go Live Settings': GoLiveSettings;
-  'Watch Live History': WatchLiveHistory;
-  'Watch Live Settings': WatchLiveSettings;
+  "Go Live History": GoLiveHistory;
+  "Go Live Settings": GoLiveSettings;
+  "Watch Live History": WatchLiveHistory;
+  "Watch Live Settings": WatchLiveSettings;
 }
 
 interface WatchLiveSettings {
@@ -135,23 +135,23 @@ interface WatchLiveHistory {
 }
 
 interface WatchLiveMap {
-  '7404828493579684628': _7404828493579684628;
-  '7404831826866326290': _7404828493579684628;
-  '7404834704769256199': _7404828493579684628;
-  '7408659936743279406': _7404828493579684628;
-  '7408673187006778119': _7404828493579684628;
-  '7420680927859460870': _7404828493579684628;
-  '7422935253372717832': _7404828493579684628;
-  '7422940730013928199': _7404828493579684628;
-  '7427055646060661522': _7404828493579684628;
-  '7432508651366992645': _7404828493579684628;
-  '7442033636215950136': _7404828493579684628;
-  '7443052055476079416': _7404828493579684628;
-  '7451940433686727470': _7404828493579684628;
-  '7459763331956558624': _7404828493579684628;
-  '7461881543168838407': _7404828493579684628;
-  '7461888671064836871': _7404828493579684628;
-  '7467532052575718152': _7404828493579684628;
+  "7404828493579684628": _7404828493579684628;
+  "7404831826866326290": _7404828493579684628;
+  "7404834704769256199": _7404828493579684628;
+  "7408659936743279406": _7404828493579684628;
+  "7408673187006778119": _7404828493579684628;
+  "7420680927859460870": _7404828493579684628;
+  "7422935253372717832": _7404828493579684628;
+  "7422940730013928199": _7404828493579684628;
+  "7427055646060661522": _7404828493579684628;
+  "7432508651366992645": _7404828493579684628;
+  "7442033636215950136": _7404828493579684628;
+  "7443052055476079416": _7404828493579684628;
+  "7451940433686727470": _7404828493579684628;
+  "7459763331956558624": _7404828493579684628;
+  "7461881543168838407": _7404828493579684628;
+  "7461888671064836871": _7404828493579684628;
+  "7467532052575718152": _7404828493579684628;
 }
 
 interface _7404828493579684628 {
@@ -172,17 +172,18 @@ interface GoLiveSettings {
 }
 
 interface SettingsMap2 {
-  'Allow agencies to find and invite you': string;
-  'Allow others to invite you to co-host in LIVE': string;
-  'Allow people to send and receive comments during your LIVE': string;
-  'Allow suggested LIVE hosts to invite you to co-host in LIVE': string;
-  'Allow viewers to request to go LIVE with you': string;
-  'Allow viewers to see and send questions and answers in your LIVE': string;
-  'Allow viewers to send you gifts during your LIVE': string;
-  'Hide comments that contain the following keywords from your LIVE': any[];
-  'Hide potential spam or offensive comments from your LIVE': string;
-  'People you assigned to moderate your LIVE': any[];
-  'Show your username and gift information in features with ranking lists': string;
+  "Allow agencies to find and invite you": string;
+  "Allow others to invite you to co-host in LIVE": string;
+  "Allow people to send and receive comments during your LIVE": string;
+  "Allow suggested LIVE hosts to invite you to co-host in LIVE": string;
+  "Allow viewers to request to go LIVE with you": string;
+  "Allow viewers to see and send questions and answers in your LIVE": string;
+  "Allow viewers to send you gifts during your LIVE": string;
+  "Hide comments that contain the following keywords from your LIVE": any[];
+  "Hide potential spam or offensive comments from your LIVE": string;
+  "People you assigned to moderate your LIVE": any[];
+  "Show your username and gift information in features with ranking lists":
+    string;
 }
 
 interface GoLiveHistory {
@@ -191,8 +192,8 @@ interface GoLiveHistory {
 
 interface Profile {
   AIMoji: AIMoji;
-  'Auto Fill': AutoFill;
-  'Profile Information': ProfileInformation;
+  "Auto Fill": AutoFill;
+  "Profile Information": ProfileInformation;
 }
 
 interface ProfileInformation {
@@ -231,7 +232,7 @@ interface AIMoji {
 }
 
 interface PoiReview {
-  'POI Review': POIReview;
+  "POI Review": POIReview;
 }
 
 interface POIReview {
@@ -239,7 +240,7 @@ interface POIReview {
 }
 
 interface IncomePlusWalletTransactions {
-  'Income Plus Wallet Transaction': IncomePlusWalletTransaction;
+  "Income Plus Wallet Transaction": IncomePlusWalletTransaction;
 }
 
 interface IncomePlusWalletTransaction {
@@ -247,7 +248,7 @@ interface IncomePlusWalletTransaction {
 }
 
 interface DirectMessages {
-  'Chat History': ChatHistory2;
+  "Chat History": ChatHistory2;
 }
 
 interface ChatHistory2 {
@@ -255,15 +256,15 @@ interface ChatHistory2 {
 }
 
 interface ChatHistory {
-  'Chat History with albasneezy:': ChatHistoryWithAlbasneezy[];
-  'Chat History with declan.aaaaaaa:': ChatHistoryWithAlbasneezy[];
-  'Chat History with feralmogul:': ChatHistoryWithAlbasneezy[];
-  'Chat History with freyacate:': ChatHistoryWithAlbasneezy[];
-  'Chat History with karli.q_2002:': ChatHistoryWithAlbasneezy[];
-  'Chat History with livlivlivlivlivliv5000:': ChatHistoryWithAlbasneezy[];
-  'Chat History with microwave1012:': ChatHistoryWithAlbasneezy[];
-  'Chat History with str4wberryfieldsf0r3ver:': ChatHistoryWithAlbasneezy[];
-  'Chat History with superficialswirls:': ChatHistoryWithAlbasneezy[];
+  "Chat History with albasneezy:": ChatHistoryWithAlbasneezy[];
+  "Chat History with declan.aaaaaaa:": ChatHistoryWithAlbasneezy[];
+  "Chat History with feralmogul:": ChatHistoryWithAlbasneezy[];
+  "Chat History with freyacate:": ChatHistoryWithAlbasneezy[];
+  "Chat History with karli.q_2002:": ChatHistoryWithAlbasneezy[];
+  "Chat History with livlivlivlivlivliv5000:": ChatHistoryWithAlbasneezy[];
+  "Chat History with microwave1012:": ChatHistoryWithAlbasneezy[];
+  "Chat History with str4wberryfieldsf0r3ver:": ChatHistoryWithAlbasneezy[];
+  "Chat History with superficialswirls:": ChatHistoryWithAlbasneezy[];
 }
 
 interface ChatHistoryWithAlbasneezy {
@@ -299,41 +300,41 @@ interface Settings {
 }
 
 interface SettingsMap {
-  'Allow DownLoad': string;
-  'Allow Others to Find Me': string;
-  'App Language': string;
-  'Content Preferences': ContentPreferences;
-  'Family Content Preferences': FamilyContentPreferences;
-  'Filter Comments': string;
+  "Allow DownLoad": string;
+  "Allow Others to Find Me": string;
+  "App Language": string;
+  "Content Preferences": ContentPreferences;
+  "Family Content Preferences": FamilyContentPreferences;
+  "Filter Comments": string;
   Interests: string;
-  'Personalized Ads': string;
-  'Private Account': string;
-  'Push Notification': PushNotification;
-  'Suggest your account to Facebook friends': string;
-  'Suggest your account to contacts': string;
-  'Suggest your account to people who open or send links to you': string;
-  'Web Language': string;
-  'Who Can Duet With Me': string;
-  'Who Can Post Comments': string;
-  'Who Can Send Me Message': string;
-  'Who Can Stitch with your videos': string;
-  'Who Can View Videos I Liked': string;
+  "Personalized Ads": string;
+  "Private Account": string;
+  "Push Notification": PushNotification;
+  "Suggest your account to Facebook friends": string;
+  "Suggest your account to contacts": string;
+  "Suggest your account to people who open or send links to you": string;
+  "Web Language": string;
+  "Who Can Duet With Me": string;
+  "Who Can Post Comments": string;
+  "Who Can Send Me Message": string;
+  "Who Can Stitch with your videos": string;
+  "Who Can View Videos I Liked": string;
 }
 
 interface PushNotification {
-  'Desktop notification': string;
-  'New Comments on My Video': string;
-  'New Fans': string;
-  'New Likes on My Video': string;
+  "Desktop notification": string;
+  "New Comments on My Video": string;
+  "New Fans": string;
+  "New Likes on My Video": string;
 }
 
 interface FamilyContentPreferences {
 }
 
 interface ContentPreferences {
-  'Keyword filters for videos in Following feed': null;
-  'Keyword filters for videos in For You feed': null;
-  'Video Languages Preferences': null;
+  "Keyword filters for videos in Following feed": null;
+  "Keyword filters for videos in For You feed": null;
+  "Video Languages Preferences": null;
 }
 
 interface Block {
@@ -342,8 +343,8 @@ interface Block {
 }
 
 interface AdsAndData {
-  'Instant Form Ads Responses': InstantFormAdsResponses;
-  'Off TikTok Activity': OffTikTokActivity;
+  "Instant Form Ads Responses": InstantFormAdsResponses;
+  "Off TikTok Activity": OffTikTokActivity;
 }
 
 interface OffTikTokActivity {
@@ -361,20 +362,20 @@ interface InstantFormAdsResponses {
 }
 
 interface Activity {
-  'Favorite Effects': FavoriteEffects;
-  'Favorite Hashtags': FavoriteHashtags;
-  'Favorite Sounds': FavoriteSounds;
-  'Favorite Videos': FavoriteVideos;
-  'Follower List': FollowerList;
-  'Following List': FollowingList;
+  "Favorite Effects": FavoriteEffects;
+  "Favorite Hashtags": FavoriteHashtags;
+  "Favorite Sounds": FavoriteSounds;
+  "Favorite Videos": FavoriteVideos;
+  "Follower List": FollowerList;
+  "Following List": FollowingList;
   Hashtag: Hashtag;
-  'Like List': LikeList;
-  'Login History': LoginHistory;
-  'Purchase History': PurchaseHistory;
-  'Search History': SearchHistory;
-  'Share History': ShareHistory;
+  "Like List": LikeList;
+  "Login History": LoginHistory;
+  "Purchase History": PurchaseHistory;
+  "Search History": SearchHistory;
+  "Share History": ShareHistory;
   Status: Status;
-  'Video Browsing History': VideoBrowsingHistory;
+  "Video Browsing History": VideoBrowsingHistory;
 }
 
 interface VideoBrowsingHistory {
@@ -382,17 +383,17 @@ interface VideoBrowsingHistory {
 }
 
 interface Status {
-  'Status List': StatusList[];
+  "Status List": StatusList[];
 }
 
 interface StatusList {
   Resolution: string;
-  'App Version': string;
+  "App Version": string;
   IDFA: string;
   GAID: string;
-  'Android ID': string;
+  "Android ID": string;
   IDFV: string;
-  'Web ID': string;
+  "Web ID": string;
 }
 
 interface ShareHistory {

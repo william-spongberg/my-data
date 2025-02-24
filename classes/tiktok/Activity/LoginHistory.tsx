@@ -32,20 +32,21 @@ export default class LoginHistory implements DataType {
     );
   }
 
-    parse(fileData: FileData) {
-      const jsonData = JSON.parse(fileData.text).Activity["Login History"].LoginHistoryList;
-  
-      this.logins = jsonData.map((
-        login: any,
-      ) => {
-        return {
-          timestamp: convertDateToUnixTime(login.Date),
-          IP: login.IP,
-          DeviceModel: login.DeviceModel,
-          DeviceSystem: login.DeviceSystem,
-          NetworkType: login.NetworkType,
-          Carrier: login.Carrier,
-        } as Login;
-      }).reverse();
-    }
+  parse(fileData: FileData) {
+    const jsonData =
+      JSON.parse(fileData.text).Activity["Login History"].LoginHistoryList;
+
+    this.logins = jsonData.map((
+      login: any,
+    ) => {
+      return {
+        timestamp: convertDateToUnixTime(login.Date),
+        IP: login.IP,
+        DeviceModel: login.DeviceModel,
+        DeviceSystem: login.DeviceSystem,
+        NetworkType: login.NetworkType,
+        Carrier: login.Carrier,
+      } as Login;
+    }).reverse();
+  }
 }
