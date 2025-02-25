@@ -62,32 +62,10 @@ platforms at once.
   - [ ] Posts/stories/comments (no. + graphs)
   - [ ] Logins (where/when, graphs etc)
 - TikTok
-  - [ ] TODO
-- Facebook
-  - [ ] TODO
-- YouTube
-  - [ ] TODO
-- Gambling sites
-  - [ ] TODO
-
-## Developers
-
-### Getting Started
-
-First install [Deno](https://deno.land/manual/getting_started/installation)
-
-Then to launch the project:
-
-```bash
-git clone https://github.com/william-spongberg/my_data.git
-
-cd my_data
-
-deno task start
-```
-
-This will download and then launch the website locally, restarting the page
-whenever a change is made to the code
+  - [x] Likes/favourites (no. + graphs)
+  - [x] Login history (no. + graphs) 
+  - [x] Watch history (no. + graphs)
+  - [x] Comments (no. + graphs)
 
 ## Contributors
 
