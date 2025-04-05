@@ -38,7 +38,6 @@ platforms at once.
 
 | Feature                                                                    | Free | Premium | Pro |
 | -------------------------------------------------------------------------- | :--: | :-----: | :-: |
-| What is my data worth? (in dollars and cents)                              |  ✅  |   ✅    | ✅  |
 | Who has been sold my data? (list of companies that have your data)         |  ✅  |   ✅    | ✅  |
 | Advertisement insights (how many ads have I seen?)                         |  ✅  |   ✅    | ✅  |
 | External tracking (has this platform seen what I've done outside the app?) |  ✅  |   ✅    | ✅  |
