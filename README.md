@@ -1,7 +1,5 @@
 # My Stats
 
-[![Made with Fresh](https://fresh.deno.dev/fresh-badge-dark.svg)](https://fresh.deno.dev)
-
 > See the [wiki](https://github.com/william-spongberg/my_data/wiki) for more
 > in-depth information and future ideas/plans.
 
