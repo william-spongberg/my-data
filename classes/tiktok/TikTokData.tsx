@@ -38,7 +38,7 @@ export default class TikTokData implements DataType {
           if (!this.comments) {
             this.comments = new Comments(file);
           }
-          
+
           // etc etc
 
           console.log(`Parsed ${file.name}`);

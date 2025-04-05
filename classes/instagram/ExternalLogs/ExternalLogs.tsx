@@ -1,4 +1,10 @@
-import { DataType, FileData, EventType, ExternalLog, ExternalEvent } from "../../../global/types.ts";
+import {
+  DataType,
+  EventType,
+  ExternalEvent,
+  ExternalLog,
+  FileData,
+} from "../../../global/types.ts";
 import BarChart from "../../../islands/BarChart.tsx";
 import LineChart from "../../../islands/LineChart.tsx";
 import { randColour } from "../../../global/utils.ts";

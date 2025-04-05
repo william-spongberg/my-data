@@ -33,14 +33,14 @@ export default class Comments implements DataType {
 
   parse(fileData: FileData): void {
     const jsonData = JSON.parse(fileData.text).Comment.Comments.CommentsList;
-  
-      this.comments = jsonData.map((
-        log: any,
-      ) => {
-        return {
-          data: log.comment,
-          timestamp: convertDateToUnixTime(log.date),
-        } as Log;
-      }).reverse();
-    }
+
+    this.comments = jsonData.map((
+      log: any,
+    ) => {
+      return {
+        data: log.comment,
+        timestamp: convertDateToUnixTime(log.date),
+      } as Log;
+    }).reverse();
+  }
 }

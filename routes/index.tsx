@@ -10,6 +10,7 @@ export default function Home() {
         My Stats
       </Text.Title>
 
+
       <Text.Paragraph>
         <i>
           Welcome to your personalised data dashboard.

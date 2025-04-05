@@ -65,11 +65,11 @@ export default function Analytics<T>(
           </Text.Small>
           <br />
           <Layout.Center>
-          <Button
-            href="/faq"
-            text="❓ How do I get my data?"
-          />
-        </Layout.Center>
+            <Button
+              href="/faq"
+              text="❓ How do I get my data?"
+            />
+          </Layout.Center>
         </>
       )}
     </div>

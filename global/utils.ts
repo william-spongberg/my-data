@@ -1,9 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import { FileData, UploadProps } from "./types.ts";
-import {
-  MAX_FILE_SIZE_B,
-  MAX_FILE_SIZE_MB,
-} from "./constants.ts";
+import { MAX_FILE_SIZE_B, MAX_FILE_SIZE_MB } from "./constants.ts";
 
 export function convertUnixTimeToDate(timestamp: number): Date {
   return new Date(timestamp * 1000);

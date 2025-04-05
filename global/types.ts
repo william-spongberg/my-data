@@ -22,7 +22,7 @@ export interface UploadProps {
 }
 
 export interface ChildrenProps {
-  children: ComponentChildren
+  children: ComponentChildren;
 }
 
 export interface Log {
