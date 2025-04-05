@@ -31,16 +31,10 @@ platforms at once.
 
 ## Idea: Making it profitable
 
-We will be moving to [Deno SaaSKit](https://deno.com/saaskit) in the future to
-allow for payments and educational blogs.
-
-_Note that these prices are just placeholders for now - not sure how much this
-service will cost once scaled._
-
 - Free tier: what is my data worth + ad insights
-- Premium: one-time payment of $20 AUD, fun insights (should this maybe be named
+- Premium: fun insights (should this maybe be named
   the fun tier?)
-- Pro: monthly payment of $10 AUD, professional insights
+- Pro: professional insights
 
 | Feature                                                                    | Free | Premium | Pro |
 | -------------------------------------------------------------------------- | :--: | :-----: | :-: |
