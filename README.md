@@ -1,7 +1,7 @@
 # My Stats
 
 > See the [wiki](https://github.com/william-spongberg/my_data/wiki) for more
-> in-depth information and future ideas/plans.
+> in-depth information and possible ideas/plans.
 
 ## Aim
 
