@@ -7,18 +7,31 @@
 
 ## Aim
 
-Key focus is education, and for helping people understand how to control their
-data. Any paid plans are only for fun insights or people who really like to
-delve into the nitty-gritty.
+The key focus of this website is to educate people on what data social media companies hold on them.
 
-To support the focus in education, there will be helpful links attached to each
-graph describing what it means, the dangers surrounding this information being
-in the wrong hands and how you can prevent this information from being shared.
-There will also be links to solutions like
-[delete.me](https://joindeleteme.com/) and [proton.me](https://proton.me/)
-(likely paid links).
+## Security
 
-## Making it profitable
+Data is stored locally, and processed locally. Nothing is sent to the server -
+however this may change for paid plans that want to see analysis across multiple
+platforms at once.
+
+## Supported Platforms
+
+- Instagram
+  - [x] Logs for what you've done in other apps (creepy as fuck, see
+        your_activity_off_meta_technologies)
+  - [x] Ads data (how many seen, who's been sold your data)
+  - [x] Info about you (device info, where you are)
+  - [x] Liked/saved posts (no. + graphs)
+  - [x] Posts/stories/comments
+  - [x] Logins (where/when)
+- TikTok
+  - [x] Likes/favourites (no. + graphs)
+  - [x] Login history (no. + graphs) 
+  - [x] Watch history (no. + graphs)
+  - [x] Comments (no. + graphs)
+
+## Idea: Making it profitable
 
 We will be moving to [Deno SaaSKit](https://deno.com/saaskit) in the future to
 allow for payments and educational blogs.
@@ -44,31 +57,3 @@ service will cost once scaled._
 | Unlimited data limits                                                      |  ❌  |   ❌    | ✅  |
 | SQL query your data                                                        |  ❌  |   ❌    | ✅  |
 | [FUTURE] Link data analysis to platform directly (instant insights)        |  ❌  |   ❌    | ✅  |
-
-## Security
-
-Data is stored locally, and processed locally. Nothing is sent to the server -
-however this may change for paid plans that want to see analysis across multiple
-platforms at once.
-
-## Supported Platforms
-
-- Instagram
-  - [x] Logs for what you've done in other apps (creepy as fuck, see
-        your_activity_off_meta_technologies)
-  - [x] Ads data (how many seen, who's been sold your data)
-  - [x] Info about you (device info, where you are)
-  - [x] Liked/saved posts (no. + graphs)
-  - [ ] Posts/stories/comments (no. + graphs)
-  - [ ] Logins (where/when, graphs etc)
-- TikTok
-  - [x] Likes/favourites (no. + graphs)
-  - [x] Login history (no. + graphs) 
-  - [x] Watch history (no. + graphs)
-  - [x] Comments (no. + graphs)
-
-## Contributors
-
-**William Spongberg**\
-[![GitHub](https://img.shields.io/badge/GitHub-%40william--spongberg-blue?style=flat-square&logo=github)](https://github.com/william-spongberg)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-William%20Spongberg-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/william-spongberg/)
