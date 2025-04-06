@@ -6,7 +6,7 @@ import * as Icons from "../components/Icons.tsx";
 // frequently asked questions page
 export default function FAQ() {
   return (
-    <Layout.Background>
+    <>
       <Layout.Element>
         <Text.Title>
           Frequently Asked Questions
@@ -33,8 +33,21 @@ export default function FAQ() {
           </Text.Paragraph>
 
           <Text.Heading>
+            How much does it cost?
+          </Text.Heading>
+
+          <Text.Paragraph>
+            This website is free to use.
+          </Text.Paragraph>
+
+          <Text.Heading>
             How do I get my data?
           </Text.Heading>
+          <Text.Paragraph>
+            The links below will take you to the relevant data export pages.
+            Make sure to configure the exports for records across all time, and
+            export as JSON where possible.
+          </Text.Paragraph>
 
           <Layout.Grid>
             <Button
@@ -61,20 +74,13 @@ export default function FAQ() {
               <Icons.IconTikTok />
             </Button>
           </Layout.Grid>
-          <Text.Paragraph>
-            Make sure to configure for records across all time, and export as
-            JSON where possible.
-          </Text.Paragraph>
-          <Text.Heading>
-            How much does it cost?
-          </Text.Heading>
-
-          <Text.Paragraph>
-            This website is free to use. However, there may be plans to add
-            premium features in the future.
-          </Text.Paragraph>
         </Layout.Center>
+        <Button
+        href="/"
+        text="Go back Home"
+      />
       </Layout.Element>
-    </Layout.Background>
+      
+    </>
   );
 }
